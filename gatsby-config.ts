@@ -20,7 +20,7 @@ const config: GatsbyConfig = {
     // `gatsby-plugin-ts-config`,
     // `gatsby-plugin-typescript`,
     // `gatsby-plugin-postcss`,
-    // `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-react-helmet`,
     // `gatsby-transformer-remark`,
     // `gatsby-transformer-json`,
     // "gatsby-plugin-mdx",
