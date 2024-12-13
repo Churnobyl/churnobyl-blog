@@ -1,8 +1,11 @@
 import type { GatsbyConfig } from "gatsby";
+import adapter from "gatsby-adapter-netlify";
 
 require("dotenv").config();
 
 const config: GatsbyConfig = {
+  adapter: adapter(),
+
   siteMetadata: {
     title: `Churnobyl Tech Blog`,
     description: `상상을 현실로 만들기 위해 노력하는 개발자 테크 블로그입니다.`,
