@@ -40,7 +40,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
       </div>
       <div id={"category-div"}>
         {categories.map((category, index) => (
-          <span key={index} className={"text-sm md:text-base text-gray"}>
+          <span key={category.id} className={"text-sm md:text-base text-gray"}>
             <Link
               to={`/categories/${encodeURIComponent(category.category_name)}`}
               title={`Explore posts in ${category.category_name}`}
@@ -55,7 +55,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
       <p className={"text-base md:text-lg"}>{description}</p>
       <div id={"tag-div"}>
         {tags.map((tag) => (
-          <Tag tag_name={tag.tag_name} />
+          <Tag id={tag.id} tag_name={tag.tag_name} key={tag.id} />
         ))}
       </div>
       <hr className={"my-5 border-gray-light"} />

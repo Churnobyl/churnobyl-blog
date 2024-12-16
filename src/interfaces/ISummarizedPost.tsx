@@ -1,5 +1,5 @@
 export interface ISummarizedPost {
-  id: number;
+  id: string;
   title: string;
   categories: ICategory[];
   created_date: string;
@@ -10,9 +10,11 @@ export interface ISummarizedPost {
 }
 
 export interface ICategory {
+  id: string;
   category_name: string;
 }
 
 export interface ITag {
   tag_name: string;
+  id: string;
 }

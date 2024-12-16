@@ -15,6 +15,7 @@ const SummarizedPostList: React.FC<IPostList> = ({ data }) => {
       <div id={"post-list"}>
         {data.map((d) => (
           <SummarizedPost
+            key={d.id}
             id={d.id}
             title={d.title}
             categories={d.categories}

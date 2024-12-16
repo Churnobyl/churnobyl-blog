@@ -1,16 +1,12 @@
 import { Link } from "gatsby";
 import React from "react";
-
-interface ITag {
-  tag_name: string;
-  id: number;
-}
+import { ITag } from "../../interfaces/ISummarizedPost";
 
 const Tag: React.FC<ITag> = ({ tag_name, id }) => {
   return (
     <Link to={`/tag/${tag_name}`}>
       <div
-        id={String(id)}
+        id={id}
         className={
           "inline-block bg-main-blue rounded-md mr-3 py-1 px-2 text-base space-x-1"
         }

@@ -23,6 +23,7 @@ const config: GatsbyConfig = {
     // `gatsby-transformer-remark`,
     // `gatsby-transformer-json`,
     // "gatsby-plugin-mdx",
+    `gatsby-plugin-material-ui`,
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-image",
@@ -48,6 +49,7 @@ const config: GatsbyConfig = {
       options: {
         token: process.env.GATSBY_INTEGRATION_TOKEN,
         databaseId: process.env.GATSBY_DATABASE_ID,
+        bookDatabaseId: process.env.GATSBY_BOOK_DATABASE_ID,
       },
     },
   ],
