@@ -8,6 +8,6 @@ export const createPages: GatsbyNode[`createPages`] = async ({
 }) => {
   const { createPage } = actions;
 
-  // await createPostList(graphql, createPage);
+  await createPostList(graphql, createPage);
   await createPosts(graphql, createPage);
 };

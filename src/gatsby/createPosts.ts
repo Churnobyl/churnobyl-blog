@@ -18,14 +18,25 @@ export const createPosts = async (
     query {
       allChurnotion {
         nodes {
-          id
-          content
           title
           slug
-          category_list {
-            slug
+          id
+          create_date
+          content
+          book {
+            book_name
+            update_date
+            create_date
+            url
           }
           url
+          update_date
+          version
+          category_list {
+            category_name
+            id
+            url
+          }
         }
       }
     }
@@ -36,12 +47,11 @@ export const createPosts = async (
   }
 
   result.data.allChurnotion.nodes.forEach((node) => {
-    const { id, content, title, slug, category_list, url } = node;
-
+    console.dir(node.id);
     createPage({
-      path: url,
+      path: node.url,
       component: path.resolve(`./src/templates/post-page.tsx`),
-      context: { id, content, title, slug, category_list },
+      context: { pageId: node.id },
     });
   });
 };

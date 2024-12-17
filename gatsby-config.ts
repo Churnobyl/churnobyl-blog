@@ -23,7 +23,6 @@ const config: GatsbyConfig = {
     // `gatsby-transformer-remark`,
     // `gatsby-transformer-json`,
     // "gatsby-plugin-mdx",
-    `gatsby-plugin-material-ui`,
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-image",

@@ -16,16 +16,11 @@ export const createPostList = async (
 ) => {
   const result = await graphql(`
     query {
-      allChurnotion {
-        nodes {
-          id
-          content
-          title
-          slug
-          category_list {
+      allChurnotion(limit: 1000, sort: { update_date: DESC }) {
+        edges {
+          node {
             slug
           }
-          url
         }
       }
     }
@@ -35,13 +30,20 @@ export const createPostList = async (
     throw result.errors;
   }
 
-  result.data.allChurnotion.nodes.forEach((node) => {
-    const { id, content, title, slug, category_list, url } = node;
-
+  // Create blog-list pages
+  const posts = result.data.allChurnotion.edges;
+  const postsPerPage = 10;
+  const numPages = Math.ceil(posts.length / postsPerPage);
+  Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
-      path: url,
-      component: path.resolve(`./src/templates/post-page.tsx`),
-      context: { id, content, title, slug },
+      path: i === 0 ? `/` : `/${i + 1}`,
+      component: path.resolve(`./src/templates/post-list-page.tsx`),
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        currentPage: i + 1,
+      },
     });
   });
 };

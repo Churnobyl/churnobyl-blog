@@ -12,9 +12,11 @@ const NormalLayout: React.FC<NormalLayoutProps> = ({ children }) => {
   return (
     <>
       <TopBar />
-      <div className={classNames("flex justify-center items-center mt-16")}>
+      <main
+        className={classNames("flex justify-center items-center mt-16 w-full")}
+      >
         {children}
-      </div>
+      </main>
       <Footer />
     </>
   );
