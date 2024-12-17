@@ -4,6 +4,7 @@ import { IPost } from "../interfaces/IPost";
 import { graphql, PageProps } from "gatsby";
 import Category from "../components/category/category";
 import TagList from "../components/labels/tagList";
+import { useFormatDate } from "../hooks/use-format-date";
 
 interface PostPageContext {
   pageId: string;
@@ -35,8 +36,11 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
 
         <div className="col-span-3 flex flex-col space-y-5">
           <div id="content_head" className="flex flex-col space-y-5">
-            <div>
-              {title} {version} {update_date}
+            <div className={"space-x-2"}>
+              <span className={"text-3xl font-bold"}>{title}</span>
+              <span className={"text-main-blue text-sm"}>
+                v{version} 개정 {useFormatDate(update_date)}
+              </span>
             </div>
             <div>
               <span>
