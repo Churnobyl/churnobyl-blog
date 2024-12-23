@@ -24,13 +24,13 @@ const PostListPage: React.FC<
       <div className={"flex flex-col justify-center w-full"}>
         <div
           id={"content"}
-          className={"my-10 flex items-center justify-center w-full"}
+          className={"mt-10 flex items-center justify-center w-full"}
         >
-          <div className={"flex space-x-5 w-3/4 justify-between"}>
-            <div className="flex flex-col w-full justify-center col-span-2 px-4">
+          <div className={"flex space-x-5 w-2/3 justify-between"}>
+            <div className="flex flex-col w-2/3 justify-center col-span-2 px-4">
               <SummarizedPostList data={posts} />
             </div>
-            <div className="flex col-span-1 px-4">
+            <div className="flex col-span-1 w-1/3 px-4">
               <BookList data={categoryForBooks} />
             </div>
           </div>

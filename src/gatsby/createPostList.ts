@@ -14,7 +14,9 @@ export const createPostList = async (
     args: Page<TContext>
   ) => void
 ) => {
-  const result = await graphql(`
+  const result = await graphql<{
+    allChurnotion: { edges: [{ node: { slug: string } }] };
+  }>(`
     query {
       allChurnotion(limit: 1000, sort: { update_date: DESC }) {
         edges {
@@ -30,8 +32,10 @@ export const createPostList = async (
     throw result.errors;
   }
 
-  // Create blog-list pages
-  const posts = result.data.allChurnotion.edges;
+  const posts = result?.data?.allChurnotion.edges;
+
+  if (!posts) return;
+
   const postsPerPage = 10;
   const numPages = Math.ceil(posts.length / postsPerPage);
   Array.from({ length: numPages }).forEach((_, i) => {

@@ -17,6 +17,7 @@ module.exports = {
       gray: "#AEAEAE",
       "gray-dark": "#393939",
       "highlight-yellow": "#FFF100",
+      "highlight-red": "#d65531",
       tag: {
         red: "#FFE2DD",
         yellow: "#FDECC8",

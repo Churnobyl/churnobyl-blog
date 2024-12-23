@@ -1,3 +1,4 @@
+import { BaseContentBlock } from "notion-types";
 import { ISummarizedPost } from "./ISummarizedPost";
 
 export interface IPost extends ISummarizedPost {
@@ -7,7 +8,7 @@ export interface IPost extends ISummarizedPost {
     update_date: string;
     description: string;
     create_date: string;
-    content: string;
+    content: BaseContentBlock[];
     category_list: {
       category_name: string;
       id: string;

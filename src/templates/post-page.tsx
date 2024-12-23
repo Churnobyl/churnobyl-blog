@@ -1,10 +1,11 @@
-import React from "react";
-import NormalLayout from "../components/layout/normalLayout";
-import { IPost } from "../interfaces/IPost";
 import { graphql, PageProps } from "gatsby";
+import React, { useEffect } from "react";
 import Category from "../components/category/category";
 import TagList from "../components/labels/tagList";
+import NormalLayout from "../components/layout/normalLayout";
 import { useFormatDate } from "../hooks/use-format-date";
+import { IPost } from "../interfaces/IPost";
+import MdxGenerator from "../mdx/mdxGenerator";
 
 interface PostPageContext {
   pageId: string;
@@ -31,10 +32,8 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
   const { pageId } = pageContext;
   return (
     <NormalLayout>
-      <div className="grid grid-cols-5 gap-4 my-40 w-full mx-auto">
-        <div className="col-span-1"></div>
-
-        <div className="col-span-3 flex flex-col space-y-5">
+      <div className="flex justify-center my-40 w-full mx-auto">
+        <div className="w-[800px] flex flex-col space-y-5">
           <div id="content_head" className="flex flex-col space-y-5">
             <div className={"space-x-2"}>
               <span className={"text-3xl font-bold"}>{title}</span>
@@ -57,12 +56,14 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
             </div>
           </div>
           <hr />
-          <div>{JSON.stringify(content)}</div>
+          <div>
+            <MdxGenerator content={content} />
+          </div>
         </div>
 
-        <div className="col-span-1">
+        {/* <div className="">
           <div className="sticky top-10">여긴 목차가 들어갈 거임</div>
-        </div>
+        </div> */}
       </div>
     </NormalLayout>
   );
