@@ -24,11 +24,11 @@ const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
     const isVersioning = isVersionHandler(block);
 
     if (isVersioning) {
-      const rawText =
-        block?.content?.NOTION_TYPE_FOR_VERSIONING?.rich_text?.[0]?.plain_text;
+      // const rawText =
+      //   block?.content?.NOTION_TYPE_FOR_VERSIONING?.rich_text?.[0]?.plain_text;
 
-      if (rawText && rawText.startsWith("version")) {
-      }
+      // if (rawText && rawText.startsWith("version")) {
+      // }
 
       continue;
     }

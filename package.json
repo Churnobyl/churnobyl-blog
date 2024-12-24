@@ -11,6 +11,7 @@
     "gatsby"
   ],
   "scripts": {
+    "prebuild": "webpack --config webpack.functions.js",
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
@@ -23,7 +24,6 @@
     "@emotion/styled": "^11.14.0",
     "@mdx-js/react": "^3.1.0",
     "@mui/material": "^6.2.0",
-    "@types/isomorphic-fetch": "^0.0.39",
     "autoprefixer": "^10.4.20",
     "bufferutil": "^4.0.8",
     "canvas": "^2.11.2",
@@ -39,15 +39,9 @@
     "gatsby-plugin-sitemap": "^6.14.0",
     "gatsby-remark-prismjs": "^7.14.0",
     "gatsby-source-filesystem": "^5.14.0",
-    "gatsby-source-notion-churnotion": "^1.0.59",
+    "gatsby-source-notion-churnotion": "^1.0.61",
     "gatsby-transformer-remark": "^6.14.0",
     "gatsby-transformer-sharp": "^5.14.0",
-    "isomorphic-fetch": "^3.0.0",
-    "metascraper": "^5.45.25",
-    "metascraper-description": "^5.45.25",
-    "metascraper-image": "^5.45.27",
-    "metascraper-title": "^5.45.25",
-    "metascraper-url": "^5.45.25",
     "node-addon-api": "^8.3.0",
     "notion-types": "^7.1.5",
     "postcss": "^8.4.49",
@@ -59,8 +53,7 @@
     "refractor": "^4.8.1",
     "remark-gfm": "^4.0.0",
     "supports-color": "^10.0.0",
-    "tailwindcss": "^3.4.16",
-    "utf-8-validate": "^6.0.5"
+    "tailwindcss": "^3.4.16"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",

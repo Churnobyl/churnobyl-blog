@@ -1,3 +1,4 @@
+import { graphql, useStaticQuery } from "gatsby";
 import React, { useState, useEffect, useCallback } from "react";
 
 interface HoverModalProps {
@@ -6,27 +7,22 @@ interface HoverModalProps {
 }
 
 const HoverModal: React.FC<HoverModalProps> = ({ url, position }) => {
-  const [metadata, setMetadata] = useState<any>(null);
-
-  useEffect(() => {
-    const fetchMetadata = async () => {
-      try {
-        const response = await fetch(
-          `/api/scrape-metadata?url=${encodeURIComponent(url)}`
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+  const data = useStaticQuery(graphql`
+    query {
+      allNMetadata {
+        nodes {
+          id
+          title
+          description
+          image
+          url
         }
-        const metadata = await response.json();
-        setMetadata(metadata);
-      } catch (error: any) {
-        console.error("Error fetching metadata:", error.message);
-        setMetadata(null);
       }
-    };
+    }
+  `);
 
-    fetchMetadata();
-  }, [url]);
+  const metadata =
+    data.allNMetadata.nodes.find((node: any) => node.id === url) || null;
 
   if (!metadata) return null;
 
@@ -39,12 +35,19 @@ const HoverModal: React.FC<HoverModalProps> = ({ url, position }) => {
         <img
           src={metadata.image}
           alt={metadata.title}
-          className="w-full max-h-[100px] object-cover mb-2"
+          className="w-full max-h-[100px] object-cover mb-2 rounded"
         />
       )}
-      <h3 className="m-0 text-sm font-bold">{metadata.title}</h3>
-      <p className="m-0 text-xs text-gray-dark mt-1">{metadata.description}</p>
-      <p className="m-0 text-xs text-gray-dark mt-1">{url}</p>
+      <h3 className="text-sm font-semibold">{metadata.title}</h3>
+      <p className="text-xs text-gray-500 mt-1">{metadata.description}</p>
+      <a
+        href={metadata.url}
+        className="text-xs text-main-blue hover:underline mt-2 block"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {metadata.url}
+      </a>
     </div>
   );
 };
@@ -60,7 +63,7 @@ const HoverLink: React.FC<{ href: string; children: React.ReactNode }> = ({
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       setPosition({ x: e.clientX, y: e.clientY });
     },
-    [setPosition]
+    []
   );
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -79,7 +82,7 @@ const HoverLink: React.FC<{ href: string; children: React.ReactNode }> = ({
         onMouseEnter={handleMouseEnter}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="text-main-blue font-bold hover:underline hover:text-gray-dark"
+        className="text-main-blue font-bold hover:underline hover:text-gray-600"
         target="_blank"
         rel="noopener noreferrer"
       >

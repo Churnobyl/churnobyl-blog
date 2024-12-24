@@ -3526,13 +3526,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/isomorphic-fetch@npm:^0.0.39":
-  version: 0.0.39
-  resolution: "@types/isomorphic-fetch@npm:0.0.39"
-  checksum: 10c0/7adc0880a4a575ccd2c2066c00942a03d69eff02acd371da764e9258f18ca96367075fc87656993ed24a66f9de1ffe2fea4900cae7c4ee04e84b2358637d3f80
-  languageName: node
-  linkType: hard
-
 "@types/json-schema@npm:*, @types/json-schema@npm:^7.0.4, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.8, @types/json-schema@npm:^7.0.9":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
@@ -5654,7 +5647,6 @@ __metadata:
     "@mdx-js/react": "npm:^3.1.0"
     "@mui/material": "npm:^6.2.0"
     "@types/babel__core": "npm:^7"
-    "@types/isomorphic-fetch": "npm:^0.0.39"
     "@types/node": "npm:^20.11.19"
     "@types/prismjs": "npm:^1"
     "@types/react": "npm:^18.2.55"
@@ -5674,15 +5666,9 @@ __metadata:
     gatsby-plugin-sitemap: "npm:^6.14.0"
     gatsby-remark-prismjs: "npm:^7.14.0"
     gatsby-source-filesystem: "npm:^5.14.0"
-    gatsby-source-notion-churnotion: "npm:^1.0.59"
+    gatsby-source-notion-churnotion: "npm:^1.0.61"
     gatsby-transformer-remark: "npm:^6.14.0"
     gatsby-transformer-sharp: "npm:^5.14.0"
-    isomorphic-fetch: "npm:^3.0.0"
-    metascraper: "npm:^5.45.25"
-    metascraper-description: "npm:^5.45.25"
-    metascraper-image: "npm:^5.45.27"
-    metascraper-title: "npm:^5.45.25"
-    metascraper-url: "npm:^5.45.25"
     node-addon-api: "npm:^8.3.0"
     notion-types: "npm:^7.1.5"
     postcss: "npm:^8.4.49"
@@ -5696,7 +5682,6 @@ __metadata:
     supports-color: "npm:^10.0.0"
     tailwindcss: "npm:^3.4.16"
     typescript: "npm:^5.3.3"
-    utf-8-validate: "npm:^6.0.5"
   languageName: unknown
   linkType: soft
 
@@ -9072,9 +9057,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-notion-churnotion@npm:^1.0.59":
-  version: 1.0.59
-  resolution: "gatsby-source-notion-churnotion@npm:1.0.59"
+"gatsby-source-notion-churnotion@npm:^1.0.61":
+  version: 1.0.61
+  resolution: "gatsby-source-notion-churnotion@npm:1.0.61"
   dependencies:
     "@notionhq/client": "npm:^2.2.15"
     "@types/node": "npm:^22.10.2"
@@ -9083,6 +9068,11 @@ __metadata:
     gatsby-source-filesystem: "npm:^5.14.0"
     gatsby-transformer-json: "npm:^5.14.0"
     gatsby-transformer-sharp: "npm:^5.14.0"
+    metascraper: "npm:^5.45.25"
+    metascraper-description: "npm:^5.45.25"
+    metascraper-image: "npm:^5.45.27"
+    metascraper-title: "npm:^5.45.25"
+    metascraper-url: "npm:^5.45.25"
     node-fetch: "npm:^3.3.2"
     notion-to-md: "npm:^3.1.1"
     notion-types: "npm:^7.1.5"
@@ -9091,7 +9081,7 @@ __metadata:
     gatsby: ^5.14.0
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 10c0/a1fed326bb7c0f6a934b52178be376dc7bee98f6d2235d56b4c78737d8d525cc8371b345b0f95562760656eeca97036f8ecca6da725cd684cafab541fa00158a
+  checksum: 10c0/ded0fab72afddf6b2cfaf9ac9ca2fb7bc3a047107f2a5530913bf27681870f2487079752eb0c055f8cb97545b579f461ad60d6c897edb7b99a84fd71b06f4b56
   languageName: node
   linkType: hard
 
@@ -11180,16 +11170,6 @@ __metadata:
   version: 3.0.1
   resolution: "isobject@npm:3.0.1"
   checksum: 10c0/03344f5064a82f099a0cd1a8a407f4c0d20b7b8485e8e816c39f249e9416b06c322e8dec5b842b6bb8a06de0af9cb48e7bc1b5352f0fadc2f0abac033db3d4db
-  languageName: node
-  linkType: hard
-
-"isomorphic-fetch@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "isomorphic-fetch@npm:3.0.0"
-  dependencies:
-    node-fetch: "npm:^2.6.1"
-    whatwg-fetch: "npm:^3.4.1"
-  checksum: 10c0/511b1135c6d18125a07de661091f5e7403b7640060355d2d704ce081e019bc1862da849482d079ce5e2559b8976d3de7709566063aec1b908369c0b98a2b075b
   languageName: node
   linkType: hard
 
@@ -19030,16 +19010,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"utf-8-validate@npm:^6.0.5":
-  version: 6.0.5
-  resolution: "utf-8-validate@npm:6.0.5"
-  dependencies:
-    node-gyp: "npm:latest"
-    node-gyp-build: "npm:^4.3.0"
-  checksum: 10c0/6dc63c513adb001e47a51819072cdd414158430091c49c21d4947ea99f16df5167b671f680df8fb2b6f2ae6a7f30264b4ec111bd3e573720dfe371da1ab99a81
-  languageName: node
-  linkType: hard
-
 "util-deprecate@npm:^1.0.1, util-deprecate@npm:^1.0.2, util-deprecate@npm:~1.0.1":
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
@@ -19359,13 +19329,6 @@ __metadata:
   dependencies:
     iconv-lite: "npm:0.6.3"
   checksum: 10c0/273b5f441c2f7fda3368a496c3009edbaa5e43b71b09728f90425e7f487e5cef9eb2b846a31bd760dd8077739c26faf6b5ca43a5f24033172b003b72cf61a93e
-  languageName: node
-  linkType: hard
-
-"whatwg-fetch@npm:^3.4.1":
-  version: 3.6.20
-  resolution: "whatwg-fetch@npm:3.6.20"
-  checksum: 10c0/fa972dd14091321d38f36a4d062298df58c2248393ef9e8b154493c347c62e2756e25be29c16277396046d6eaa4b11bd174f34e6403fff6aaca9fb30fa1ff46d
   languageName: node
   linkType: hard
 

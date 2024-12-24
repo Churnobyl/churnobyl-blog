@@ -2,7 +2,7 @@ import React from "react";
 import { CustomBaseContentBlock } from "../../interfaces/IBlock";
 import classNames from "classnames";
 
-const MdBlockParagraph: React.FC<CustomBaseContentBlock> = ({
+const MdBlockCallout: React.FC<CustomBaseContentBlock> = ({
   type,
   specialObject,
   href,
@@ -47,4 +47,4 @@ const MdBlockParagraph: React.FC<CustomBaseContentBlock> = ({
   );
 };
 
-export default MdBlockParagraph;
+export default MdBlockCallout;
