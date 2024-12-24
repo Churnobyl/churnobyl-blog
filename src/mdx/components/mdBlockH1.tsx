@@ -22,7 +22,7 @@ const MdBlockH1: React.FC<CustomBaseContentBlock> = ({
           <LinkSvg />
         </AnchorLink>
       </div>
-      <h1 className={"text-4xl font-bold mt-9 pb-2 tracking-tight"}>
+      <h1 className={"text-3xl font-bold mt-9 pb-2 tracking-tight"}>
         {specialObject.rich_text[0].plain_text}
       </h1>
     </div>

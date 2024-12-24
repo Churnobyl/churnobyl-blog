@@ -59,6 +59,25 @@ const HoverLink: React.FC<{ href: string; children: React.ReactNode }> = ({
   const [hovered, setHovered] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
+  const data = useStaticQuery(graphql`
+    query {
+      allNMetadata {
+        nodes {
+          id
+          title
+          description
+          image
+          url
+        }
+      }
+    }
+  `);
+
+  const metadata =
+    data.allNMetadata.nodes.find((node: any) => node.id === href) || null;
+
+  if (!metadata) return null;
+
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       setPosition({ x: e.clientX, y: e.clientY });
@@ -78,11 +97,11 @@ const HoverLink: React.FC<{ href: string; children: React.ReactNode }> = ({
   return (
     <>
       <a
-        href={href}
+        href={metadata.url}
         onMouseEnter={handleMouseEnter}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="text-main-blue font-bold hover:underline hover:text-gray-600"
+        className="text-main-blue font-bold hover:underline hover:text-black"
         target="_blank"
         rel="noopener noreferrer"
       >

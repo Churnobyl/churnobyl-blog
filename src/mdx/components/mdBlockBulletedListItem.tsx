@@ -43,12 +43,11 @@ const MdBlockBulletedListItem: React.FC<CustomBaseContentBlock> = ({
             const { annotations, plain_text, href } = text;
 
             const textClass = classNames({
-              "font-semibold": annotations.bold || href,
+              "font-semibold": annotations.bold,
               italic: annotations.italic,
               "line-through": annotations.strikethrough,
               underline: annotations.underline,
               "text-highlight-red": annotations.bold || annotations.code,
-              "text-main-blue hover:underline hover:text-black": href,
               "bg-gray-light": annotations.code,
               "rounded-lg": annotations.code,
               "py-1": annotations.code,

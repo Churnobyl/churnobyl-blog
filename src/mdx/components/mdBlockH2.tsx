@@ -21,7 +21,7 @@ const MdBlockH2: React.FC<CustomBaseContentBlock> = ({
           <LinkSvg />
         </AnchorLink>
       </div>
-      <h2 className="text-3xl font-bold mt-9 pb-2 tracking-tight">
+      <h2 className="text-2xl font-bold mt-9 pb-2 tracking-tight">
         {specialObject.rich_text[0].plain_text}
       </h2>
     </div>

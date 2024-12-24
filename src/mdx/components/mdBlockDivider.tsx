@@ -10,7 +10,7 @@ const MdBlockDivider: React.FC<CustomBaseContentBlock> = ({
       <hr className={"w-1/2 h-1 my-8 bg-gray border-2 rounded-xl"} />
       <div
         className={
-          "absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray"
+          "absolute px-4 -translate-x-1/5 bg-white left-1/5 dark:bg-gray"
         }
       >
         <svg

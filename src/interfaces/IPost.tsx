@@ -27,5 +27,10 @@ export interface IPost extends ISummarizedPost {
       book_name: string;
     };
     book_index: number;
+    tableOfContents: {
+      type: string;
+      hash: string;
+      title: string;
+    }[];
   };
 }

@@ -7,6 +7,14 @@ import { useFormatDate } from "../hooks/use-format-date";
 import { IPost } from "../interfaces/IPost";
 import MdxGenerator from "../mdx/mdxGenerator";
 
+const scrollToWithOffset = (hash: string, offset: number) => {
+  const target = document.getElementById(hash);
+  if (target) {
+    const y = target.getBoundingClientRect().top + window.scrollY + offset;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }
+};
+
 interface PostPageContext {
   pageId: string;
 }
@@ -28,6 +36,7 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
     update_date,
     url,
     version,
+    tableOfContents,
   } = data.churnotion;
   const { pageId } = pageContext;
   return (
@@ -61,9 +70,43 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
           </div>
         </div>
 
-        {/* <div className="">
-          <div className="sticky top-10">여긴 목차가 들어갈 거임</div>
-        </div> */}
+        <div className="hidden xl:block sticky top-20 h-[calc(100vh-40px)] overflow-auto w-[300px] ml-10">
+          <div>
+            <h3 className="text-lg font-semibold">목차</h3>
+            <ul className="space-y-2 mt-4">
+              {tableOfContents.map((item, index) => {
+                const textSize =
+                  item.type === "heading_1"
+                    ? "text-lg font-bold"
+                    : item.type === "heading_2"
+                    ? "text-md font-medium"
+                    : "text-base font-normal";
+
+                const marginLeft =
+                  item.type === "heading_1"
+                    ? "ml-0"
+                    : item.type === "heading_2"
+                    ? "ml-4"
+                    : "ml-8";
+
+                return (
+                  <li key={index} className={`${marginLeft}`}>
+                    <a
+                      href={`#${item.hash}`}
+                      className={`text-main-blue hover:underline ${textSize}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToWithOffset(item.hash, -80);
+                      }}
+                    >
+                      {item.title}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
       </div>
     </NormalLayout>
   );
@@ -96,6 +139,7 @@ export const postQuery = graphql`
         book_name
       }
       book_index
+      tableOfContents
     }
   }
 `;

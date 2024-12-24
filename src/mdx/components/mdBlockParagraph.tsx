@@ -1,6 +1,7 @@
 import React from "react";
 import { CustomBaseContentBlock } from "../../interfaces/IBlock";
 import classNames from "classnames";
+import HoverLink from "../../components/hoverlink/hoverLink";
 
 const MdBlockParagraph: React.FC<CustomBaseContentBlock> = ({
   type,
@@ -28,15 +29,9 @@ const MdBlockParagraph: React.FC<CustomBaseContentBlock> = ({
         });
 
         return href ? (
-          <a
-            key={index}
-            href={href}
-            className={`${textClass} text-blue-500 hover:underline`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <HoverLink key={index} href={href}>
             {plain_text}
-          </a>
+          </HoverLink>
         ) : (
           <span key={index} className={textClass}>
             {plain_text}

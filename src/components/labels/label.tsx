@@ -10,6 +10,10 @@ const Label: React.FC<ILabel> = ({ text }) => {
     text === "new" ? "bg-highlight-yellow" : "bg-sub-lightskyblue";
   const textColor = "text-black";
   const styles = ` ${bgColor} ${textColor}`;
+  const insetShadow =
+    text === "new"
+      ? `inset 0px -1px 1px rgb(197, 187, 0)`
+      : `inset 0px -1px 1px rgb(126, 162, 167)`;
 
   return (
     <span
@@ -17,6 +21,9 @@ const Label: React.FC<ILabel> = ({ text }) => {
         styles,
         `inline-flex justify-center drop-shadow-md items-center px-2 py-1 mx-2 rounded-lg font-bold leading-none text-xs`
       )}
+      style={{
+        boxShadow: insetShadow,
+      }}
     >
       {text === "new" ? "New" : "Updated"}
     </span>
