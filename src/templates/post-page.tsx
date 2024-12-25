@@ -72,7 +72,6 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
 
         <div className="hidden xl:block sticky top-20 h-[calc(100vh-40px)] overflow-auto w-[300px] ml-10">
           <div>
-            <h3 className="text-lg font-semibold">목차</h3>
             <ul className="space-y-2 mt-4">
               {tableOfContents.map((item, index) => {
                 const textSize =
