@@ -42,7 +42,7 @@ const PostListPage: React.FC<
           </div>
         </div>
         <Pagination
-          className={"flex items-center justify-center"}
+          className={"flex items-center justify-center mb-10"}
           count={numPages}
           page={currentPage}
           renderItem={(item) => (

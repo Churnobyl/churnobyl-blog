@@ -7,6 +7,7 @@ import { useFormatDate } from "../hooks/use-format-date";
 import { IPost } from "../interfaces/IPost";
 import MdxGenerator from "../mdx/mdxGenerator";
 import CommentUtterances from "../components/comments/commentUtterances";
+import TableOfContents from "../components/tableOfContents/tableOfContents";
 
 const scrollToWithOffset = (hash: string, offset: number) => {
   const target = document.getElementById(hash);
@@ -40,6 +41,9 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
     tableOfContents,
   } = data.churnotion;
   const { pageId } = pageContext;
+
+  const convertedCreateDate = useFormatDate(create_date);
+
   return (
     <NormalLayout>
       <div className="flex justify-center my-40 w-full mx-auto">
@@ -56,7 +60,9 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
                 {book?.book_name}
                 {book_index}
               </span>
-              <span>{create_date}</span>
+              <span className={"text-sm md:text-base px-3"}>
+                · {convertedCreateDate}
+              </span>
             </div>
             <div>
               <Category category_list={category_list} />
@@ -76,40 +82,7 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
         </div>
 
         <div className="hidden xl:block sticky top-20 h-[calc(100vh-40px)] overflow-auto w-[300px] ml-10">
-          <div>
-            <ul className="space-y-2 mt-4">
-              {tableOfContents.map((item, index) => {
-                const textSize =
-                  item.type === "heading_1"
-                    ? "text-lg font-bold"
-                    : item.type === "heading_2"
-                    ? "text-md font-medium"
-                    : "text-base font-normal";
-
-                const marginLeft =
-                  item.type === "heading_1"
-                    ? "ml-0"
-                    : item.type === "heading_2"
-                    ? "ml-4"
-                    : "ml-8";
-
-                return (
-                  <li key={index} className={`${marginLeft}`}>
-                    <a
-                      href={`#${item.hash}`}
-                      className={`text-main-blue hover:underline ${textSize}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        scrollToWithOffset(item.hash, -80);
-                      }}
-                    >
-                      {item.title}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <TableOfContents tableOfContents={tableOfContents} />
         </div>
       </div>
     </NormalLayout>
