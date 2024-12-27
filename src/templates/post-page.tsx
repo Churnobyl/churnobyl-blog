@@ -6,6 +6,7 @@ import NormalLayout from "../components/layout/normalLayout";
 import { useFormatDate } from "../hooks/use-format-date";
 import { IPost } from "../interfaces/IPost";
 import MdxGenerator from "../mdx/mdxGenerator";
+import CommentUtterances from "../components/comments/commentUtterances";
 
 const scrollToWithOffset = (hash: string, offset: number) => {
   const target = document.getElementById(hash);
@@ -67,6 +68,10 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
           <hr />
           <div>
             <MdxGenerator content={content} />
+          </div>
+          <hr />
+          <div>
+            <CommentUtterances />
           </div>
         </div>
 

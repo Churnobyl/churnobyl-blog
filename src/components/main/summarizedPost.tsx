@@ -37,7 +37,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
   return (
     <>
       <div className={"flex flex-row space-x-5 items-center w-full"}>
-        <div className="flex justify-end items-center w-80 max-w-xs aspect-square">
+        <div className="flex justify-end items-center w-80 h-60 max-w-xs aspect-square">
           <Link to={`/${url}`}>
             {image ? (
               <GatsbyImage
@@ -55,7 +55,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             )}
           </Link>
         </div>
-        <div className={"my-5 space-y-5 w-full h-48"}>
+        <div className={"flex flex-col justify-evenly space-y-2 w-full h-60"}>
           <div id={"title-div"} className={"flex items-center"}>
             <span
               className={
@@ -74,7 +74,13 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
               · {convertedCreateDate}
             </span>
           </div>
-          <p className={"text-base md:text-lg"}>{description}</p>
+          <p
+            className={
+              "text-base md:text-md text-ellipsis overflow-hidden h-20"
+            }
+          >
+            {description}
+          </p>
           <div id={"tag-div"}>
             <TagList tags={tags} />
           </div>

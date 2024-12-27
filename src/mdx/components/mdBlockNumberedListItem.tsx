@@ -48,7 +48,7 @@ const MdBlockNumberedListItem: React.FC<CustomBaseContentBlock> = ({
   return (
     <li className="flex items-start">
       <div
-        className="flex items-center justify-center w-8 leading-none"
+        className="flex items-center justify-center w-8 leading-none text-main-text-black"
         style={{ lineHeight: "1.5" }}
       >
         {numbering}
@@ -69,6 +69,7 @@ const MdBlockNumberedListItem: React.FC<CustomBaseContentBlock> = ({
               "line-through": annotations.strikethrough,
               underline: annotations.underline,
               "text-highlight-red": annotations.bold || annotations.code,
+              "text-main-text-black": !(annotations.bold || annotations.code),
               "bg-gray-light": annotations.code,
               "rounded-lg": annotations.code,
               "py-1": annotations.code,
@@ -83,7 +84,7 @@ const MdBlockNumberedListItem: React.FC<CustomBaseContentBlock> = ({
                 {plain_text}
               </HoverLink>
             ) : (
-              <span key={index} className={textClass}>
+              <span key={index} className={`${textClass}`}>
                 {plain_text}
               </span>
             );

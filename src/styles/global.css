@@ -15,6 +15,52 @@
   }
 }
 
+@layer components {
+  div.code-toolbar > div.toolbar {
+    @apply top-3;
+  }
+
+  div.code-toolbar
+    > .toolbar.toolbar
+    > .toolbar-item
+    > .copy-to-clipboard-button {
+    @apply bg-main-blue text-white rounded-md px-5 py-1 transition duration-300;
+  }
+
+  div.code-toolbar
+    > .toolbar.toolbar
+    > .toolbar-item
+    > .copy-to-clipboard-button:hover,
+  div.code-toolbar
+    > .toolbar.toolbar
+    > .toolbar-item
+    > .copy-to-clipboard-button:focus,
+  div.code-toolbar
+    > .toolbar.toolbar
+    > .toolbar-item
+    > .copy-to-clipboard-button:hover,
+  div.code-toolbar
+    > .toolbar.toolbar
+    > .toolbar-item
+    > .copy-to-clipboard-button:focus {
+    @apply bg-main-blue;
+  }
+
+  div.code-toolbar
+    > .toolbar.toolbar
+    > .toolbar-item
+    > .copy-to-clipboard-button[data-copy-state="copy-success"] {
+    @apply bg-gray;
+  }
+
+  div.code-toolbar
+    > .toolbar.toolbar
+    > .toolbar-item
+    > .copy-to-clipboard-button[data-copy-state="copy-error"] {
+    @apply bg-highlight-red;
+  }
+}
+
 .gatsby-highlight {
   background-color: #fdf6e3;
   border-radius: 0.3em;

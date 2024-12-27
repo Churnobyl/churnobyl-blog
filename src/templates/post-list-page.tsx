@@ -24,9 +24,15 @@ const PostListPage: React.FC<
       <div className={"flex flex-col justify-center w-full"}>
         <div
           id={"content"}
-          className={"mt-10 flex items-center justify-center w-full"}
+          className={
+            "mt-10 flex items-center justify-center w-full min-h-screen"
+          }
         >
-          <div className={"flex space-x-5 w-2/3 justify-between"}>
+          <div
+            className={
+              "flex flex-col-reverse xl:flex-row space-x-5 w-2/3 justify-between"
+            }
+          >
             <div className="flex flex-col w-2/3 justify-center col-span-2 px-4">
               <SummarizedPostList data={posts} />
             </div>

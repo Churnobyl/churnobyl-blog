@@ -19,6 +19,7 @@ const MdBlockParagraph: React.FC<CustomBaseContentBlock> = ({
           "line-through": annotations.strikethrough,
           underline: annotations.underline,
           "text-highlight-red": annotations.code,
+          "text-main-text-black": !(annotations.bold || annotations.code),
           "bg-gray-light": annotations.code,
           "rounded-lg": annotations.code,
           "py-1": annotations.code,
@@ -33,7 +34,7 @@ const MdBlockParagraph: React.FC<CustomBaseContentBlock> = ({
             {plain_text}
           </HoverLink>
         ) : (
-          <span key={index} className={textClass}>
+          <span key={index} className={`${textClass}`}>
             {plain_text}
           </span>
         );

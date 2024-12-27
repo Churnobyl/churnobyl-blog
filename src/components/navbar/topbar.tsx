@@ -36,14 +36,16 @@ const TopBar: React.FC = () => {
           { "py-2": isScrolled, "py-4": !isScrolled }
         )}
       >
-        {/* Logo */}
         <div id={"logo"}>
           <Link to={"/"}>
-            <StaticImage src="../../images/title-logo.svg" alt="title" />
+            <StaticImage
+              src="../../images/title-logo.svg"
+              alt="title"
+              loading={"eager"}
+            />
           </Link>
         </div>
 
-        {/* Hamburger Menu Button (Mobile Only) */}
         <div className="md:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
