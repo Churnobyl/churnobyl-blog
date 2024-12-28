@@ -42,6 +42,7 @@ const TopBar: React.FC = () => {
               src="../../images/title-logo.svg"
               alt="title"
               loading={"eager"}
+              placeholder={"blurred"}
             />
           </Link>
         </div>

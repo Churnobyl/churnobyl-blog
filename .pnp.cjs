@@ -52,7 +52,7 @@ const RAW_RUNTIME_STATE =
           ["gatsby-plugin-sitemap", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:6.14.0"],\
           ["gatsby-remark-prismjs", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:7.14.0"],\
           ["gatsby-source-filesystem", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:5.14.0"],\
-          ["gatsby-source-notion-churnotion", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:1.0.62"],\
+          ["gatsby-source-notion-churnotion", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:1.0.65"],\
           ["gatsby-transformer-remark", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:6.14.0"],\
           ["gatsby-transformer-sharp", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:5.14.0"],\
           ["node-addon-api", "npm:8.3.0"],\
@@ -8032,7 +8032,7 @@ const RAW_RUNTIME_STATE =
           ["gatsby-plugin-sitemap", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:6.14.0"],\
           ["gatsby-remark-prismjs", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:7.14.0"],\
           ["gatsby-source-filesystem", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:5.14.0"],\
-          ["gatsby-source-notion-churnotion", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:1.0.62"],\
+          ["gatsby-source-notion-churnotion", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:1.0.65"],\
           ["gatsby-transformer-remark", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:6.14.0"],\
           ["gatsby-transformer-sharp", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:5.14.0"],\
           ["node-addon-api", "npm:8.3.0"],\
@@ -12491,17 +12491,17 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["gatsby-source-notion-churnotion", [\
-      ["npm:1.0.62", {\
-        "packageLocation": "../../../C:/Users/tjdcj/AppData/Local/Yarn/Berry/cache/gatsby-source-notion-churnotion-npm-1.0.62-999a2e5bae-10c0.zip/node_modules/gatsby-source-notion-churnotion/",\
+      ["npm:1.0.65", {\
+        "packageLocation": "../../../C:/Users/tjdcj/AppData/Local/Yarn/Berry/cache/gatsby-source-notion-churnotion-npm-1.0.65-3c62e25374-10c0.zip/node_modules/gatsby-source-notion-churnotion/",\
         "packageDependencies": [\
-          ["gatsby-source-notion-churnotion", "npm:1.0.62"]\
+          ["gatsby-source-notion-churnotion", "npm:1.0.65"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:1.0.62", {\
-        "packageLocation": "./.yarn/__virtual__/gatsby-source-notion-churnotion-virtual-a13284f0eb/4/C:/Users/tjdcj/AppData/Local/Yarn/Berry/cache/gatsby-source-notion-churnotion-npm-1.0.62-999a2e5bae-10c0.zip/node_modules/gatsby-source-notion-churnotion/",\
+      ["virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:1.0.65", {\
+        "packageLocation": "./.yarn/__virtual__/gatsby-source-notion-churnotion-virtual-f0845f71dc/4/C:/Users/tjdcj/AppData/Local/Yarn/Berry/cache/gatsby-source-notion-churnotion-npm-1.0.65-3c62e25374-10c0.zip/node_modules/gatsby-source-notion-churnotion/",\
         "packageDependencies": [\
-          ["gatsby-source-notion-churnotion", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:1.0.62"],\
+          ["gatsby-source-notion-churnotion", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:1.0.65"],\
           ["@notionhq/client", "npm:2.2.15"],\
           ["@types/gatsby", null],\
           ["@types/node", "npm:22.10.2"],\
@@ -12511,7 +12511,7 @@ const RAW_RUNTIME_STATE =
           ["gatsby", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:5.14.0"],\
           ["gatsby-plugin-sharp", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:5.14.0"],\
           ["gatsby-source-filesystem", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:5.14.0"],\
-          ["gatsby-transformer-json", "virtual:a13284f0ebe0bb8e691bc19e456c713d8d9e4e9f00bec20b9fe3f9f3a47cbfad973b78307bb918cb906cfced1f9e5bf5e7bcf0839d709df2724c237a61ff7c95#npm:5.14.0"],\
+          ["gatsby-transformer-json", "virtual:f0845f71dcaf09833b106dcc6a97d39df36738cc97610802ab77ed3810dc01965b6398ea83936afad218b15ca61733d46f130ed32900d1ca68f2a8b81a3f17be#npm:5.14.0"],\
           ["gatsby-transformer-sharp", "virtual:d074c8f3fbbea8e853bb02fd3481bc63b71823940b7245490306676041317e92a8624e06c269ee6bedf6bd0490f6fcb589f711350a1c4ae39700f44282258bbe#npm:5.14.0"],\
           ["metascraper", "npm:5.45.25"],\
           ["metascraper-description", "npm:5.45.25"],\
@@ -12544,10 +12544,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:a13284f0ebe0bb8e691bc19e456c713d8d9e4e9f00bec20b9fe3f9f3a47cbfad973b78307bb918cb906cfced1f9e5bf5e7bcf0839d709df2724c237a61ff7c95#npm:5.14.0", {\
-        "packageLocation": "./.yarn/__virtual__/gatsby-transformer-json-virtual-42d638bd19/4/C:/Users/tjdcj/AppData/Local/Yarn/Berry/cache/gatsby-transformer-json-npm-5.14.0-c0d45d4f8e-10c0.zip/node_modules/gatsby-transformer-json/",\
+      ["virtual:f0845f71dcaf09833b106dcc6a97d39df36738cc97610802ab77ed3810dc01965b6398ea83936afad218b15ca61733d46f130ed32900d1ca68f2a8b81a3f17be#npm:5.14.0", {\
+        "packageLocation": "./.yarn/__virtual__/gatsby-transformer-json-virtual-c4e51e6572/4/C:/Users/tjdcj/AppData/Local/Yarn/Berry/cache/gatsby-transformer-json-npm-5.14.0-c0d45d4f8e-10c0.zip/node_modules/gatsby-transformer-json/",\
         "packageDependencies": [\
-          ["gatsby-transformer-json", "virtual:a13284f0ebe0bb8e691bc19e456c713d8d9e4e9f00bec20b9fe3f9f3a47cbfad973b78307bb918cb906cfced1f9e5bf5e7bcf0839d709df2724c237a61ff7c95#npm:5.14.0"],\
+          ["gatsby-transformer-json", "virtual:f0845f71dcaf09833b106dcc6a97d39df36738cc97610802ab77ed3810dc01965b6398ea83936afad218b15ca61733d46f130ed32900d1ca68f2a8b81a3f17be#npm:5.14.0"],\
           ["@babel/runtime", "npm:7.26.0"],\
           ["@types/gatsby", null],\
           ["bluebird", "npm:3.7.2"],\
