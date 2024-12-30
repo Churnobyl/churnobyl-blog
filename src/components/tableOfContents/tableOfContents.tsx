@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import useSmoothScroll from "../../hooks/use-smooth-scroll"; // 커스텀 훅 사용
 
 interface TOCItem {
   hash: string;
@@ -15,6 +16,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
 }) => {
   const [activeHash, setActiveHash] = useState<string>("");
   const offset = 80;
+  const { scrollToElement } = useSmoothScroll();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +44,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [tableOfContents]);
+  }, [tableOfContents, offset]);
 
   return (
     <div>
@@ -78,14 +80,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
                   className={``}
                   onClick={(e) => {
                     e.preventDefault();
-                    const target = document.getElementById(item.hash);
-                    if (target) {
-                      const y =
-                        target.getBoundingClientRect().top +
-                        window.scrollY -
-                        offset;
-                      window.scrollTo({ top: y, behavior: "smooth" });
-                    }
+                    scrollToElement(item.hash);
                   }}
                 >
                   {item.title}

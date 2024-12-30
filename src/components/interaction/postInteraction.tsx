@@ -85,20 +85,23 @@ const PostInteractions = ({ slug }: { slug: string }) => {
   return (
     <div
       className={
-        "flex flex-row space-x-5 bg-gray-light w-36 h-12 justify-center items-center rounded-full"
+        "flex flex-row space-x-5 bg-gray-light w-40 h-12 justify-center items-center rounded-full"
       }
     >
       <div className={"flex flex-row items-center justify-center space-x-1"}>
         <EyesSvg />
-        <span className={"text-gray-dark"}>{viewCnt}</span>
+        <span className={"text-gray-dark w-4"}>{viewCnt}</span>
       </div>
-      <div
-        onClick={handleLike}
-        className={classNames(
-          "rounded-full border-solid border-2 border-gray hover:border-main-blue hover:border-opacity-50"
-        )}
-      >
-        <LikeSvg liked={liked} />
+      <div className={"flex flex-row items-center justify-center space-x-2"}>
+        <div
+          onClick={handleLike}
+          className={classNames(
+            "rounded-full border-solid border-2 border-gray hover:border-main-blue hover:border-opacity-50"
+          )}
+        >
+          <LikeSvg liked={liked} />
+        </div>
+        <div className={"text-gray-dark w-4"}>{likeCnt}</div>
       </div>
     </div>
   );

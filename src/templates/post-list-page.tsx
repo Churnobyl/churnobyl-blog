@@ -95,7 +95,9 @@ export const blogListQuery = graphql`
                 sizes: "200"
                 placeholder: BLURRED
                 quality: 10
-                height: 250
+                height: 208
+                width: 208
+                layout: CONSTRAINED
               )
             }
           }

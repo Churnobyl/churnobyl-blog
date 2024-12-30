@@ -37,25 +37,27 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
   return (
     <>
       <div className={"flex flex-row space-x-5 items-center w-full"}>
-        <div className="flex justify-end items-center w-80 h-60 max-w-xs aspect-square">
+        <div className="flex justify-end items-center w-[208px] h-52 min-w-40 max-w-xs">
           <Link to={`/${url}`}>
             {image ? (
               <GatsbyImage
                 image={image}
                 alt={title}
                 title={title}
-                className={"object-cover rounded-md"}
+                className={"rounded-sm"}
               />
             ) : (
               <StaticImage
                 src="../../images/no-content.png"
                 alt="no content"
-                className={"object-cover rounded-md"}
+                className={"rounded-sm"}
               />
             )}
           </Link>
         </div>
-        <div className={"flex flex-col justify-evenly space-y-2 w-full h-60"}>
+        <div
+          className={"flex flex-col justify-evenly space-y-2 w-[600px] h-52"}
+        >
           <div id={"title-div"} className={"flex items-center"}>
             <span
               className={
@@ -76,7 +78,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
           </div>
           <p
             className={
-              "text-base md:text-md text-ellipsis overflow-hidden h-20"
+              "text-base md:text-md text-ellipsis overflow-hidden h-20 w-full"
             }
           >
             {description}

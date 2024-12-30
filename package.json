@@ -34,12 +34,14 @@
     "classnames": "^2.5.1",
     "cookie": "^1.0.2",
     "dotenv": "^16.4.7",
+    "etag": "^1.8.1",
     "gatsby": "^5.14.0",
     "gatsby-adapter-netlify": "^1.2.0",
     "gatsby-plugin-anchor-links": "^1.2.1",
     "gatsby-plugin-image": "^3.14.0",
     "gatsby-plugin-manifest": "^5.14.0",
     "gatsby-plugin-mdx": "^5.14.0",
+    "gatsby-plugin-netlify": "^5.1.1",
     "gatsby-plugin-postcss": "^6.14.0",
     "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-sharp": "^5.14.0",
@@ -64,10 +66,12 @@
     "remark-gfm": "^4.0.0",
     "sharp": "^0.33.5",
     "supports-color": "^10.0.0",
-    "tailwindcss": "^3.4.16"
+    "tailwindcss": "^3.4.16",
+    "utf-8-validate": "^6.0.5"
   },
   "devDependencies": {
     "@types/babel__core": "^7",
+    "@types/etag": "^1",
     "@types/node": "^20.11.19",
     "@types/prismjs": "^1",
     "@types/react": "^18.2.55",

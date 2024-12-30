@@ -2,7 +2,7 @@
 const Stream = require("stream")
 const http = require("http")
 const { Buffer } = require("buffer")
-const cookie = require("./../../../../../../C:/Users/tjdcj/AppData/Local/Yarn/Berry/cache/cookie-npm-0.6.0-362d6a2e45-10c0.zip/node_modules/cookie/index.js")
+const cookie = require("./../../../node_modules/gatsby-adapter-netlify/node_modules/cookie/index.js")
 
 
 const preferDefault = m => (m && m.default) || m
