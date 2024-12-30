@@ -1,11 +1,12 @@
 import React from "react";
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
+import { getImage, getSrc, IGatsbyImageData } from "gatsby-plugin-image";
 
 interface SEO {
   title?: string;
   description?: string;
   pathname?: string;
-  image?: string;
+  image?: IGatsbyImageData;
   children?: React.ReactNode;
 }
 
@@ -17,10 +18,12 @@ export const SEO = ({ title, description, pathname, image }: SEO) => {
     siteUrl,
   } = useSiteMetadata();
 
+  const imageUrl = image ? getSrc(image) : defaultImage;
+
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    image: image || defaultImage,
+    image: imageUrl ? `${siteUrl}${imageUrl}` : undefined,
     url: `${siteUrl}${pathname || ``}`,
   };
 
@@ -32,10 +35,10 @@ export const SEO = ({ title, description, pathname, image }: SEO) => {
       </title>
       <meta
         property="og:title"
-        content={`${title ? seo.title : ""}${defaultTitle}`}
+        content={`${title ? seo.title + " | " : ""}${defaultTitle}`}
       />
       <meta property="og:url" content={seo.url} />
-      <meta property="og:image" content={`${siteUrl}${seo.image}`} />
+      <meta property="og:image" content={seo.image} />
       <meta property="og:description" content={seo.description} />
       <meta name="description" content={seo.description} />
       <link rel="icon" href="/favicon.ico" />

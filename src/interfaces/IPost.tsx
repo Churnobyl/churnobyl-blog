@@ -1,5 +1,6 @@
 import { BaseContentBlock } from "notion-types";
 import { ISummarizedPost } from "./ISummarizedPost";
+import { IGatsbyImageData } from "gatsby-plugin-image";
 
 export interface IPost extends ISummarizedPost {
   churnotion: {
@@ -32,8 +33,6 @@ export interface IPost extends ISummarizedPost {
       hash: string;
       title: string;
     }[];
-    thumbnail: {
-      url: string;
-    };
+    thumbnail: IGatsbyImageData;
   };
 }

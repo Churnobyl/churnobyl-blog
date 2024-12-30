@@ -121,7 +121,16 @@ export const postQuery = graphql`
       book_index
       tableOfContents
       thumbnail {
-        url
+        childImageSharp {
+          gatsbyImageData(
+            sizes: "200"
+            placeholder: BLURRED
+            quality: 2
+            height: 208
+            width: 208
+            layout: CONSTRAINED
+          )
+        }
       }
     }
   }
@@ -129,11 +138,15 @@ export const postQuery = graphql`
 
 export default PostTemplate;
 
-export const Head = ({ data }: PageProps<IPost, PostPageContext>) => (
-  <SEO
-    title={data.churnotion.title}
-    description={data.churnotion.description}
-    pathname={data.churnotion.url}
-    image={data.churnotion.thumbnail.url}
-  />
-);
+export const Head = ({ data }: PageProps<IPost, PostPageContext>) => {
+  const { title, description, url, thumbnail } = data.churnotion;
+
+  return (
+    <SEO
+      title={title}
+      description={description}
+      pathname={url}
+      image={thumbnail?.childImageSharp?.gatsbyImageData}
+    />
+  );
+};
