@@ -47,7 +47,6 @@ export const createPosts = async (
   }
 
   result.data.allChurnotion.nodes.forEach((node) => {
-    console.dir(node.id);
     createPage({
       path: node.url,
       component: path.resolve(`./src/templates/post-page.tsx`),
