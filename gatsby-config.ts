@@ -22,10 +22,19 @@ const config: GatsbyConfig = {
     // `gatsby-plugin-postcss`,
     // `gatsby-transformer-json`,
     // "gatsby-plugin-mdx",
+    `gatsby-plugin-advanced-sitemap`,
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://blog.churnobyl.com",
+        sitemap: "https://blog.churnobyl.com/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
     {
       resolve: "gatsby-plugin-anchor-links",
       options: {
