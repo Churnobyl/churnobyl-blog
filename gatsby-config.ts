@@ -9,7 +9,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `Churnobyl Tech Blog`,
     description: `상상을 현실로 만들기 위해 노력하는 개발자 테크 블로그입니다.`,
-    image: `./src/images/blog-icon.png`,
+    image: `/default-image.png`,
     siteUrl: `https://blog.churnobyl.com`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.

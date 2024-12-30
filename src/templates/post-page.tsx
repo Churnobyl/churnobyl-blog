@@ -8,14 +8,8 @@ import { IPost } from "../interfaces/IPost";
 import MdxGenerator from "../mdx/mdxGenerator";
 import CommentUtterances from "../components/comments/commentUtterances";
 import TableOfContents from "../components/tableOfContents/tableOfContents";
-
-const scrollToWithOffset = (hash: string, offset: number) => {
-  const target = document.getElementById(hash);
-  if (target) {
-    const y = target.getBoundingClientRect().top + window.scrollY + offset;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  }
-};
+import PostInteractions from "../components/interaction/postInteraction";
+import { SEO } from "../components/seo/seo";
 
 interface PostPageContext {
   pageId: string;
@@ -39,6 +33,7 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
     url,
     version,
     tableOfContents,
+    thumbnail,
   } = data.churnotion;
   const { pageId } = pageContext;
 
@@ -58,7 +53,7 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
             <div>
               <span>
                 {book?.book_name}
-                {book_index}
+                {book ? book_index : ""}
               </span>
               <span className={"text-sm md:text-base px-3"}>
                 · {convertedCreateDate}
@@ -82,8 +77,15 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
         </div>
 
         <div className="hidden xl:block sticky top-20 h-[calc(100vh-40px)] overflow-auto w-[300px] ml-10">
+          <div>
+            <PostInteractions slug={url} />
+          </div>
           <TableOfContents tableOfContents={tableOfContents} />
         </div>
+      </div>
+      <div className="flex flex-col justify-center my-20 w-full mx-auto">
+        {/* <BookCarousel />
+        <RelatedPost /> */}
       </div>
     </NormalLayout>
   );
@@ -114,11 +116,24 @@ export const postQuery = graphql`
       version
       book {
         book_name
+        id
       }
       book_index
       tableOfContents
+      thumbnail {
+        url
+      }
     }
   }
 `;
 
 export default PostTemplate;
+
+export const Head = ({ data }: PageProps<IPost, PostPageContext>) => (
+  <SEO
+    title={data.churnotion.title}
+    description={data.churnotion.description}
+    pathname={data.churnotion.url}
+    image={data.churnotion.thumbnail.url}
+  />
+);

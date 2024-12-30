@@ -6,6 +6,7 @@ import NormalLayout from "../components/layout/normalLayout";
 import BookList from "../components/main/bookList";
 import SummarizedPostList from "../components/main/summarizedPostList";
 import { IBlogListQueryData } from "../interfaces/IChurnotion";
+import { SEO } from "../components/seo/seo";
 
 interface BlogListPageContext {
   currentPage: number;
@@ -120,3 +121,12 @@ export const blogListQuery = graphql`
 `;
 
 export default PostListPage;
+
+export const Head = ({
+  pageContext,
+}: PageProps<IBlogListQueryData, BlogListPageContext>) => {
+  const { currentPage, numPages } = pageContext;
+  const title =
+    currentPage === 1 ? "Home" : `Page ${currentPage} of ${numPages}`;
+  return <SEO title={title} />;
+};

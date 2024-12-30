@@ -32,5 +32,8 @@ export interface IPost extends ISummarizedPost {
       hash: string;
       title: string;
     }[];
+    thumbnail: {
+      url: string;
+    };
   };
 }
