@@ -38,22 +38,84 @@ function toCapitalize(str: string) {
   return str.replace(/\b\w/g, (match) => match.toUpperCase());
 }
 
+function toNormalize(language: string) {
+  const mapping: { [key: string]: string } = {
+    "c++": "cpp",
+    "c#": "csharp",
+    python: "python",
+    java: "java",
+    bash: "bash",
+    javascript: "javascript",
+    typescript: "typescript",
+    json: "json",
+    yaml: "yaml",
+    html: "markup", // Prism uses 'markup' for HTML
+    css: "css",
+    sql: "sql",
+    graphql: "graphql",
+    ruby: "ruby",
+    php: "php",
+    kotlin: "kotlin",
+    swift: "swift",
+    go: "go",
+    rust: "rust",
+    dockerfile: "docker",
+    nginx: "nginx",
+    perl: "perl",
+    dart: "dart",
+    groovy: "groovy",
+    toml: "toml",
+    tsx: "tsx",
+    jsx: "jsx",
+    gradle: "gradle",
+    mongodb: "mongodb",
+    regex: "regex",
+  };
+
+  return mapping[language.toLowerCase()] || language.toLowerCase();
+}
+
+let isLanguageDisplayRegistered = false;
+
 const MdBlockCode: React.FC<CustomBaseContentBlock> = ({
-  type,
+  id,
   specialObject,
 }) => {
-  const lang = `language-${specialObject.language}`;
+  const lang = `language-${toNormalize(specialObject.language)}`;
 
   useEffect(() => {
+    if (!isLanguageDisplayRegistered) {
+      Prism.plugins.toolbar.registerButton(
+        "language-display",
+        (env: { language: string }) => {
+          const span = document.createElement("span");
+          span.innerText = env.language ? toCapitalize(env.language) : "Text";
+          span.style.cssText = `
+          background-color: transparent;
+          padding: 2px 8px;
+          font-size: 12px;
+          color: #a1a1a1;
+          margin-left: auto;
+          cursor: default;
+        `;
+          return span;
+        }
+      );
+      isLanguageDisplayRegistered = true;
+    }
+
     Prism.highlightAll();
-  });
+  }, []);
 
   return (
     <div
       className="flex flex-col code-card line-numbers space-y-0 my-5"
       data-prismjs-copy-timeout="500"
     >
-      <pre className={`${lang} code-toolbar`}>
+      <pre
+        data-toolbar-order="copy-to-clipboard,language-display"
+        className={`${lang} code-toolbar`}
+      >
         <code
           className={lang}
           data-prismjs-copy="복사"

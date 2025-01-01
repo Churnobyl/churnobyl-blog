@@ -1,15 +1,17 @@
 import { graphql, PageProps } from "gatsby";
-import React, { useEffect } from "react";
+import React from "react";
 import Category from "../components/category/category";
+import CommentUtterances from "../components/comments/commentUtterances";
+import PostInteractions from "../components/interaction/postInteraction";
 import TagList from "../components/labels/tagList";
 import NormalLayout from "../components/layout/normalLayout";
+import { SEO } from "../components/seo/seo";
+import TableOfContents from "../components/tableOfContents/tableOfContents";
 import { useFormatDate } from "../hooks/use-format-date";
 import { IPost } from "../interfaces/IPost";
 import MdxGenerator from "../mdx/mdxGenerator";
-import CommentUtterances from "../components/comments/commentUtterances";
-import TableOfContents from "../components/tableOfContents/tableOfContents";
-import PostInteractions from "../components/interaction/postInteraction";
-import { SEO } from "../components/seo/seo";
+import BookSlider from "../components/bookSlider/bookSlider";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 interface PostPageContext {
   pageId: string;
@@ -50,20 +52,26 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
                 v{version} 개정 {useFormatDate(update_date)}
               </span>
             </div>
-            <div>
-              <span>
-                {book?.book_name}
-                {book ? book_index : ""}
-              </span>
-              <span className={"text-sm md:text-base px-3"}>
-                · {convertedCreateDate}
-              </span>
-            </div>
-            <div>
-              <Category category_list={category_list} />
-            </div>
-            <div>
-              <TagList tags={tags} />
+            <div className={"flex flex-row justify-between h-24"}>
+              <div className="flex flex-col justify-between h-full">
+                <div>{convertedCreateDate}</div>
+                <div>
+                  <Category category_list={category_list} />
+                </div>
+                <div>
+                  <TagList tags={tags} />
+                </div>
+              </div>
+              <div>
+                {book && (
+                  <GatsbyImage
+                    image={
+                      book.book_image.childrenImageSharp?.[0]?.gatsbyImageData
+                    }
+                    alt={""}
+                  />
+                )}
+              </div>
             </div>
           </div>
           <hr />
@@ -84,8 +92,8 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
         </div>
       </div>
       <div className="flex flex-col justify-center my-20 w-full mx-auto">
-        {/* <BookCarousel />
-        <RelatedPost /> */}
+        <BookSlider book={book} currentBookIndex={book_index} />
+        {/* <RelatedPost /> */}
       </div>
     </NormalLayout>
   );
@@ -117,6 +125,12 @@ export const postQuery = graphql`
       book {
         book_name
         id
+        url
+        book_image {
+          childrenImageSharp {
+            gatsbyImageData(aspectRatio: 0.7, width: 70)
+          }
+        }
       }
       book_index
       tableOfContents
@@ -125,9 +139,9 @@ export const postQuery = graphql`
           gatsbyImageData(
             sizes: "200"
             placeholder: BLURRED
-            quality: 2
-            height: 208
-            width: 208
+            quality: 5
+            height: 400
+            width: 800
             layout: CONSTRAINED
           )
         }

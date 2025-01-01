@@ -22,8 +22,8 @@ const MdBlockDivider: React.FC<CustomBaseContentBlock> = ({
         >
           <path
             xmlns="http://www.w3.org/2000/svg"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M16 1H0V13H5L8 16L11 13H16V1ZM3 6H5V8H3V6ZM9 6H7V8H9V6ZM13 6H11V8H13V6Z"
             fill="#000000"
           />

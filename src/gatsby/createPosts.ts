@@ -1,6 +1,18 @@
 import { Page } from "gatsby";
 import path from "path";
 
+interface ChurnotionNode {
+  id: string;
+  slug: string;
+  url: string;
+}
+
+interface ChurnotionQueryResult {
+  allChurnotion: {
+    nodes: ChurnotionNode[];
+  };
+}
+
 export const createPosts = async (
   graphql: <TData, TVariables = any>(
     query: string,
@@ -14,7 +26,7 @@ export const createPosts = async (
     args: Page<TContext>
   ) => void
 ) => {
-  const result = await graphql(`
+  const result = await graphql<ChurnotionQueryResult>(`
     query {
       allChurnotion {
         nodes {
@@ -46,7 +58,7 @@ export const createPosts = async (
     throw result.errors;
   }
 
-  result.data.allChurnotion.nodes.forEach((node) => {
+  result.data?.allChurnotion.nodes.forEach((node) => {
     createPage({
       path: node.url,
       component: path.resolve(`./src/templates/post-page.tsx`),

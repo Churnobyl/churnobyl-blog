@@ -17,46 +17,32 @@
 
 @layer components {
   div.code-toolbar > div.toolbar {
-    @apply top-3;
+    @apply top-3 flex items-center justify-end space-x-1 opacity-100;
+  }
+
+  div.code-toolbar > div.toolbar .toolbar-item.language-display {
+    @apply bg-gray text-gray rounded-md px-3 py-1 font-medium cursor-default;
+  }
+
+  div.code-toolbar > div.toolbar div.toolbar-item > button.copy-to-clipboard-button,
+  div.code-toolbar:focus > div.toolbar div.toolbar-item > button.copy-to-clipboard-button,
+  div.code-toolbar:hover > div.toolbar div.toolbar-item > button.copy-to-clipboard-button {
+    @apply bg-main-blue text-white rounded-md px-2 py-1 transition duration-200 opacity-0;
+  }
+
+  div.code-toolbar:hover > div.toolbar div.toolbar-item > button.copy-to-clipboard-button {
+    @apply opacity-100;
   }
 
   div.code-toolbar
-    > .toolbar.toolbar
-    > .toolbar-item
-    > .copy-to-clipboard-button {
-    @apply bg-main-blue text-white rounded-md px-5 py-1 transition duration-300;
-  }
-
-  div.code-toolbar
-    > .toolbar.toolbar
-    > .toolbar-item
-    > .copy-to-clipboard-button:hover,
-  div.code-toolbar
-    > .toolbar.toolbar
-    > .toolbar-item
-    > .copy-to-clipboard-button:focus,
-  div.code-toolbar
-    > .toolbar.toolbar
-    > .toolbar-item
-    > .copy-to-clipboard-button:hover,
-  div.code-toolbar
-    > .toolbar.toolbar
-    > .toolbar-item
-    > .copy-to-clipboard-button:focus {
-    @apply bg-main-blue;
-  }
-
-  div.code-toolbar
-    > .toolbar.toolbar
-    > .toolbar-item
-    > .copy-to-clipboard-button[data-copy-state="copy-success"] {
+    > div.toolbar
+    .toolbar-item.copy-to-clipboard-button[data-copy-state="copy-success"] {
     @apply bg-gray;
   }
 
   div.code-toolbar
-    > .toolbar.toolbar
-    > .toolbar-item
-    > .copy-to-clipboard-button[data-copy-state="copy-error"] {
+    > div.toolbar
+    .toolbar-item.copy-to-clipboard-button[data-copy-state="copy-error"] {
     @apply bg-highlight-red;
   }
 }

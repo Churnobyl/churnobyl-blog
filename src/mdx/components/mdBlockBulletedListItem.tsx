@@ -75,6 +75,8 @@ const MdBlockBulletedListItem: React.FC<CustomBaseContentBlock> = ({
             {children.map((child, index) => {
               const special = child?.bulleted_list_item || {};
 
+              if (Object.keys(special).length === 0) return;
+
               return (
                 <MdBlockBulletedListItem
                   key={index}

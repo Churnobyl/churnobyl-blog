@@ -1,6 +1,12 @@
+import { IGatsbyImageData } from "gatsby-plugin-image";
 import { BaseContentBlock } from "notion-types";
 import { ISummarizedPost } from "./ISummarizedPost";
-import { IGatsbyImageData } from "gatsby-plugin-image";
+
+interface File {
+  childImageSharp?: {
+    gatsbyImageData: IGatsbyImageData;
+  };
+}
 
 export interface IPost extends ISummarizedPost {
   churnotion: {
@@ -26,6 +32,13 @@ export interface IPost extends ISummarizedPost {
     version: number;
     book: {
       book_name: string;
+      id: string;
+      url: string;
+      book_image: {
+        childrenImageSharp: {
+          gatsbyImageData: IGatsbyImageData;
+        }[];
+      };
     };
     book_index: number;
     tableOfContents: {
@@ -33,6 +46,6 @@ export interface IPost extends ISummarizedPost {
       hash: string;
       title: string;
     }[];
-    thumbnail: IGatsbyImageData;
+    thumbnail?: File;
   };
 }
