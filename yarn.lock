@@ -6435,7 +6435,7 @@ __metadata:
     gatsby-remark-prismjs: "npm:^7.14.0"
     gatsby-source-contentful: "npm:^8.15.0"
     gatsby-source-filesystem: "npm:^5.14.0"
-    gatsby-source-notion-churnotion: "npm:^1.0.82"
+    gatsby-source-notion-churnotion: "npm:^1.0.89"
     gatsby-transformer-remark: "npm:^6.14.0"
     gatsby-transformer-sharp: "npm:^5.14.0"
     gatsby-transformer-sqip: "npm:^5.14.0"
@@ -6452,6 +6452,7 @@ __metadata:
     sharp: "npm:^0.33.5"
     supabase: "npm:2.1.1"
     supports-color: "npm:^10.0.0"
+    swiper: "npm:^11.2.0"
     tailwindcss: "npm:^3.4.16"
     typescript: "npm:^5.3.3"
     utf-8-validate: "npm:^6.0.5"
@@ -10223,9 +10224,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-notion-churnotion@npm:^1.0.82":
-  version: 1.0.82
-  resolution: "gatsby-source-notion-churnotion@npm:1.0.82"
+"gatsby-source-notion-churnotion@npm:^1.0.89":
+  version: 1.0.89
+  resolution: "gatsby-source-notion-churnotion@npm:1.0.89"
   dependencies:
     "@notionhq/client": "npm:^2.2.15"
     "@types/node": "npm:^22.10.2"
@@ -10249,7 +10250,7 @@ __metadata:
     gatsby: ^5.14.0
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 10c0/1ba94c4b2feca10a8dab81a2b617e52b3a5f60a842458bc7af32dd7abe80a7e2c25019e4aaed3af7a4240d72d508b8d22f8e9116ca5f073775c5073d4e0c6b71
+  checksum: 10c0/4e2dfc18d4b283df6d6a06fc70b3d6bcc0854561657e6d09b3a8852c65b22c3c67128d2a97c5b25dd04af89411d64ba7adc1e7d083526b68ea526fd156e81036
   languageName: node
   linkType: hard
 
@@ -20215,6 +20216,13 @@ __metadata:
   dependencies:
     tslib: "npm:^2.0.3"
   checksum: 10c0/6a47c1926e06395ead750905e103be388aeec8c9697f20b14bc3e1e86fcb4fc78e5033197afe6cc8bbed80f0a4ee1f184b0fa22eec7f4a767bdfd278683d52eb
+  languageName: node
+  linkType: hard
+
+"swiper@npm:^11.2.0":
+  version: 11.2.0
+  resolution: "swiper@npm:11.2.0"
+  checksum: 10c0/88092316a95026875d84f85be76d9fb3634015186401e9099995bf673cf9d10d35e227b073ed15de898eac391f12b98c22092f6c755f33b4f129e824a80a11ff
   languageName: node
   linkType: hard
 

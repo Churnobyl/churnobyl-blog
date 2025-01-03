@@ -1,11 +1,33 @@
+import { IGatsbyImageData } from "gatsby-plugin-image";
+
 export interface IBooks {
+  book: IBook[];
+}
+
+export interface IBook {
+  book_name: string;
   id: string;
-  category_name: string;
-  childrenNBook: {
-    book_name: string;
-    url: string;
-    create_date: string;
-    update_date: string;
-    id: string;
-  }[];
+  url: string;
+  book_image: {
+    childrenImageSharp: {
+      gatsbyImageData: IGatsbyImageData;
+    }[];
+  };
+  book_category: {
+    category_name: string;
+  };
+  childrenChurnotion: IChildChurnotion[];
+}
+
+export interface IChildChurnotion {
+  title: string;
+  book_index: number;
+  thumbnail: {
+    childImageSharp: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+  };
+  id: string;
+  description: string;
+  url: string;
 }

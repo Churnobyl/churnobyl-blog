@@ -1,17 +1,14 @@
 import { graphql, PageProps } from "gatsby";
 import React from "react";
-import Category from "../components/category/category";
+import BookSlider from "../components/bookSlider/bookSlider";
 import CommentUtterances from "../components/comments/commentUtterances";
 import PostInteractions from "../components/interaction/postInteraction";
-import TagList from "../components/labels/tagList";
 import NormalLayout from "../components/layout/normalLayout";
 import { SEO } from "../components/seo/seo";
 import TableOfContents from "../components/tableOfContents/tableOfContents";
-import { useFormatDate } from "../hooks/use-format-date";
 import { IPost } from "../interfaces/IPost";
 import MdxGenerator from "../mdx/mdxGenerator";
-import BookSlider from "../components/bookSlider/bookSlider";
-import { GatsbyImage } from "gatsby-plugin-image";
+import PostTitleSet from "../post/postTitleSet";
 
 interface PostPageContext {
   pageId: string;
@@ -39,46 +36,34 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
   } = data.churnotion;
   const { pageId } = pageContext;
 
-  const convertedCreateDate = useFormatDate(create_date);
-
   return (
     <NormalLayout>
-      <div className="flex justify-center my-40 w-full mx-auto">
+      <div className="flex justify-center mt-40 w-full mx-auto">
         <div className="w-[800px] flex flex-col space-y-5">
-          <div id="content_head" className="flex flex-col space-y-5">
-            <div className={"space-x-2"}>
-              <span className={"text-3xl font-bold"}>{title}</span>
-              <span className={"text-main-blue text-sm"}>
-                v{version} 개정 {useFormatDate(update_date)}
-              </span>
-            </div>
-            <div className={"flex flex-row justify-between h-24"}>
-              <div className="flex flex-col justify-between h-full">
-                <div>{convertedCreateDate}</div>
-                <div>
-                  <Category category_list={category_list} />
-                </div>
-                <div>
-                  <TagList tags={tags} />
-                </div>
-              </div>
-              <div>
-                {book && (
-                  <GatsbyImage
-                    image={
-                      book.book_image.childrenImageSharp?.[0]?.gatsbyImageData
-                    }
-                    alt={""}
-                  />
-                )}
-              </div>
-            </div>
-          </div>
+          <PostTitleSet
+            title={title}
+            version={version}
+            update_date={update_date}
+            category_list={category_list}
+            tags={tags}
+            book={book}
+            create_date={create_date}
+            id={id}
+            description={description}
+            content={content}
+            url={url}
+            book_index={book_index}
+            tableOfContents={tableOfContents}
+          />
           <hr />
           <div>
             <MdxGenerator content={content} />
           </div>
           <hr />
+          <div className="flex flex-col justify-center items-center my-40 w-[800px]">
+            {book && <BookSlider book={book} currentBookIndex={book_index} />}
+            {/* <RelatedPost /> */}
+          </div>
           <div>
             <CommentUtterances />
           </div>
@@ -90,10 +75,6 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
           </div>
           <TableOfContents tableOfContents={tableOfContents} />
         </div>
-      </div>
-      <div className="flex flex-col justify-center my-20 w-full mx-auto">
-        <BookSlider book={book} currentBookIndex={book_index} />
-        {/* <RelatedPost /> */}
       </div>
     </NormalLayout>
   );
@@ -128,8 +109,28 @@ export const postQuery = graphql`
         url
         book_image {
           childrenImageSharp {
-            gatsbyImageData(aspectRatio: 0.7, width: 70)
+            gatsbyImageData(
+              sizes: "10"
+              height: 100
+              aspectRatio: 0.7
+              layout: CONSTRAINED
+            )
           }
+        }
+        book_category {
+          category_name
+        }
+        childrenChurnotion {
+          title
+          book_index
+          thumbnail {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, width: 200)
+            }
+          }
+          id
+          description
+          url
         }
       }
       book_index

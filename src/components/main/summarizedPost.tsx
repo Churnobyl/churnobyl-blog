@@ -36,7 +36,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
 
   return (
     <>
-      <div className={"flex flex-row space-x-5 items-center w-full"}>
+      <div className={"flex flex-row space-x-20 items-center w-full my-4"}>
         <div className="flex justify-end items-center w-[208px] h-52 min-w-40 max-w-xs">
           <Link to={`/${url}`}>
             {image ? (

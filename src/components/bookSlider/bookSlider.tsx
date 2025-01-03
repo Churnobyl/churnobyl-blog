@@ -1,25 +1,99 @@
-import React from "react";
-import LeftButton from "./leftButton";
-import RightButton from "./rightButton";
-import { IPost } from "../../interfaces/IPost";
+import React, { useEffect, useRef, useMemo } from "react";
+import { IBook } from "../../interfaces/IBook";
+import PostCard from "./postCard";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import "swiper/css/mousewheel";
+import "swiper/css/keyboard";
+import {
+  A11y,
+  Navigation,
+  Pagination,
+  Scrollbar,
+  Mousewheel,
+  Keyboard,
+} from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const BookSlider = ({
   book,
   currentBookIndex,
 }: {
-  book: IPost;
+  book: IBook;
   currentBookIndex: number;
 }) => {
+  const swiperRef = useRef<any>(null);
+
+  // childrenChurnotion을 book_index 기준으로 정렬
+  const sortedChildrenChurnotion = useMemo(() => {
+    return [...book.childrenChurnotion].sort(
+      (a, b) => a.book_index - b.book_index
+    );
+  }, [book.childrenChurnotion]);
+
+  useEffect(() => {
+    if (swiperRef.current) {
+      const currentSlideIndex = sortedChildrenChurnotion.findIndex(
+        (churnotion) => churnotion.book_index === currentBookIndex
+      );
+
+      if (currentSlideIndex !== -1) {
+        swiperRef.current.slideTo(
+          currentSlideIndex !== 0 ? currentSlideIndex - 1 : 0,
+          500
+        );
+      }
+    }
+  }, [currentBookIndex, sortedChildrenChurnotion]);
+
   return (
     <div
       id={"book-slider-container"}
-      className={"flex justify-center items-center"}
+      className={"flex flex-col w-full justify-center items-center space-y-4"}
     >
-      <div>
-        <LeftButton />
-        <div id={"slider"} className={"flex flex-row space-x-2"}></div>
-        <RightButton />
+      <div className={"w-full space-x-3"}>
+        <span className={"text-2xl font-bold text-main-text-black"}>
+          이 책의 다른 글 보기
+        </span>
+        <span className={"text-sm font-bold text-main-blue"}>
+          {book.book_name}
+        </span>
       </div>
+
+      <div className={"w-full"}>
+        <Swiper
+          modules={[
+            Navigation,
+            Pagination,
+            Scrollbar,
+            A11y,
+            Mousewheel,
+            Keyboard,
+          ]}
+          spaceBetween={2}
+          slidesPerView={3}
+          navigation
+          mousewheel={{ enabled: true }}
+          keyboard={{ enabled: true }}
+          pagination={{ clickable: false }}
+          scrollbar={{ draggable: true }}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+        >
+          {sortedChildrenChurnotion.map((churnotion) => (
+            <SwiperSlide key={churnotion.id} className={"mb-10"}>
+              <PostCard
+                key={churnotion.id}
+                churnotion={churnotion}
+                isCurrent={churnotion.book_index === currentBookIndex}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <hr className="" />
     </div>
   );
 };

@@ -3,10 +3,9 @@ import Pagination from "@mui/material/Pagination";
 import { graphql, Link, type PageProps } from "gatsby";
 import * as React from "react";
 import NormalLayout from "../components/layout/normalLayout";
-import BookList from "../components/main/bookList";
 import SummarizedPostList from "../components/main/summarizedPostList";
-import { IBlogListQueryData } from "../interfaces/IChurnotion";
 import { SEO } from "../components/seo/seo";
+import { IBlogListQueryData } from "../interfaces/IChurnotion";
 
 interface BlogListPageContext {
   currentPage: number;
@@ -17,7 +16,6 @@ const PostListPage: React.FC<
   PageProps<IBlogListQueryData, BlogListPageContext>
 > = ({ data, pageContext }) => {
   const posts = data.allChurnotion.edges.map((edge) => edge.node);
-  const categoryForBooks = data.allNCategory.nodes;
   const { currentPage, numPages } = pageContext;
 
   return (
@@ -31,15 +29,10 @@ const PostListPage: React.FC<
         >
           <div
             className={
-              "flex flex-col-reverse xl:flex-row space-x-5 w-2/3 justify-between"
+              "flex flex-col-reverse xl:flex-col space-x-5 w-2/3 justify-between"
             }
           >
-            <div className="flex flex-col w-2/3 justify-center col-span-2 px-4">
-              <SummarizedPostList data={posts} />
-            </div>
-            <div className="flex col-span-1 w-1/3 px-4">
-              <BookList data={categoryForBooks} />
-            </div>
+            <SummarizedPostList data={posts} />
           </div>
         </div>
         <Pagination
