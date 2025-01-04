@@ -1,17 +1,19 @@
 import React from "react";
 
 interface LikeSvgProps {
+  width: number;
+  height: number;
   liked: boolean;
 }
 
-const LikeSvg: React.FC<LikeSvgProps> = ({ liked }) => {
+const LikeSvg: React.FC<LikeSvgProps> = ({ width, height, liked }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
       viewBox="0 0 800 800"
-      width={32}
-      height={32}
+      width={width}
+      height={height}
     >
       <defs>
         <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="lllove-grad">

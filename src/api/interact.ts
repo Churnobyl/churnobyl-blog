@@ -2,7 +2,7 @@ import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 import { supabase } from "./getSupabase";
 
 interface DBRequest {
-  slug: string;
+  url: string;
   type: string;
   deviceId: string;
 }
@@ -15,19 +15,19 @@ export default async function handler(
     return res.status(405).json({ error: "허용되지 않는 메서드예요" });
   }
 
-  const { slug, type, deviceId } = req.body;
+  const { url, type, deviceId } = req.body;
 
   // "unlike"를 허용하도록 조건 추가
-  if (!slug || !["view", "like", "unlike"].includes(type) || !deviceId) {
-    return res.status(400).json({ error: "올바르지 않은 요청이에요요" });
+  if (!url || !["view", "like", "unlike"].includes(type) || !deviceId) {
+    return res.status(400).json({ error: "올바르지 않은 요청이에요" });
   }
 
   try {
-    // 1. `post` 테이블에 slug 존재 여부 확인
+    // 1. `post` 테이블에 url 존재 여부 확인
     const { data: postData, error: postError } = await supabase
       .from("post")
-      .select("slug, view_cnt, like_cnt")
-      .eq("slug", slug)
+      .select("url, view_cnt, like_cnt")
+      .eq("url", url)
       .single();
 
     let post = postData;
@@ -37,11 +37,11 @@ export default async function handler(
       const { data: newPost, error: insertPostError } = await supabase
         .from("post")
         .insert({
-          slug,
+          url: url,
           view_cnt: 0,
           like_cnt: 0,
         })
-        .select("slug, view_cnt, like_cnt")
+        .select("url, view_cnt, like_cnt")
         .single();
 
       if (insertPostError) throw insertPostError;
@@ -55,7 +55,7 @@ export default async function handler(
       const { data: interaction, error: interactionError } = await supabase
         .from("post_interaction")
         .select("*")
-        .eq("slug", slug)
+        .eq("url", url)
         .eq("device_id", deviceId)
         .eq("type", "like")
         .single();
@@ -72,7 +72,7 @@ export default async function handler(
 
         // 좋아요 추가
         await supabase.from("post_interaction").insert({
-          slug,
+          url: url,
           device_id: deviceId,
           type: "like",
         });
@@ -80,7 +80,7 @@ export default async function handler(
         const { data: updatedPost, error: updateError } = await supabase
           .from("post")
           .update({ like_cnt: (post.like_cnt || 0) + 1 })
-          .eq("slug", slug)
+          .eq("url", url)
           .select("view_cnt, like_cnt")
           .single();
 
@@ -110,7 +110,7 @@ export default async function handler(
         const { data: updatedPost, error: updateError } = await supabase
           .from("post")
           .update({ like_cnt: (post.like_cnt || 0) - 1 })
-          .eq("slug", slug)
+          .eq("url", url)
           .select("view_cnt, like_cnt")
           .single();
 
@@ -129,14 +129,14 @@ export default async function handler(
       await supabase
         .from("post_interaction")
         .select("*")
-        .eq("slug", slug)
+        .eq("url", url)
         .eq("device_id", deviceId)
         .eq("type", "view")
         .single();
 
     if (!viewInteraction) {
       await supabase.from("post_interaction").insert({
-        slug,
+        url: url,
         device_id: deviceId,
         type: "view",
       });
@@ -144,7 +144,7 @@ export default async function handler(
       const { data: updatedPost, error: updateError } = await supabase
         .from("post")
         .update({ view_cnt: (post.view_cnt || 0) + 1 })
-        .eq("slug", slug)
+        .eq("url", url)
         .select("view_cnt, like_cnt")
         .single();
 
@@ -159,7 +159,7 @@ export default async function handler(
     const { data: likeInteraction } = await supabase
       .from("post_interaction")
       .select("*")
-      .eq("slug", slug)
+      .eq("url", url)
       .eq("device_id", deviceId)
       .eq("type", "like")
       .single();

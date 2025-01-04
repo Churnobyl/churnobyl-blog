@@ -17,8 +17,6 @@ const PostTitleSet = ({
 }: IPostContent) => {
   const convertedCreateDate = useFormatDate(create_date);
 
-  console.log(book);
-
   return (
     <div id="content_head" className="flex flex-col space-y-5">
       <div className={"space-x-2"}>

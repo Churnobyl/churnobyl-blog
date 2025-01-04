@@ -1,5 +1,5 @@
 import { graphql, PageProps } from "gatsby";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BookSlider from "../components/bookSlider/bookSlider";
 import CommentUtterances from "../components/comments/commentUtterances";
 import PostInteractions from "../components/interaction/postInteraction";
@@ -9,6 +9,7 @@ import TableOfContents from "../components/tableOfContents/tableOfContents";
 import { IPost } from "../interfaces/IPost";
 import MdxGenerator from "../mdx/mdxGenerator";
 import PostTitleSet from "../post/postTitleSet";
+import PostButtonSet from "../post/postButtonSet";
 
 interface PostPageContext {
   pageId: string;
@@ -36,6 +37,84 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
   } = data.churnotion;
   const { pageId } = pageContext;
 
+  const [viewCnt, setViewCnt] = useState(0);
+  const [likeCnt, setLikeCnt] = useState(0);
+  const [liked, setLiked] = useState(false);
+
+  const pendingLike = useRef<{ type: string; deviceId: string } | null>(null);
+
+  const getDeviceId = () => {
+    let deviceId = localStorage.getItem("device_id");
+    if (!deviceId) {
+      deviceId = crypto.randomUUID();
+      localStorage.setItem("device_id", deviceId);
+    }
+    return deviceId;
+  };
+
+  const sendPendingLike = async () => {
+    if (!pendingLike.current) return;
+
+    const requestData = {
+      url,
+      ...pendingLike.current,
+    };
+
+    try {
+      const response = await fetch(`/api/interact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestData),
+      });
+      const data = await response.json();
+    } catch (error) {
+    } finally {
+      pendingLike.current = null;
+    }
+  };
+
+  const recordViewAndLikeStatus = async () => {
+    const deviceId = getDeviceId();
+
+    try {
+      const response = await fetch(`/api/interact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, type: "view", deviceId }),
+      });
+      const data = await response.json();
+
+      setViewCnt(data.viewCnt || 0);
+      setLikeCnt(data.likeCnt || 0);
+
+      const isLiked = data.liked || false;
+      setLiked(isLiked);
+    } catch (error) {
+      console.error("Failed to record view or fetch like status:", error);
+    }
+  };
+
+  const handleLike = () => {
+    const deviceId = getDeviceId();
+
+    if (liked) {
+      setLiked(false);
+      setLikeCnt((prev) => prev - 1);
+      pendingLike.current = { type: "unlike", deviceId };
+    } else {
+      setLiked(true);
+      setLikeCnt((prev) => prev + 1);
+      pendingLike.current = { type: "like", deviceId };
+    }
+  };
+
+  useEffect(() => {
+    recordViewAndLikeStatus();
+    return () => {
+      sendPendingLike();
+    };
+  }, [url]);
+
   return (
     <NormalLayout>
       <div className="flex justify-center mt-40 w-full mx-auto">
@@ -59,6 +138,14 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
           <div>
             <MdxGenerator content={content} />
           </div>
+          <div>
+            <PostButtonSet
+              likeCnt={likeCnt}
+              liked={liked}
+              handleLike={handleLike}
+              content={data.churnotion}
+            />
+          </div>
           <hr />
           <div className="flex flex-col justify-center items-center my-40 w-[800px]">
             {book && <BookSlider book={book} currentBookIndex={book_index} />}
@@ -71,7 +158,12 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
 
         <div className="hidden xl:block sticky top-20 h-[calc(100vh-40px)] overflow-auto w-[300px] ml-10">
           <div>
-            <PostInteractions slug={url} />
+            <PostInteractions
+              likeCnt={likeCnt}
+              viewCnt={viewCnt}
+              liked={liked}
+              handleLike={handleLike}
+            />
           </div>
           <TableOfContents tableOfContents={tableOfContents} />
         </div>

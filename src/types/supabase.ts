@@ -1,4 +1,3 @@
-
 export type Json =
   | string
   | number
@@ -39,19 +38,19 @@ export type Database = {
         Row: {
           id: number
           like_cnt: number
-          slug: string
+          url: string
           view_cnt: number
         }
         Insert: {
           id?: number
           like_cnt?: number
-          slug: string
+          url: string
           view_cnt?: number
         }
         Update: {
           id?: number
           like_cnt?: number
-          slug?: string
+          url?: string
           view_cnt?: number
         }
         Relationships: []
@@ -61,22 +60,22 @@ export type Database = {
           created_at: string
           device_id: string
           id: string
-          slug: string
           type: string
+          url: string
         }
         Insert: {
           created_at?: string
           device_id: string
           id?: string
-          slug: string
           type: string
+          url: string
         }
         Update: {
           created_at?: string
           device_id?: string
           id?: string
-          slug?: string
           type?: string
+          url?: string
         }
         Relationships: []
       }

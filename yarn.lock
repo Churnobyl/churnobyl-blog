@@ -6450,7 +6450,7 @@ __metadata:
     refractor: "npm:^4.8.1"
     remark-gfm: "npm:^4.0.0"
     sharp: "npm:^0.33.5"
-    supabase: "npm:2.1.1"
+    supabase: "npm:2.2.1"
     supports-color: "npm:^10.0.0"
     swiper: "npm:^11.2.0"
     tailwindcss: "npm:^3.4.16"
@@ -20114,9 +20114,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"supabase@npm:2.1.1":
-  version: 2.1.1
-  resolution: "supabase@npm:2.1.1"
+"supabase@npm:2.2.1":
+  version: 2.2.1
+  resolution: "supabase@npm:2.2.1"
   dependencies:
     bin-links: "npm:^5.0.0"
     https-proxy-agent: "npm:^7.0.2"
@@ -20124,7 +20124,7 @@ __metadata:
     tar: "npm:7.4.3"
   bin:
     supabase: bin/supabase
-  checksum: 10c0/c032d5cb5a9622afd9a9a4c688283c57a28eb279d7ff94cc43ac47d1daaadcb0bc72274587a0bc9162c8307c099a7b1bf68c5efa1562664a854d9806757bbd7c
+  checksum: 10c0/52453ab0f3248b096d2541c8cda6d0af51bdd8730dc2089fdab612777d6b8b8a5a2cf99f14b7f71a8d335250e77635160c985c93083a04eb23841f70843308c0
   languageName: node
   linkType: hard
 
