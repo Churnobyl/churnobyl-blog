@@ -20,7 +20,7 @@ const PostCard = ({
     >
       <div
         className={classNames(
-          "flex flex-col w-56 h-64 flex-shrink-0 p-3 shadow-md bg-gray-light",
+          "flex flex-col w-36 h-48 xl:w-48 xl:h-64 flex-shrink-0 p-3 shadow-md bg-gray-light",
           {
             "bg-main-blue text-white": isCurrent,
           }
@@ -48,7 +48,7 @@ const PostCard = ({
         <div className="flex flex-col justify-between mt-3 h-full">
           <div
             className={classNames(
-              "font-bold text-sm text-main-text-black line-clamp-2",
+              "font-bold text-xs xl:text-sm text-main-text-black line-clamp-2",
               {
                 "text-gray-light": isCurrent,
               }
@@ -57,9 +57,12 @@ const PostCard = ({
             {title}
           </div>
           <div
-            className={classNames("text-xs text-gray mt-2 line-clamp-3", {
-              "text-gray-light": isCurrent,
-            })}
+            className={classNames(
+              "hidden xl:block text-xs text-gray mt-2 line-clamp-3",
+              {
+                "text-gray-light": isCurrent,
+              }
+            )}
           >
             {description}
           </div>

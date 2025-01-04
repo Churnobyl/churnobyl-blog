@@ -8,7 +8,7 @@ interface TagListProps {
 
 const TagList: React.FC<TagListProps> = ({ tags }) => {
   return (
-    <div className="flex overflow-x-auto whitespace-nowrap">
+    <div className="flex overflow-x-scroll scrollbar-hide">
       {tags.map((tag) => (
         <Tag {...tag} key={tag.id} />
       ))}

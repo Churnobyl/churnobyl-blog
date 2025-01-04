@@ -41,6 +41,7 @@ export const SEO = ({ title, description, pathname, image }: SEO) => {
       <meta property="og:image" content={seo.image} />
       <meta property="og:description" content={seo.description} />
       <meta name="description" content={seo.description} />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" href="/favicon.ico" />
     </>
   );

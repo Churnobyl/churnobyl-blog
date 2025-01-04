@@ -52,15 +52,21 @@ const BookSlider = ({
   return (
     <div
       id={"book-slider-container"}
-      className={"flex flex-col w-full justify-center items-center space-y-4"}
+      className={
+        "flex flex-col w-full justify-center items-center space-y-4 max-w-[760px] my-4"
+      }
     >
-      <div className={"w-full space-x-3"}>
-        <span className={"text-2xl font-bold text-main-text-black"}>
+      <div
+        className={
+          "flex flex-col items-center justify-center md:flex-row w-full space-x-3"
+        }
+      >
+        <div className={"text-2xl font-bold text-main-text-black"}>
           이 책의 다른 글 보기
-        </span>
-        <span className={"text-sm font-bold text-main-blue"}>
+        </div>
+        <div className={"text-sm font-bold text-main-blue"}>
           {book.book_name}
-        </span>
+        </div>
       </div>
 
       <div className={"w-full"}>
@@ -73,8 +79,27 @@ const BookSlider = ({
             Mousewheel,
             Keyboard,
           ]}
-          spaceBetween={2}
-          slidesPerView={3}
+          slidesPerView={1}
+          spaceBetween={0}
+          breakpoints={{
+            360: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            640: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            800: {
+              slidesPerView: 5,
+              spaceBetween: 30,
+            },
+            // 화면 너비가 1024px 이상일 때
+            1280: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+          }}
           navigation
           mousewheel={{ enabled: true }}
           keyboard={{ enabled: true }}

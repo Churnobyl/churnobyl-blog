@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import LikeSvg from "../images/likeSvg";
+import LikeSvg from "../../images/likeSvg";
 import classNames from "classnames";
-import { IPostInteractions } from "../interfaces/IPostInteraction";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+import { IPostInteractions } from "../../interfaces/IPostInteraction";
+import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import { getSrc } from "gatsby-plugin-image";
-import LinkSvg from "../images/linkSvg";
-import { copyToClipboard } from "../hooks/use-copy-to-clipboard";
-import KakaoSvg from "../images/kakaoSvg";
+import LinkSvg from "../../images/linkSvg";
+import { copyToClipboard } from "../../hooks/use-copy-to-clipboard";
+import KakaoSvg from "../../images/kakaoSvg";
 
 const PostButtonSet = ({
   likeCnt,

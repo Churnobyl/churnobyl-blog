@@ -11,22 +11,24 @@ const MdBlockH2: React.FC<CustomBaseContentBlock> = ({
   const { handleAnchorClick } = useSmoothScroll();
 
   return (
-    <div id={hash} className="relative group">
+    <div
+      id={hash}
+      className="relative group flex flex-row items-center space-x-2 mt-9 pb-2"
+    >
+      <h2 className="inline-block text-2xl font-bold tracking-tight break-all">
+        {specialObject.rich_text[0].plain_text}
+      </h2>
       <div
-        className={`
-          absolute left-0 top-0 -translate-x-7 translate-y-3 fill-gray-light 
-          opacity-0 group-hover:opacity-100 
+        className={`inline-block
+          xl:absolute xl:left-0 xl:top-0 xl:-translate-x-8 xl:translate-y-2 fill-gray-light
+          opacity-0 group-hover:opacity-100
           transition-opacity duration-300
-          hover:fill-highlight-red
         `}
       >
         <a href={`#${hash}`} onClick={(e) => handleAnchorClick(e, hash)}>
-          <LinkSvg />
+          <LinkSvg color={"#24292e"} />
         </a>
       </div>
-      <h2 className="text-2xl font-bold mt-9 pb-2 tracking-tight">
-        {specialObject.rich_text[0].plain_text}
-      </h2>
     </div>
   );
 };

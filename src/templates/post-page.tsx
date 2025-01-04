@@ -8,8 +8,8 @@ import { SEO } from "../components/seo/seo";
 import TableOfContents from "../components/tableOfContents/tableOfContents";
 import { IPost } from "../interfaces/IPost";
 import MdxGenerator from "../mdx/mdxGenerator";
-import PostTitleSet from "../post/postTitleSet";
-import PostButtonSet from "../post/postButtonSet";
+import PostTitleSet from "../components/post/postTitleSet";
+import PostButtonSet from "../components/post/postButtonSet";
 
 interface PostPageContext {
   pageId: string;
@@ -117,8 +117,8 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
 
   return (
     <NormalLayout>
-      <div className="flex justify-center mt-40 w-full mx-auto">
-        <div className="w-[800px] flex flex-col space-y-5">
+      <div className="flex justify-center mt-40 w-full mx-auto px-1">
+        <div className="w-full xl:w-[800px] flex-col space-y-5">
           <PostTitleSet
             title={title}
             version={version}
@@ -134,8 +134,7 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
             book_index={book_index}
             tableOfContents={tableOfContents}
           />
-          <hr />
-          <div>
+          <div className={"w-full"}>
             <MdxGenerator content={content} />
           </div>
           <div>
@@ -146,8 +145,8 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
               content={data.churnotion}
             />
           </div>
-          <hr />
-          <div className="flex flex-col justify-center items-center my-40 w-[800px]">
+          <hr className="border-t border-gray-light w-full mt-4" />
+          <div className="flex flex-col justify-center items-center my-40 xl:w-[800px]">
             {book && <BookSlider book={book} currentBookIndex={book_index} />}
             {/* <RelatedPost /> */}
           </div>

@@ -8,11 +8,11 @@ interface CategoryProps {
 
 const Category: React.FC<CategoryProps> = ({ category_list }) => {
   return (
-    <>
+    <div>
       {category_list?.map((category, index) => (
         <span
           key={category.id}
-          className={"text-sm md:text-base font-light text-gray"}
+          className={"text-sm xl:text-base font-light text-gray"}
         >
           <Link
             to={`/${category.url}`}
@@ -23,7 +23,7 @@ const Category: React.FC<CategoryProps> = ({ category_list }) => {
           {index < category_list.length - 1 && " - "}
         </span>
       ))}
-    </>
+    </div>
   );
 };
 

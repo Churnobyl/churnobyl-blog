@@ -7,6 +7,14 @@ module.exports = {
     `./src/mdx/**/*.{js,jsx,ts,tsx}`,
   ],
   theme: {
+    screens: {
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+      "3xl": "1600px",
+    },
     colors: {
       "main-blue": "#006BFF",
       "sub-skyblue": "#08C2FF",
@@ -56,5 +64,5 @@ module.exports = {
         /text-tag-text-(red|yellow|brown|pink|orange|green|purple|blue|default|gray)/,
     },
   ],
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };
