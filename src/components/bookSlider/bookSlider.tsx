@@ -105,6 +105,7 @@ const BookSlider = ({
           keyboard={{ enabled: true }}
           pagination={{ clickable: false }}
           scrollbar={{ draggable: true }}
+          passiveListeners={false}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
         >
           {sortedChildrenChurnotion.map((churnotion) => (

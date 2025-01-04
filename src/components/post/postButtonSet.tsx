@@ -28,7 +28,7 @@ const PostButtonSet = ({
     title: content?.title || defaultTitle,
     description: content?.description || defaultDescription,
     image: imageUrl ? `${siteUrl}${imageUrl}` : undefined,
-    url: `${siteUrl}${content?.url || ``}`,
+    url: `${siteUrl}/${content?.url || ``}`,
   };
 
   useEffect(() => {
@@ -59,14 +59,7 @@ const PostButtonSet = ({
           },
           buttons: [
             {
-              title: "웹으로 보기",
-              link: {
-                mobileWebUrl: info.url,
-                webUrl: info.url,
-              },
-            },
-            {
-              title: "앱으로 보기",
+              title: "자세히 보기",
               link: {
                 mobileWebUrl: info.url,
                 webUrl: info.url,
@@ -82,6 +75,36 @@ const PostButtonSet = ({
       document.body.removeChild(script);
     };
   }, []);
+
+  const handleKakaoShare = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (window.Kakao) {
+      window.Kakao.Share.sendDefault({
+        objectType: "feed",
+        content: {
+          title: info.title,
+          description: info.description,
+          imageUrl: info.image,
+          link: {
+            mobileWebUrl: info.url,
+            webUrl: info.url,
+          },
+        },
+        social: {
+          likeCount: likeCnt,
+        },
+        buttons: [
+          {
+            title: "자세히 보기",
+            link: {
+              mobileWebUrl: info.url,
+              webUrl: info.url,
+            },
+          },
+        ],
+      });
+    }
+  };
 
   return (
     <div
@@ -106,9 +129,9 @@ const PostButtonSet = ({
         <LinkSvg />
       </div>
       <div className={"flex items-center justify-center"}>
-        <a id="kakaotalk-sharing-btn" href="javascript:;">
+        <button id="kakaotalk-sharing-btn" onClick={handleKakaoShare}>
           <KakaoSvg />
-        </a>
+        </button>
       </div>
     </div>
   );

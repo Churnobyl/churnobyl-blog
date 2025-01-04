@@ -24,7 +24,7 @@ export const SEO = ({ title, description, pathname, image }: SEO) => {
     title: title || defaultTitle,
     description: description || defaultDescription,
     image: imageUrl ? `${siteUrl}${imageUrl}` : undefined,
-    url: `${siteUrl}${pathname || ``}`,
+    url: `${siteUrl}/${pathname || ``}`,
   };
 
   return (
