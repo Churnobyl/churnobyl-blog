@@ -139,17 +139,17 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
           >
             {description}
           </p>
-          <Category category_list={category_list} />
-          <div className={"flex flex-row items-center"}>
+          <div className={"flex flex-col space-y-1"}>
+            <Category category_list={category_list} />
             <TagList tags={tags} />
-          </div>
-          <div className={"flex flex-row space-x-1 items-center"}>
-            <CalenderSvg />
-            <div className={"flex text-xs md:text-sm text-gray"}>
-              {convertedCreateDate}
-            </div>
-            <div className={"flex text-xs md:text-sm text-gray"}>
-              · Updated {convertedUpdateDate}
+            <div className={"flex flex-row space-x-1 items-center"}>
+              <CalenderSvg />
+              <div className={"flex text-xs md:text-sm text-gray"}>
+                {convertedCreateDate}
+              </div>
+              <div className={"flex text-xs md:text-sm text-gray"}>
+                · Updated {convertedUpdateDate}
+              </div>
             </div>
           </div>
         </div>

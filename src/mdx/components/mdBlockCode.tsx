@@ -49,7 +49,7 @@ function toNormalize(language: string) {
     typescript: "typescript",
     json: "json",
     yaml: "yaml",
-    html: "markup", // Prism uses 'markup' for HTML
+    html: "markup",
     css: "css",
     sql: "sql",
     graphql: "graphql",

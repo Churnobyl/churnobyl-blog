@@ -9,7 +9,7 @@ type SummarizedPostListProps = {
 const SummarizedPostList: React.FC<SummarizedPostListProps> = ({ data }) => {
   return (
     <div>
-      <div className={"py-10"}>
+      <div className={"py-4"}>
         <h1 className={"text-xl font-bold border-b-2 border-gray-light"}>
           포스트
         </h1>

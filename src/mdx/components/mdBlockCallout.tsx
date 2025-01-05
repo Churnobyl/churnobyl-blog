@@ -5,12 +5,11 @@ import classNames from "classnames";
 const MdBlockCallout: React.FC<CustomBaseContentBlock> = ({
   type,
   specialObject,
-  href,
 }) => {
   return (
     <div className="text-md mt-2 pb-2 tracking-tight leading-7 break-all">
       {specialObject.rich_text.map((text: any, index: number) => {
-        const { annotations, plain_text } = text;
+        const { annotations, plain_text, href } = text;
 
         const textClass = classNames({
           "font-semibold": annotations.bold,

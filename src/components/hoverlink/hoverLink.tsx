@@ -1,3 +1,4 @@
+import { randomInt, randomUUID } from "crypto";
 import { graphql, useStaticQuery } from "gatsby";
 import React, { useState, useEffect, useCallback } from "react";
 
@@ -25,7 +26,6 @@ const HoverModal: React.FC<HoverModalProps> = ({ url, position }) => {
     data.allNMetadata.nodes.find((node: any) => node.id === url) || null;
 
   if (!metadata) return null;
-
   return (
     <div
       className="fixed bg-white shadow-md p-3 rounded-lg z-[1000] max-w-[200px] break-words"
@@ -94,6 +94,8 @@ const HoverLink: React.FC<{ href: string; children: React.ReactNode }> = ({
     setHovered(false);
   };
 
+  const key = Math.random() * 101232;
+
   return (
     <>
       <a
@@ -107,7 +109,7 @@ const HoverLink: React.FC<{ href: string; children: React.ReactNode }> = ({
       >
         {children}
       </a>
-      {hovered && <HoverModal url={href} position={position} />}
+      {hovered && <HoverModal key={key} url={href} position={position} />}
     </>
   );
 };

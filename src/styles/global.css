@@ -58,14 +58,16 @@
     @apply bg-highlight-red;
   }
 
-  .swiper-button-prev,
-  .swiper-button-next {
-    @apply py-12 px-28 text-white;
+  div.swiper-button-prev,
+  div.swiper-button-next {
+    @apply py-12 px-28 !text-white;
   }
 
-  .swiper-button-prev::after,
-  .swiper-button-next::after {
-    @apply text-7xl opacity-70;
+  div.swiper-button-prev::after,
+  div.swiper-button-next::after,
+  div.swiper-button-prev::before,
+  div.swiper-button-next::before {
+    @apply text-7xl opacity-70 !text-white;
   }
 }
 
