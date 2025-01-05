@@ -2,10 +2,9 @@ import React from "react";
 import { ISummarizedPost } from "../../interfaces/ISummarizedPost";
 import Label from "../labels/label";
 import { Link } from "gatsby";
-import Tag from "../labels/tag";
+import TagList from "../labels/tagList";
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import Category from "../category/category";
-import TagList from "../labels/tagList";
 import { useFormatDate } from "../../hooks/use-format-date";
 
 const isWithinAWeek = (value: string): boolean => {
@@ -36,7 +35,8 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
 
   return (
     <>
-      <div className={"flex flex-row space-x-20 items-center w-full my-4"}>
+      {/* xl 이상에서는 기존 레이아웃 */}
+      <div className="hidden xl:flex flex-row space-x-20 items-center w-full my-4">
         <div className="flex justify-end items-center w-[208px] h-52 min-w-40 max-w-xs">
           <Link to={`/${url}`}>
             {image ? (
@@ -76,9 +76,65 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
               · {convertedCreateDate}
             </span>
           </div>
+          <div
+            className={
+              "text-base md:text-md xl:text-ellipsis xl:overflow-hidden h-20 w-full"
+            }
+          >
+            {description}
+          </div>
+          <div>
+            <TagList tags={tags} />
+          </div>
+        </div>
+      </div>
+
+      {/* xl 이하에서는 카드 레이아웃 */}
+      <div className="flex flex-col xl:hidden space-y-4 justify-center items-center w-full p-4">
+        <div className="flex w-full justify-center items-center">
+          <Link to={`/${url}`}>
+            {image ? (
+              <GatsbyImage
+                image={image}
+                alt={title}
+                title={title}
+                className={"rounded-sm"}
+              />
+            ) : (
+              <StaticImage
+                src="../../images/no-content.png"
+                alt="no content"
+                className={"rounded-sm"}
+              />
+            )}
+          </Link>
+        </div>
+        <div
+          className={
+            "flex flex-col justify-center items-center space-y-2 w-full"
+          }
+        >
+          <div id={"title-div"} className={"flex items-center"}>
+            <span
+              className={
+                "text-lg md:text-xl font-bold overflow-hidden text-ellipsis whitespace-nowrap"
+              }
+            >
+              <Link to={`/${url}`}>{title}</Link>
+            </span>
+
+            {showNew && <Label text="new" />}
+            {showUpdated && <Label text="updated" />}
+          </div>
+          <div id={"category-div"}>
+            <Category category_list={category_list} />
+            <span className={"text-xs md:text-sm px-3"}>
+              · {convertedCreateDate}
+            </span>
+          </div>
           <p
             className={
-              "text-base md:text-md text-ellipsis overflow-hidden h-20 w-full"
+              "text-sm md:text-md text-ellipsis overflow-hidden w-full"
             }
           >
             {description}
@@ -88,6 +144,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
           </div>
         </div>
       </div>
+
       <hr className={"my-5 border-gray-light"} />
     </>
   );

@@ -19,7 +19,7 @@ const Label: React.FC<ILabel> = ({ text }) => {
     <span
       className={classNames(
         styles,
-        `inline-flex justify-center items-center px-2 py-1 mx-2 rounded-lg font-bold leading-none text-xs`
+        `flex xl:inline-flex justify-center items-center px-2 py-1 mx-2 rounded-lg font-bold leading-none text-xs`
       )}
       style={{
         boxShadow: insetShadow,

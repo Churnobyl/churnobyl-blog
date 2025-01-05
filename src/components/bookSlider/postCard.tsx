@@ -16,11 +16,11 @@ const PostCard = ({
   return (
     <Link
       to={"/" + url}
-      className="hover:scale-105 transition-transform duration-300"
+      className="hover:scale-105 transition-transform duration-300 flex justify-center items-center"
     >
       <div
         className={classNames(
-          "flex flex-col w-36 h-48 xl:w-48 xl:h-64 flex-shrink-0 p-3 shadow-md bg-gray-light",
+          "relative flex flex-col w-36 h-48 xl:w-48 xl:h-64 flex-shrink-0 p-3 shadow-md bg-gray-light",
           {
             "bg-main-blue text-white": isCurrent,
           }

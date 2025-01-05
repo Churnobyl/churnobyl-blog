@@ -10,6 +10,9 @@ import { IPost } from "../interfaces/IPost";
 import MdxGenerator from "../mdx/mdxGenerator";
 import PostTitleSet from "../components/post/postTitleSet";
 import PostButtonSet from "../components/post/postButtonSet";
+import ScrollToTop from "react-scroll-to-top";
+import UpSvg from "../images/upSvg";
+import RelatedPost from "../components/post/relatedPost";
 
 interface PostPageContext {
   pageId: string;
@@ -117,7 +120,7 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
 
   return (
     <NormalLayout>
-      <div className="flex justify-center mt-40 w-full mx-auto px-1">
+      <div className="flex justify-center mt-10 xl:mt-40 w-full mx-auto px-1">
         <div className="w-full xl:w-[800px] flex-col space-y-5">
           <PostTitleSet
             title={title}
@@ -148,13 +151,14 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
           <hr className="border-t border-gray-light w-full mt-4" />
           <div className="flex flex-col justify-center items-center my-40 xl:w-[800px]">
             {book && <BookSlider book={book} currentBookIndex={book_index} />}
-            {/* <RelatedPost /> */}
           </div>
           <div>
             <CommentUtterances />
           </div>
+          <div>
+            <RelatedPost />
+          </div>
         </div>
-
         <div className="hidden xl:block sticky top-20 h-[calc(100vh-40px)] overflow-auto w-[300px] ml-10">
           <div>
             <PostInteractions
@@ -167,6 +171,12 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
           <TableOfContents tableOfContents={tableOfContents} />
         </div>
       </div>
+      {/** 스크롤 */}
+      <ScrollToTop
+        smooth
+        className={"flex justify-center items-center"}
+        component={<UpSvg />}
+      />
     </NormalLayout>
   );
 };

@@ -6447,6 +6447,7 @@ __metadata:
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-markdown: "npm:^9.0.1"
+    react-scroll-to-top: "npm:^3.0.0"
     refractor: "npm:^4.8.1"
     remark-gfm: "npm:^4.0.0"
     sharp: "npm:^0.33.5"
@@ -18016,6 +18017,15 @@ __metadata:
   version: 0.14.2
   resolution: "react-refresh@npm:0.14.2"
   checksum: 10c0/875b72ef56b147a131e33f2abd6ec059d1989854b3ff438898e4f9310bfcc73acff709445b7ba843318a953cb9424bcc2c05af2b3d80011cee28f25aef3e2ebb
+  languageName: node
+  linkType: hard
+
+"react-scroll-to-top@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "react-scroll-to-top@npm:3.0.0"
+  peerDependencies:
+    react: ^16.8.0 || 17.x || ^18
+  checksum: 10c0/6be159a31c8aafba4a3a77388f541943d89392b2296e4909e203ac48a1739aab3c8cd474969f1e3ce97cb9cf8ff6b432732d33875d6c8b6c82db48ea7645ac92
   languageName: node
   linkType: hard
 

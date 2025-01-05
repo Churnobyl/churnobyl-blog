@@ -16,7 +16,11 @@ const MdBlockH3: React.FC<CustomBaseContentBlock> = ({
       id={hash}
       className="relative group flex flex-row items-center space-x-2 mt-8 pb-2"
     >
-      <h3 className={"inline-block text-xl font-bold tracking-tight break-all"}>
+      <h3
+        className={
+          "inline-block text-lg xl:text-xl font-bold tracking-tight break-all"
+        }
+      >
         {specialObject.rich_text[0].plain_text}
       </h3>
       <div

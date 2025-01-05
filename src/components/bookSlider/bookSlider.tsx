@@ -41,10 +41,7 @@ const BookSlider = ({
       );
 
       if (currentSlideIndex !== -1) {
-        swiperRef.current.slideTo(
-          currentSlideIndex !== 0 ? currentSlideIndex - 1 : 0,
-          500
-        );
+        swiperRef.current.slideTo(currentSlideIndex, 500);
       }
     }
   }, [currentBookIndex, sortedChildrenChurnotion]);
@@ -82,10 +79,6 @@ const BookSlider = ({
           slidesPerView={1}
           spaceBetween={0}
           breakpoints={{
-            360: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
             640: {
               slidesPerView: 3,
               spaceBetween: 30,
@@ -106,7 +99,9 @@ const BookSlider = ({
           pagination={{ clickable: false }}
           scrollbar={{ draggable: true }}
           passiveListeners={false}
+          a11y={{ enabled: true }}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
+          centeredSlides={true}
         >
           {sortedChildrenChurnotion.map((churnotion) => (
             <SwiperSlide key={churnotion.id} className={"mb-10"}>
