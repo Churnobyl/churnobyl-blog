@@ -12,11 +12,12 @@ const Category: React.FC<CategoryProps> = ({ category_list }) => {
       {category_list?.map((category, index) => (
         <span
           key={category.id}
-          className={"text-sm xl:text-base font-light text-gray"}
+          className={"text-sm lg:text-base font-bold text-main-text-black"}
         >
           <Link
             to={`/${category.url}`}
             title={`Explore posts in ${category.category_name}`}
+            className={"hover:text-gray"}
           >
             {category.category_name}
           </Link>

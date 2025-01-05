@@ -9,7 +9,7 @@ const Footer = () => {
     >
       <div
         className={
-          "flex flex-col xl:flex-row items-center justify-between w-3/5 text-main-text-black text-xs sm:text-sm max-w-[760px]"
+          "flex flex-col xl:flex-row items-center justify-between w-4/5 text-main-text-black text-xs sm:text-sm max-w-[1080px]"
         }
       >
         <div>

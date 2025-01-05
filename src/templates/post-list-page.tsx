@@ -29,7 +29,7 @@ const PostListPage: React.FC<
         >
           <div
             className={
-              "flex flex-col-reverse xl:flex-col space-x-5 w-2/3 justify-between"
+              "flex flex-col-reverse xl:flex-col space-x-5 justify-between"
             }
           >
             <SummarizedPostList data={posts} />
@@ -88,8 +88,8 @@ export const blogListQuery = graphql`
                 sizes: "200"
                 placeholder: BLURRED
                 quality: 10
-                height: 208
-                width: 208
+                width: 1020
+                height: 680
                 layout: CONSTRAINED
               )
             }
