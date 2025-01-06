@@ -118,7 +118,7 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
 
   return (
     <NormalLayout>
-      <div className="flex justify-center mt-10 xl:mt-40 w-full mx-auto px-1">
+      <div className="flex justify-center mt-8 xl:mt-10 w-full mx-auto px-1">
         <div className="w-full xl:w-[800px] flex-col space-y-5">
           <PostTitleSet
             title={title}

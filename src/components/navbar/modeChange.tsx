@@ -24,7 +24,11 @@ const ModeChange = () => {
     }
   });
 
-  return <ModeToggleButton onClick={toggleTheme} />;
+  return (
+    <div>
+      <ModeToggleButton onClick={toggleTheme} />
+    </div>
+  );
 };
 
 export default ModeChange;
