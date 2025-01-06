@@ -1,48 +1,53 @@
-import { PaginationItem } from "@mui/material";
-import Pagination from "@mui/material/Pagination";
+import React from "react";
 import { graphql, Link, type PageProps } from "gatsby";
-import * as React from "react";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
 import NormalLayout from "../components/layout/normalLayout";
 import SummarizedPostList from "../components/main/summarizedPostList";
 import { SEO } from "../components/seo/seo";
 import { IBlogListQueryData } from "../interfaces/IChurnotion";
+import { CONST_URL } from "../constants";
 
-interface BlogListPageContext {
+interface TagPostListPageContext {
+  tagId: string;
+  tagName: string;
+  tagUrl: string;
+  totalPosts: number;
   currentPage: number;
   numPages: number;
 }
 
-const PostListByTagPage: React.FC<
-  PageProps<IBlogListQueryData, BlogListPageContext>
+const TagPostListPage: React.FC<
+  PageProps<IBlogListQueryData, TagPostListPageContext>
 > = ({ data, pageContext }) => {
   const posts = data.allChurnotion.edges.map((edge) => edge.node);
-  const { currentPage, numPages } = pageContext;
+  const { tagName, tagUrl, currentPage, numPages, totalPosts } = pageContext;
 
   return (
     <NormalLayout>
-      <div className={"flex flex-col justify-center w-full"}>
+      <div className="flex flex-col items-center justify-center w-full">
+        <div className="flex flex-row items-baseline space-x-2 mt-10">
+          <span className="text-center text-3xl font-bold">{tagName}</span>
+          <span className={"text-main-blue text-xl font-bold"}>
+            {totalPosts}
+          </span>
+        </div>
         <div
-          id={"content"}
-          className={
-            "mt-10 flex items-center justify-center w-full min-h-screen"
-          }
+          id="content"
+          className="flex items-center justify-center w-full min-h-screen"
         >
-          <div
-            className={
-              "flex flex-col-reverse xl:flex-col space-x-5 w-2/3 justify-between"
-            }
-          >
+          <div className="flex flex-col-reverse xl:flex-col space-x-5 justify-between">
             <SummarizedPostList data={posts} />
           </div>
         </div>
         <Pagination
-          className={"flex items-center justify-center mb-10"}
+          className="flex items-center justify-center mb-10"
           count={numPages}
           page={currentPage}
           renderItem={(item) => (
             <PaginationItem
               component={Link}
-              to={item.page === 1 ? `/` : `/${item.page}/`}
+              to={item.page === 1 ? `/${tagUrl}` : `/${tagUrl}/${item.page}`}
               {...item}
             />
           )}
@@ -53,8 +58,13 @@ const PostListByTagPage: React.FC<
 };
 
 export const blogListQuery = graphql`
-  query blogListByTagQuery($skip: Int!, $limit: Int!) {
-    allChurnotion(sort: { update_date: DESC }, limit: $limit, skip: $skip) {
+  query blogListQueryByTag($tagId: String!, $skip: Int!, $limit: Int!) {
+    allChurnotion(
+      filter: { tags: { elemMatch: { id: { eq: $tagId } } } }
+      sort: { update_date: DESC }
+      limit: $limit
+      skip: $skip
+    ) {
       edges {
         node {
           slug
@@ -85,11 +95,10 @@ export const blogListQuery = graphql`
           thumbnail {
             childImageSharp {
               gatsbyImageData(
-                sizes: "200"
                 placeholder: BLURRED
-                quality: 10
-                height: 208
-                width: 208
+                quality: 50
+                width: 1020
+                height: 680
                 layout: CONSTRAINED
               )
             }
@@ -97,31 +106,18 @@ export const blogListQuery = graphql`
         }
       }
     }
-    allNCategory(
-      filter: { childrenNBook: { elemMatch: { book_name: { ne: "null" } } } }
-    ) {
-      nodes {
-        id
-        category_name
-        childrenNBook {
-          book_name
-          url
-          create_date
-          update_date
-          id
-        }
-      }
-    }
   }
 `;
 
-export default PostListByTagPage;
+export default TagPostListPage;
 
 export const Head = ({
   pageContext,
-}: PageProps<IBlogListQueryData, BlogListPageContext>) => {
-  const { currentPage, numPages } = pageContext;
+}: PageProps<IBlogListQueryData, TagPostListPageContext>) => {
+  const { tagName, tagUrl, currentPage, numPages } = pageContext;
   const title =
-    currentPage === 1 ? "Home" : `Page ${currentPage} of ${numPages}`;
-  return <SEO title={title} />;
+    currentPage === 1
+      ? `${tagName} Posts`
+      : `${tagName} Posts - Page ${currentPage} of ${numPages}`;
+  return <SEO title={title} description={title} pathname={"/" + tagUrl} />;
 };

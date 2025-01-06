@@ -15,13 +15,28 @@ export const createPostListByTag = async (
   ) => void
 ) => {
   const result = await graphql<{
-    allChurnotion: { edges: [{ node: { slug: string } }] };
+    allNTag: {
+      edges: {
+        node: {
+          id: string;
+          tag_name: string;
+          url: string;
+          childrenChurnotion: { id: string; title: string }[];
+        };
+      }[];
+    };
   }>(`
     query {
-      allChurnotion(limit: 1000, sort: { update_date: DESC }) {
+      allNTag(limit: 1000, sort: { childrenChurnotion: { update_date: DESC } }) {
         edges {
           node {
-            slug
+            id
+            tag_name
+            url
+            childrenChurnotion {
+              id
+              title
+            }
           }
         }
       }
@@ -32,22 +47,30 @@ export const createPostListByTag = async (
     throw result.errors;
   }
 
-  const posts = result?.data?.allChurnotion.edges;
+  const tags = result?.data?.allNTag.edges;
 
-  if (!posts) return;
+  if (!tags) return;
 
   const postsPerPage = 10;
-  const numPages = Math.ceil(posts.length / postsPerPage);
-  Array.from({ length: numPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? `/` : `/${i + 1}`,
-      component: path.resolve(`./src/templates/post-list-page.tsx`),
-      context: {
-        limit: postsPerPage,
-        skip: i * postsPerPage,
-        numPages,
-        currentPage: i + 1,
-      },
+
+  tags.forEach(({ node }) => {
+    const numPages = Math.ceil(node.childrenChurnotion.length / postsPerPage);
+    const totalPosts = node.childrenChurnotion.length;
+    Array.from({ length: numPages }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `${node.url}` : `${node.url}/${i + 1}`,
+        component: path.resolve(`./src/templates/post-list-by-tag-page.tsx`),
+        context: {
+          tagId: node.id,
+          tagName: node.tag_name,
+          tagUrl: node.url,
+          totalPosts,
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numPages,
+          currentPage: i + 1,
+        },
+      });
     });
   });
 };

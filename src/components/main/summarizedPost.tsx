@@ -36,9 +36,9 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
   const image = getImage(thumbnail);
 
   return (
-    <>
+    <div>
       {/* xl 이상에서는 기존 레이아웃 */}
-      <div className="hidden lg:flex flex-row space-x-20 items-center w-full my-8">
+      <div className="hidden lg:flex flex-row space-x-20 items-center w-full mb-24">
         <div className="flex justify-end items-center w-[208px] h-36 min-w-40 max-w-xs">
           <Link to={`/${url}`}>
             {image ? (
@@ -97,7 +97,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
       </div>
 
       {/* xl 이하에서는 카드 레이아웃 */}
-      <div className="flex flex-col lg:hidden space-y-4 justify-center items-center w-full p-4">
+      <div className="flex flex-col lg:hidden space-y-4 justify-center items-center w-full p-4 mb-16">
         <div className="flex w-full items-center">
           <Link to={`/${url}`}>
             {image ? (
@@ -132,13 +132,13 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
               {showUpdated && <Label text="updated" />} */}
           </div>
 
-          <p
+          <div
             className={
-              "text-sm md:text-md text-ellipsis overflow-hidden w-full text-gray"
+              "text-base md:text-md line-clamp-2 h-12 w-full text-gray"
             }
           >
             {description}
-          </p>
+          </div>
           <div className={"flex flex-col space-y-1"}>
             <Category category_list={category_list} />
             <TagList tags={tags} />
@@ -154,9 +154,8 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
           </div>
         </div>
       </div>
-
       <hr className={"my-5 border-gray-light"} />
-    </>
+    </div>
   );
 };
 

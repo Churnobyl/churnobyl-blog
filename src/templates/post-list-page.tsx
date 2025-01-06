@@ -6,6 +6,7 @@ import NormalLayout from "../components/layout/normalLayout";
 import SummarizedPostList from "../components/main/summarizedPostList";
 import { SEO } from "../components/seo/seo";
 import { IBlogListQueryData } from "../interfaces/IChurnotion";
+import { CONST_URL } from "../constants";
 
 interface BlogListPageContext {
   currentPage: number;
@@ -42,7 +43,11 @@ const PostListPage: React.FC<
           renderItem={(item) => (
             <PaginationItem
               component={Link}
-              to={item.page === 1 ? `/` : `/${item.page}/`}
+              to={
+                item.page === 1
+                  ? `${CONST_URL.HOME_URL}`
+                  : `${CONST_URL.HOME_URL}${item.page}/`
+              }
               {...item}
             />
           )}
@@ -122,5 +127,11 @@ export const Head = ({
   const { currentPage, numPages } = pageContext;
   const title =
     currentPage === 1 ? "Home" : `Page ${currentPage} of ${numPages}`;
-  return <SEO title={title} />;
+  return (
+    <SEO
+      title={title}
+      description={title}
+      pathname={CONST_URL.HOME_URL + currentPage}
+    />
+  );
 };
