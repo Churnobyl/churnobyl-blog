@@ -61,7 +61,7 @@ const TopBar: React.FC = () => {
         <div className="md:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2 focus:outline-none"
+            className="p-2 focus:outline-none text-main-text-black dark:text-white-dark"
             aria-label="Toggle Menu"
             aria-expanded={isMenuOpen}
           >
@@ -168,6 +168,9 @@ const TopBar: React.FC = () => {
               >
                 개발기
               </Link>
+            </li>
+            <li>
+              <ModeChange />
             </li>
           </ul>
         </nav>
