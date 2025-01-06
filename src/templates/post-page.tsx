@@ -38,8 +38,6 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
     tableOfContents,
     thumbnail,
   } = data.churnotion;
-  const { pageId } = pageContext;
-
   const [viewCnt, setViewCnt] = useState(0);
   const [likeCnt, setLikeCnt] = useState(0);
   const [liked, setLiked] = useState(false);

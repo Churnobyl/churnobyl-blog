@@ -24,7 +24,7 @@ const PostInteractions = ({
         <div
           onClick={handleLike}
           className={classNames(
-            "rounded-full border-solid border-2 border-gray hover:border-main-blue hover:border-opacity-50"
+            "rounded-full border-solid border-2 border-gray hover:border-main-blue hover:border-opacity-50 text-gray-dark"
           )}
         >
           <LikeSvg width={28} height={28} liked={liked} />

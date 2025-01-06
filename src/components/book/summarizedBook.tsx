@@ -14,7 +14,7 @@ const isWithinAWeek = (value: string): boolean => {
   return currentDate.getTime() - targetDate.getTime() <= oneWeekInMilliseconds;
 };
 
-const SummarizedPost: React.FC<ISummarizedPost> = ({
+const SummarizedBook: React.FC<ISummarizedPost> = ({
   slug,
   title,
   update_date,
@@ -26,10 +26,8 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
   category_list,
   tags,
   thumbnail,
+  book_index,
 }) => {
-  const showNew = isWithinAWeek(create_date);
-  const showUpdated = !showNew && isWithinAWeek(update_date);
-
   const convertedCreateDate = useFormatDate(create_date);
   const convertedUpdateDate = useFormatDate(update_date);
   const image = getImage(thumbnail);
@@ -37,8 +35,11 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
   return (
     <div>
       {/* xl 이상에서는 기존 레이아웃 */}
-      <div className="hidden lg:flex flex-row space-x-20 items-center w-full my-10">
-        <div className="flex justify-end items-center w-[208px] h-36 min-w-40 max-w-xs">
+      <div className="hidden lg:flex flex-row space-x-10 items-center w-full my-2">
+        <div className={"font-bold text-main-text-black dark:text-white-dark"}>
+          Chapter {book_index}
+        </div>
+        <div className="flex justify-end items-center w-[104px] h-36 min-w-20 max-w-xs">
           <Link to={`/${url}`}>
             {image ? (
               <GatsbyImage
@@ -57,47 +58,42 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
           </Link>
         </div>
         <div
-          className={"flex flex-col justify-evenly space-y-0 w-[600px] h-36"}
+          className={"flex flex-col justify-evenly space-y-0 w-[600px] h-20"}
         >
-          <div id={"title-div"} className={"flex items-center"}>
-            <span
+          <div id={"title-div"} className={"flex items-center space-x-2"}>
+            <div
               className={
                 "text-lg md:text-xl text-main-text-black dark:text-white-dark font-bold overflow-hidden text-ellipsis whitespace-nowrap hover:text-gray"
               }
             >
               <Link to={`/${url}`}>{title}</Link>
-            </span>
+            </div>
+
+            <div className={"flex flex-row items-center"}>
+              <div className={"flex flex-row space-x-1 items-center"}>
+                <div className={"flex text-xs md:text-sm text-gray"}>
+                  · Updated {convertedUpdateDate}
+                </div>
+              </div>
+            </div>
 
             {/* {showNew && <Label text="new" />}
             {showUpdated && <Label text="updated" />} */}
           </div>
           <div
-            className={
-              "text-base md:text-md line-clamp-2 h-12 w-full text-gray"
-            }
+            className={"text-base md:text-md line-clamp-1 h-8 w-full text-gray"}
           >
             {description}
-          </div>
-          <Category category_list={category_list} />
-
-          <div className={"flex flex-row items-center"}>
-            <TagList tags={tags} />
-            <div className={"flex flex-row space-x-1 items-center"}>
-              <CalenderSvg />
-              <div className={"flex text-xs md:text-sm text-gray"}>
-                {convertedCreateDate}
-              </div>
-              <div className={"flex text-xs md:text-sm text-gray"}>
-                · Updated {convertedUpdateDate}
-              </div>
-            </div>
           </div>
         </div>
       </div>
 
       {/* xl 이하에서는 카드 레이아웃 */}
       <div className="flex flex-col lg:hidden space-y-4 justify-center items-center w-full p-4 mb-16">
-        <div className="flex w-full items-center">
+        <div className={"font-bold text-main-text-black dark:text-white-dark"}>
+          Chapter {book_index}
+        </div>
+        <div className="flex w-full items-center text-main-text-black dark:text-white-dark">
           <Link to={`/${url}`}>
             {image ? (
               <GatsbyImage
@@ -126,9 +122,6 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             >
               <Link to={`/${url}`}>{title}</Link>
             </span>
-
-            {/* {showNew && <Label text="new" />}
-              {showUpdated && <Label text="updated" />} */}
           </div>
 
           <div
@@ -139,8 +132,6 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             {description}
           </div>
           <div className={"flex flex-col space-y-1"}>
-            <Category category_list={category_list} />
-            <TagList tags={tags} />
             <div className={"flex flex-row space-x-1 items-center"}>
               <CalenderSvg />
               <div className={"flex text-xs md:text-sm text-gray"}>
@@ -158,4 +149,4 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
   );
 };
 
-export default SummarizedPost;
+export default SummarizedBook;

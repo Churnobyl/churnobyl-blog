@@ -67,12 +67,12 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
           const isActive =
             activeHash === item.hash
               ? "border-l-main-blue text-main-blue border-l-4"
-              : "border-l-2 border-l-gray-light text-gray-dark";
+              : "border-l-2 border-l-gray-light text-gray-dark dark:text-white-dark";
 
           return (
             <li
               key={index}
-              className={`${isActive} text-md tracking-tight leading-7  border-solid pl-4 ${textSize}`}
+              className={`${isActive} text-md tracking-tight leading-7 border-solid pl-4 ${textSize}`}
             >
               <div className={marginLeft}>
                 <a

@@ -12,7 +12,7 @@ const SummarizedPostList: React.FC<SummarizedPostListProps> = ({ data }) => {
       <div className={"py-4"}>
         <h1
           className={
-            "text-xl font-bold border-b-2 border-gray-light text-main-text-black"
+            "text-xl font-bold border-b-2 border-gray-light dark:border-white-dark text-main-text-black dark:text-white-dark"
           }
         >
           포스트

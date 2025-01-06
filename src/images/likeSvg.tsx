@@ -28,7 +28,7 @@ const LikeSvg: React.FC<LikeSvgProps> = ({ width, height, liked }) => {
       <g
         fill={liked ? "url(#lllove-grad)" : "transparent"}
         strokeWidth="40"
-        stroke={liked ? "transparent" : "hsl(0, 0%, 54.509803921568626%)"}
+        stroke={liked ? "transparent" : "currentColor"}
         id="heart"
         transform="matrix(1,0,0,1,0,-20)"
       >

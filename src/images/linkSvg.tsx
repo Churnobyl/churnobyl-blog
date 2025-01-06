@@ -3,8 +3,8 @@ import React from "react";
 const LinkSvg = () => {
   return (
     <svg
-      stroke="gray"
-      fill="gray"
+      stroke="currentColor"
+      fill="currentColor"
       strokeWidth="0"
       viewBox="0 0 512 512"
       height="24px"

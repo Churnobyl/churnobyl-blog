@@ -5,6 +5,8 @@ export interface IBooks {
 }
 
 export interface IBook {
+  update_date: any;
+  create_date: any;
   book_name: string;
   id: string;
   url: string;
@@ -15,8 +17,11 @@ export interface IBook {
   };
   book_category: {
     category_name: string;
+    id: string;
+    url: string;
   };
   childrenChurnotion: IChildChurnotion[];
+  description?: string;
 }
 
 export interface IChildChurnotion {

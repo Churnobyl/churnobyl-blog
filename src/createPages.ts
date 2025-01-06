@@ -2,6 +2,8 @@ import { GatsbyNode } from "gatsby";
 import { createPosts } from "./gatsby/createPosts";
 import { createPostList } from "./gatsby/createPostList";
 import { createPostListByTag } from "./gatsby/createPostListByTag";
+import { createPostListByCategory } from "./gatsby/createPostListByCategory";
+import { createBookPage } from "./gatsby/createBookPage";
 
 export const createPages: GatsbyNode[`createPages`] = async ({
   actions,
@@ -12,5 +14,6 @@ export const createPages: GatsbyNode[`createPages`] = async ({
   await createPostList(graphql, createPage);
   await createPosts(graphql, createPage);
   await createPostListByTag(graphql, createPage);
-  // await createPostListByCategory(graphql, createPage);
+  await createPostListByCategory(graphql, createPage);
+  await createBookPage(graphql, createPage);
 };

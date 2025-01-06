@@ -48,7 +48,7 @@ const MdBlockNumberedListItem: React.FC<CustomBaseContentBlock> = ({
   return (
     <li className="flex items-start">
       <div
-        className="flex items-center justify-center w-8 leading-none text-main-text-black"
+        className="flex items-center justify-center w-8 leading-none text-main-text-black dark:text-white-dark"
         style={{ lineHeight: "1.5" }}
       >
         {numbering}

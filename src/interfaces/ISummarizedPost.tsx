@@ -22,6 +22,7 @@ export interface ISummarizedPost {
     color: string;
   }[];
   thumbnail: IGatsbyImageData;
+  book_index?: number;
 }
 
 export interface ICategory {

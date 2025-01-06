@@ -13,6 +13,12 @@
     font-style: normal;
     font-weight: 400;
   }
+
+  body,
+  nav,
+  header {
+    @apply dark:bg-main-text-black;
+  }
 }
 
 @layer components {

@@ -4,12 +4,12 @@ const Footer = () => {
   return (
     <div
       className={
-        "p-5 flex justify-center items-center flex-col bg-gray-light h-16 mt-10 w-full"
+        "p-5 flex justify-center items-center flex-col bg-gray-light dark:bg-main-text-black h-16 mt-10 w-full"
       }
     >
       <div
         className={
-          "flex flex-col xl:flex-row items-center justify-between w-4/5 text-main-text-black text-xs sm:text-sm max-w-[1080px]"
+          "flex flex-col xl:flex-row items-center justify-between w-4/5 text-main-text-black dark:text-white-dark text-xs sm:text-sm max-w-[1080px]"
         }
       >
         <div>

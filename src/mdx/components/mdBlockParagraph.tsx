@@ -8,7 +8,7 @@ const MdBlockParagraph: React.FC<CustomBaseContentBlock> = ({
   specialObject,
 }) => {
   return (
-    <div className="text-md mt-2 pb-2 tracking-tight leading-7 break-all">
+    <div className="text-md mt-2 pb-2 tracking-tight leading-7 break-all text-main-text-black dark:text-white-dark">
       {specialObject.rich_text.map((text: any, index: number) => {
         const { annotations, plain_text, href } = text;
 
@@ -18,8 +18,10 @@ const MdBlockParagraph: React.FC<CustomBaseContentBlock> = ({
           "line-through": annotations.strikethrough,
           underline: annotations.underline,
           "text-highlight-red": annotations.code,
-          "text-main-text-black": !(annotations.bold || annotations.code),
-          "bg-gray-light": annotations.code,
+          "text-main-text-black dark:text-white-dark": !(
+            annotations.bold || annotations.code
+          ),
+          "bg-gray-light dark:bg-white-dark": annotations.code,
           "rounded-lg": annotations.code,
           "py-1": annotations.code,
           "px-2": annotations.code,

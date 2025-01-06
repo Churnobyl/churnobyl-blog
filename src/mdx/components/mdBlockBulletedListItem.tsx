@@ -13,7 +13,7 @@ const MdBlockBulletedListItem: React.FC<CustomBaseContentBlock> = ({
   return (
     <li className={`flex items-start`}>
       <div
-        className={`flex mr-2 w-4 items-center justify-center leading-7 text-4xl font-thin text-main-text-black`}
+        className={`flex mr-2 w-4 items-center justify-center leading-7 text-4xl font-thin text-main-text-black dark:text-white-dark`}
       >
         {level === 0 ? "•" : level === 1 ? "◦" : "▪"}
       </div>
@@ -48,7 +48,9 @@ const MdBlockBulletedListItem: React.FC<CustomBaseContentBlock> = ({
               "line-through": annotations.strikethrough,
               underline: annotations.underline,
               "text-highlight-red": annotations.bold || annotations.code,
-              "text-main-text-black": !(annotations.bold || annotations.code),
+              "text-main-text-black dark:text-white-dark": !(
+                annotations.bold || annotations.code
+              ),
               "bg-gray-light": annotations.code,
               "rounded-lg": annotations.code,
               "py-1": annotations.code,

@@ -17,6 +17,7 @@ import {
   Keyboard,
 } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "gatsby";
 
 const BookSlider = ({
   book,
@@ -58,12 +59,18 @@ const BookSlider = ({
           "flex flex-col items-center justify-center md:flex-row w-full space-x-3"
         }
       >
-        <div className={"text-2xl font-bold text-main-text-black"}>
+        <div
+          className={
+            "text-2xl font-bold text-main-text-black dark:text-white-dark"
+          }
+        >
           이 책의 다른 글 보기
         </div>
-        <div className={"text-sm font-bold text-main-blue"}>
-          {book.book_name}
-        </div>
+        <Link to={`/${book.url}`}>
+          <div className={"text-sm font-bold text-main-blue"}>
+            {book.book_name}
+          </div>
+        </Link>
       </div>
 
       <div className={"w-full"}>

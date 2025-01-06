@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import React, { useState, useEffect } from "react";
+import ModeChange from "./modeChange";
 
 const TopBar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ const TopBar: React.FC = () => {
   return (
     <header
       className={classNames(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white",
+        "fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white dark:bg-main-text-black",
         {
           "bg-opacity-60 backdrop-blur-md shadow-md": isScrolled,
           "bg-opacity-100": !isScrolled,
@@ -38,11 +39,21 @@ const TopBar: React.FC = () => {
       >
         <div id={"logo"}>
           <Link to={"/"}>
+            {/* 기본 로고 */}
             <StaticImage
               src="../../images/title-logo.svg"
               alt="title"
               loading={"eager"}
               placeholder={"blurred"}
+              className="block dark:hidden"
+            />
+            {/* 다크 모드 로고 */}
+            <StaticImage
+              src="../../images/title-logo-dark.svg"
+              alt="title dark mode"
+              loading={"eager"}
+              placeholder={"blurred"}
+              className="hidden dark:block"
             />
           </Link>
         </div>
@@ -75,19 +86,22 @@ const TopBar: React.FC = () => {
         <nav className="hidden md:flex">
           <ul className="flex flex-row space-x-6">
             <li>
+              <ModeChange />
+            </li>
+            <li>
               <Link
                 to="/about"
-                className="text-lg font-bold text-gray-700 hover:text-blue-500"
+                className="text-lg font-bold text-black hover:text-main-blue dark:text-white-dark"
               >
                 About
               </Link>
             </li>
             <li>
               <Link
-                to="/site-tree"
-                className="text-lg font-bold text-gray-700 hover:text-blue-500"
+                to="/blog/book"
+                className="text-lg font-bold text-black hover:text-main-blue dark:text-white-dark"
               >
-                SiteTree
+                Book
               </Link>
             </li>
             <li>
@@ -95,7 +109,7 @@ const TopBar: React.FC = () => {
                 href="https://github.com/Churnobyl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lg font-bold text-gray-700 hover:text-blue-500"
+                className="text-lg font-bold text-black hover:text-main-blue dark:text-white-dark"
               >
                 Github
               </a>
@@ -103,7 +117,7 @@ const TopBar: React.FC = () => {
             <li>
               <Link
                 to="/story"
-                className="text-lg font-bold text-gray-700 hover:text-blue-500"
+                className="text-lg font-bold text-black hover:text-main-blue dark:text-white-dark"
               >
                 개발기
               </Link>
@@ -124,7 +138,7 @@ const TopBar: React.FC = () => {
             <li>
               <Link
                 to="/about"
-                className="text-sm text-gray-700 hover:text-blue-500"
+                className="text-sm text-black hover:text-main-blue dark:text-white-dark"
               >
                 About
               </Link>
@@ -132,7 +146,7 @@ const TopBar: React.FC = () => {
             <li>
               <Link
                 to="/site-tree"
-                className="text-sm text-gray-700 hover:text-blue-500"
+                className="text-sm text-black hover:text-main-blue dark:text-white-dark"
               >
                 SiteTree
               </Link>
@@ -142,7 +156,7 @@ const TopBar: React.FC = () => {
                 href="https://github.com/Churnobyl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-gray-700 hover:text-blue-500"
+                className="text-sm text-black hover:text-main-blue dark:text-white-dark"
               >
                 Github
               </a>
@@ -150,7 +164,7 @@ const TopBar: React.FC = () => {
             <li>
               <Link
                 to="/story"
-                className="text-sm text-gray-700 hover:text-blue-500"
+                className="text-sm text-black hover:text-main-blue dark:text-white-dark"
               >
                 개발기
               </Link>

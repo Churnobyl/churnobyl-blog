@@ -5,6 +5,7 @@ import Category from "../category/category";
 import { useFormatDate } from "../../hooks/use-format-date";
 import { IPostContent } from "../../interfaces/IPost";
 import CalenderSvg from "../../images/calenderSvg";
+import { Link } from "gatsby";
 
 const PostTitleSet = ({
   title,
@@ -21,7 +22,7 @@ const PostTitleSet = ({
   return (
     <div id="content_head" className="flex flex-col space-y-5">
       <div className="flex flex-col space-y-2 xl:flex-row xl:items-center xl:space-x-2">
-        <div className="text-xl text-main-text-black font-bold xl:text-3xl">
+        <div className="text-xl text-main-text-black dark:text-white-dark font-bold xl:text-3xl">
           {title}
         </div>
         <div className="text-main-blue text-sm">
@@ -45,11 +46,15 @@ const PostTitleSet = ({
         </div>
         {book && (
           <div className="flex-shrink-0">
-            <GatsbyImage
-              image={book.book_image?.childrenImageSharp?.[0]?.gatsbyImageData}
-              alt={book.book_name || "책 이미지"}
-              className="w-16 h-24 object-cover"
-            />
+            <Link to={"/" + book.url}>
+              <GatsbyImage
+                image={
+                  book.book_image?.childrenImageSharp?.[0]?.gatsbyImageData
+                }
+                alt={book.book_name || "책 이미지"}
+                className="w-16 h-24 object-cover"
+              />
+            </Link>
           </div>
         )}
       </div>

@@ -16,20 +16,20 @@ const MdBlockH1: React.FC<CustomBaseContentBlock> = ({
     >
       <h1
         className={
-          "inline-block text-2xl xl:text-3xl font-bold tracking-tight break-all"
+          "inline-block text-2xl xl:text-3xl font-bold tracking-tight break-all text-main-text-black dark:text-white-dark"
         }
       >
         {specialObject.rich_text[0].plain_text}
       </h1>
       <div
         className={`inline-block
-          xl:absolute xl:left-0 xl:top-0 xl:-translate-x-8 xl:translate-y-3 fill-gray-light
+          xl:absolute xl:left-0 xl:top-0 xl:-translate-x-8 xl:translate-y-3 fill-main-text-black dark:fill-white-dark
           opacity-0 group-hover:opacity-100
           transition-opacity duration-300
         `}
       >
         <a href={`#${hash}`} onClick={(e) => handleAnchorClick(e, hash)}>
-          <LinkSvg color={"#24292e"} />
+          <LinkSvg />
         </a>
       </div>
     </div>

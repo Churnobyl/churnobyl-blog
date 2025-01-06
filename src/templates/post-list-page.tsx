@@ -37,7 +37,9 @@ const PostListPage: React.FC<
           </div>
         </div>
         <Pagination
-          className={"flex items-center justify-center mb-10"}
+          className={
+            "flex items-center justify-center mb-10 text-main-text-black dark:text-white-dark"
+          }
           count={numPages}
           page={currentPage}
           renderItem={(item) => (

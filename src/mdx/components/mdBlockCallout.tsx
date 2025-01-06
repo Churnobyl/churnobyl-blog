@@ -7,7 +7,7 @@ const MdBlockCallout: React.FC<CustomBaseContentBlock> = ({
   specialObject,
 }) => {
   return (
-    <div className="text-md mt-2 pb-2 tracking-tight leading-7 break-all">
+    <div className="text-md mt-2 pb-2 tracking-tight leading-7 break-all text-main-text-black dark:text-white-dark">
       {specialObject.rich_text.map((text: any, index: number) => {
         const { annotations, plain_text, href } = text;
 

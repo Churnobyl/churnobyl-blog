@@ -116,19 +116,21 @@ const PostButtonSet = ({
         <div
           onClick={handleLike}
           className={classNames(
-            "hover:border-main-blue hover:border-opacity-50 cursor-pointer"
+            "hover:border-main-blue hover:border-opacity-50 cursor-pointer text-gray-light dark:text-white-dark"
           )}
         >
           <LikeSvg width={24} height={24} liked={liked} />
         </div>
       </div>
       <div
-        className={"flex justify-center items-center cursor-pointer"}
+        className={
+          "flex justify-center items-center cursor-pointer dark:text-white-dark"
+        }
         onClick={copyToClipboard}
       >
         <LinkSvg />
       </div>
-      <div className={"flex items-center justify-center"}>
+      <div className={"flex items-center justify-center dark:text-white-dark"}>
         <button id="kakaotalk-sharing-btn" onClick={handleKakaoShare}>
           <KakaoSvg />
         </button>

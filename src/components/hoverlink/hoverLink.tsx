@@ -103,7 +103,7 @@ const HoverLink: React.FC<{ href: string; children: React.ReactNode }> = ({
         onMouseEnter={handleMouseEnter}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="text-main-blue font-bold hover:underline hover:text-black"
+        className="text-main-blue font-bold hover:underline hover:text-sub-skyblue"
         target="_blank"
         rel="noopener noreferrer"
       >
