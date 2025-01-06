@@ -116,10 +116,10 @@ const PostButtonSet = ({
         <div
           onClick={handleLike}
           className={classNames(
-            "hover:border-main-blue hover:border-opacity-50 cursor-pointer text-gray-light dark:text-white-dark"
+            "hover:border-main-blue hover:border-opacity-50 cursor-pointer text-main-text-black dark:text-white-dark"
           )}
         >
-          <LikeSvg width={24} height={24} liked={liked} />
+          <LikeSvg width={28} height={28} liked={liked} />
         </div>
       </div>
       <div

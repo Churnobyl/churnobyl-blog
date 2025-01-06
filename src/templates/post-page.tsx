@@ -172,7 +172,7 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
       {/** 스크롤 */}
       <ScrollToTop
         smooth
-        className={"flex justify-center items-center animate-bounce"}
+        className={"flex justify-center items-center z-50 xl:animate-bounce"}
         component={<UpSvg />}
       />
     </NormalLayout>

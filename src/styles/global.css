@@ -73,7 +73,7 @@
   div.swiper-button-next::after,
   div.swiper-button-prev::before,
   div.swiper-button-next::before {
-    @apply text-7xl opacity-70 !text-white;
+    @apply text-2xl opacity-70 !text-white;
   }
 }
 

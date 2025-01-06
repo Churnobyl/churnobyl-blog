@@ -104,6 +104,13 @@ const MdBlockCode: React.FC<CustomBaseContentBlock> = ({
       isLanguageDisplayRegistered = true;
     }
 
+    // 폰트 크기 변화에 따라 line-height 동적 설정
+    const codeBlocks = document.querySelectorAll("pre.line-numbers code");
+    codeBlocks.forEach((block) => {
+      const fontSize = window.getComputedStyle(block).fontSize;
+      (block.parentElement as HTMLElement).style.lineHeight = fontSize;
+    });
+
     Prism.highlightAll();
   }, []);
 
