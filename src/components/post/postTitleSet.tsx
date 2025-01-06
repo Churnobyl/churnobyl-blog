@@ -25,7 +25,7 @@ const PostTitleSet = ({
         <div className="text-xl text-main-text-black dark:text-white-dark font-bold xl:text-3xl">
           {title}
         </div>
-        <div className="text-main-blue text-sm">
+        <div className="text-main-blue dark:text-sub-skyblue text-sm">
           v{version} 개정 {convertedUpdateDate}
         </div>
       </div>

@@ -83,15 +83,15 @@ const TopBar: React.FC = () => {
         </div>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex">
-          <ul className="flex flex-row space-x-6">
-            <li>
-              <ModeChange />
-            </li>
+        <nav className="hidden md:flex space-x-4">
+          <div className={"flex p-2"}>
+            <ModeChange />
+          </div>
+          <ul className="flex flex-row items-center space-x-6">
             <li>
               <Link
                 to="/about"
-                className="text-lg font-bold text-black hover:text-main-blue dark:text-white-dark"
+                className="text-lg font-bold text-black hover:text-main-blue dark:text-white-dark dark:hover:text-sub-skyblue"
               >
                 About
               </Link>
@@ -99,7 +99,7 @@ const TopBar: React.FC = () => {
             <li>
               <Link
                 to="/blog/book"
-                className="text-lg font-bold text-black hover:text-main-blue dark:text-white-dark"
+                className="text-lg font-bold text-black hover:text-main-blue dark:text-white-dark dark:hover:text-sub-skyblue"
               >
                 Book
               </Link>
@@ -109,7 +109,7 @@ const TopBar: React.FC = () => {
                 href="https://github.com/Churnobyl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lg font-bold text-black hover:text-main-blue dark:text-white-dark"
+                className="text-lg font-bold text-black hover:text-main-blue dark:text-white-dark dark:hover:text-sub-skyblue"
               >
                 Github
               </a>
@@ -117,7 +117,7 @@ const TopBar: React.FC = () => {
             <li>
               <Link
                 to="/story"
-                className="text-lg font-bold text-black hover:text-main-blue dark:text-white-dark"
+                className="text-lg font-bold text-black hover:text-main-blue dark:text-white-dark dark:hover:text-sub-skyblue"
               >
                 개발기
               </Link>

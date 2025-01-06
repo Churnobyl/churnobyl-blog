@@ -66,7 +66,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
 
           const isActive =
             activeHash === item.hash
-              ? "border-l-main-blue text-main-blue border-l-4"
+              ? "border-l-main-blue dark:border-l-sub-skyblue text-main-blue dark:text-sub-skyblue border-l-4"
               : "border-l-2 border-l-gray-light text-gray-dark dark:text-white-dark";
 
           return (

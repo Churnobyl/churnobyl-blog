@@ -67,7 +67,9 @@ const BookSlider = ({
           이 책의 다른 글 보기
         </div>
         <Link to={`/${book.url}`}>
-          <div className={"text-sm font-bold text-main-blue"}>
+          <div
+            className={"text-sm font-bold text-main-blue dark:text-sub-skyblue"}
+          >
             {book.book_name}
           </div>
         </Link>

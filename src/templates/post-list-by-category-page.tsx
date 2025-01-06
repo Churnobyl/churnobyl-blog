@@ -53,7 +53,9 @@ const PostListByCategoryPage: React.FC<
           <span className="text-center text-3xl font-bold text-main-text-black dark:text-white-dark">
             {categoryName}
           </span>
-          <span className={"text-main-blue text-xl font-bold"}>
+          <span
+            className={"text-main-blue dark:text-sub-skyblue text-xl font-bold"}
+          >
             {totalPosts}
           </span>
         </div>

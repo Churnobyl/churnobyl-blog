@@ -9,7 +9,7 @@ const MdBlockQuote: React.FC<CustomBaseContentBlock> = ({
     <blockquote className={"flex items-center mb-4"}>
       <div
         className={
-          "text-md tracking-tight leading-7 border-l-4 border-solid pl-4 text-main-text-black dark:text-white-dark border-l-main-blue"
+          "text-md tracking-tight leading-7 border-l-4 border-solid pl-4 text-main-text-black dark:text-white-dark border-l-main-blue dark:border-l-sub-skyblue"
         }
       >
         {specialObject.rich_text[0].plain_text}

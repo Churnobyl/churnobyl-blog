@@ -42,7 +42,7 @@
     > div.toolbar
     div.toolbar-item
     > button.copy-to-clipboard-button {
-    @apply bg-main-blue text-white rounded-md px-2 py-1 transition duration-200 opacity-0;
+    @apply bg-main-blue dark:bg-sub-skyblue text-white rounded-md px-2 py-1 transition duration-200 opacity-0;
   }
 
   div.code-toolbar:hover

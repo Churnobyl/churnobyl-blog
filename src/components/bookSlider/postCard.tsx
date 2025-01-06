@@ -22,20 +22,27 @@ const PostCard = ({
         className={classNames(
           "relative flex flex-col w-36 h-48 xl:w-48 xl:h-64 flex-shrink-0 p-3 shadow-md bg-gray-light",
           {
-            "bg-main-blue text-white": isCurrent,
+            " text-white": isCurrent,
           }
         )}
       >
         <div
           className={classNames(
-            "absolute top-2 left-2 z-10 bg-gray-light text-main-text-black text-xs px-2 py-1 rounded",
-            {
-              "bg-main-blue text-white": isCurrent,
-            }
+            "absolute top-2 left-2 z-10 bg-gray-light text-main-text-black text-xs px-2 py-1 rounded"
           )}
         >
           <span>{`Chaper ${book_index}`}</span>
         </div>
+
+        {isCurrent && (
+          <div
+            className={classNames(
+              "absolute top-0 right-0 z-10 bg-gradient-to-br from-highlight-yellow to-highlight-red text-white font-bold text-xs px-2 py-1 animate-pulse"
+            )}
+          >
+            <span>Now</span>
+          </div>
+        )}
 
         <div className="w-full h-56 overflow-hidden rounded-lg bg-gray-light">
           <GatsbyImage
