@@ -38,7 +38,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
   return (
     <div>
       {/* xl 이상에서는 기존 레이아웃 */}
-      <div className="hidden lg:flex flex-row space-x-20 items-center w-full mb-24">
+      <div className="hidden lg:flex flex-row space-x-20 items-center w-full my-10">
         <div className="flex justify-end items-center w-[208px] h-36 min-w-40 max-w-xs">
           <Link to={`/${url}`}>
             {image ? (
@@ -63,7 +63,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
           <div id={"title-div"} className={"flex items-center"}>
             <span
               className={
-                "text-lg md:text-xl font-bold overflow-hidden text-ellipsis whitespace-nowrap hover:text-gray"
+                "text-lg md:text-xl text-main-text-black font-bold overflow-hidden text-ellipsis whitespace-nowrap hover:text-gray"
               }
             >
               <Link to={`/${url}`}>{title}</Link>

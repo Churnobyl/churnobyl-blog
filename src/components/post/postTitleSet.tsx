@@ -4,6 +4,7 @@ import TagList from "../labels/tagList";
 import Category from "../category/category";
 import { useFormatDate } from "../../hooks/use-format-date";
 import { IPostContent } from "../../interfaces/IPost";
+import CalenderSvg from "../../images/calenderSvg";
 
 const PostTitleSet = ({
   title,
@@ -20,7 +21,9 @@ const PostTitleSet = ({
   return (
     <div id="content_head" className="flex flex-col space-y-5">
       <div className="flex flex-col space-y-2 xl:flex-row xl:items-center xl:space-x-2">
-        <div className="text-xl font-bold xl:text-3xl">{title}</div>
+        <div className="text-xl text-main-text-black font-bold xl:text-3xl">
+          {title}
+        </div>
         <div className="text-main-blue text-sm">
           v{version} 개정 {convertedUpdateDate}
         </div>
@@ -28,11 +31,17 @@ const PostTitleSet = ({
 
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
         <div className="flex flex-col space-y-2">
-          <div className="text-gray-dark text-sm xl:text-base">
-            {convertedCreateDate}
-          </div>
           <Category category_list={category_list} />
           <TagList tags={tags} />
+          <div className={"flex flex-row space-x-1 items-center"}>
+            <CalenderSvg />
+            <div className={"flex text-xs md:text-sm text-gray"}>
+              {convertedCreateDate}
+            </div>
+            <div className={"flex text-xs md:text-sm text-gray"}>
+              · Updated {convertedUpdateDate}
+            </div>
+          </div>
         </div>
         {book && (
           <div className="flex-shrink-0">

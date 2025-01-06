@@ -27,7 +27,9 @@ const TagPostListPage: React.FC<
     <NormalLayout>
       <div className="flex flex-col items-center justify-center w-full">
         <div className="flex flex-row items-baseline space-x-2 mt-10">
-          <span className="text-center text-3xl font-bold">{tagName}</span>
+          <span className="text-center text-3xl font-bold text-main-text-black">
+            #{tagName}
+          </span>
           <span className={"text-main-blue text-xl font-bold"}>
             {totalPosts}
           </span>
