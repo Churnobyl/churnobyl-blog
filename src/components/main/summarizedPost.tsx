@@ -77,7 +77,11 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
 
           <div className={"flex flex-row items-center"}>
             <TagList tags={tags} />
-            <div className={"flex flex-row space-x-1 items-center"}>
+            <div
+              className={
+                "flex flex-row space-x-1 items-center text-gray dark:text-white-dark"
+              }
+            >
               <CalenderSvg />
               <div
                 className={
@@ -141,7 +145,11 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
           <div className={"flex flex-col space-y-1"}>
             <Category category_list={category_list} />
             <TagList tags={tags} />
-            <div className={"flex flex-row space-x-1 items-center"}>
+            <div
+              className={
+                "flex flex-row space-x-1 items-center text-gray dark:text-white-dark"
+              }
+            >
               <CalenderSvg />
               <div
                 className={
