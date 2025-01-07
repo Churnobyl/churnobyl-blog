@@ -48,6 +48,7 @@ const MdBlockBulletedListItem: React.FC<CustomBaseContentBlock> = ({
               "line-through": annotations.strikethrough,
               underline: annotations.underline,
               "text-highlight-red": annotations.bold || annotations.code,
+              "dark:highlight-red-lighter": annotations.code,
               "text-main-text-black dark:text-white-dark": !(
                 annotations.bold || annotations.code
               ),

@@ -17,6 +17,7 @@ const MdBlockCallout: React.FC<CustomBaseContentBlock> = ({
           "line-through": annotations.strikethrough,
           underline: annotations.underline,
           "text-highlight-red": annotations.code,
+          "dark:highlight-red-lighter": annotations.code,
           "bg-gray-light": annotations.code,
           "rounded-lg": annotations.code,
           "py-1": annotations.code,

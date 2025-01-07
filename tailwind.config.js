@@ -29,6 +29,7 @@ module.exports = {
         "gray-dark": "#393939",
         "highlight-yellow": "#FFF100",
         "highlight-red": "#d65531",
+        "highlight-red-lighter": "#ff5531",
         "main-text-black": "#24292e",
         tag: {
           red: "#FFE2DD",
