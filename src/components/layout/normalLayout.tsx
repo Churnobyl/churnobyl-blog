@@ -13,7 +13,7 @@ const NormalLayout: React.FC<NormalLayoutProps> = ({ children }) => {
       <TopBar />
       <main
         className={classNames(
-          "flex flex-col justify-center items-center xl:mt-8 w-full p-4"
+          "flex flex-col justify-center items-center w-full p-4"
         )}
       >
         {children}
