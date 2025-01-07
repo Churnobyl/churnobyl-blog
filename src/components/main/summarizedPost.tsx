@@ -133,15 +133,16 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
                 {title}
               </span>
             </div>
-
-            <div
-              className={
-                "text-base md:text-md line-clamp-2 h-12 w-full my-6 text-gray dark:text-white-dark"
-              }
-            >
-              {description}
-            </div>
           </Link>
+
+          <div
+            className={
+              "text-base md:text-md line-clamp-2 h-12 w-full my-6 text-gray dark:text-white-dark"
+            }
+          >
+            {description}
+          </div>
+
           <div className={"flex flex-col space-y-1"}>
             <Category category_list={category_list} />
             <TagList tags={tags} />
