@@ -4,8 +4,8 @@ require("prismjs/plugins/line-numbers/prism-line-numbers.css");
 
 export const onInitialClientRender = () => {
   const preconnect = document.createElement("link");
-  link.rel = "preconnect";
-  link.href = "https://cdn.jsdelivr.net";
+  preconnect.rel = "preconnect";
+  preconnect.href = "https://cdn.jsdelivr.net";
 
   const link = document.createElement("link");
   link.rel = "stylesheet";
