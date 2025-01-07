@@ -94,8 +94,6 @@ const HoverLink: React.FC<{ href: string; children: React.ReactNode }> = ({
     setHovered(false);
   };
 
-  const key = Math.random() * 101232;
-
   return (
     <>
       <a
@@ -109,7 +107,7 @@ const HoverLink: React.FC<{ href: string; children: React.ReactNode }> = ({
       >
         {children}
       </a>
-      {hovered && <HoverModal key={key} url={href} position={position} />}
+      {hovered && <HoverModal url={href} position={position} />}
     </>
   );
 };
