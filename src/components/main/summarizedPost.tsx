@@ -37,7 +37,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
   return (
     <div>
       {/* xl 이상에서는 기존 레이아웃 */}
-      <div className="hidden lg:flex flex-row space-x-20 items-center w-full my-10">
+      <div className="hidden lg:flex flex-row space-x-20 items-center w-full my-10 post-layout">
         <div className="flex justify-end items-center w-[208px] h-36 min-w-40 max-w-xs">
           <Link to={`/${url}`}>
             {image ? (
@@ -59,35 +59,45 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
         <div
           className={"flex flex-col justify-evenly space-y-0 w-[600px] h-36"}
         >
-          <div id={"title-div"} className={"flex items-center"}>
-            <span
+          <Link to={`/${url}`}>
+            <div id={"title-div"} className={"flex items-center"}>
+              <span
+                className={
+                  "text-lg md:text-xl text-main-text-black dark:text-white-dark font-bold overflow-hidden text-ellipsis whitespace-nowrap"
+                }
+              >
+                {title}
+              </span>
+
+              {/* {showNew && <Label text="new" />}
+            {showUpdated && <Label text="updated" />} */}
+            </div>
+            <div
               className={
-                "text-lg md:text-xl text-main-text-black dark:text-white-dark font-bold overflow-hidden text-ellipsis whitespace-nowrap hover:text-gray"
+                "text-base md:text-md line-clamp-2 h-12 my-4 w-full text-gray dark:text-white-dark"
               }
             >
-              <Link to={`/${url}`}>{title}</Link>
-            </span>
-
-            {/* {showNew && <Label text="new" />}
-            {showUpdated && <Label text="updated" />} */}
-          </div>
-          <div
-            className={
-              "text-base md:text-md line-clamp-2 h-12 w-full text-gray"
-            }
-          >
-            {description}
-          </div>
+              {description}
+            </div>
+          </Link>
           <Category category_list={category_list} />
 
           <div className={"flex flex-row items-center"}>
             <TagList tags={tags} />
             <div className={"flex flex-row space-x-1 items-center"}>
               <CalenderSvg />
-              <div className={"flex text-xs md:text-sm text-gray"}>
+              <div
+                className={
+                  "flex text-xs md:text-sm text-gray dark:text-white-dark"
+                }
+              >
                 {convertedCreateDate}
               </div>
-              <div className={"flex text-xs md:text-sm text-gray"}>
+              <div
+                className={
+                  "flex text-xs md:text-sm text-gray dark:text-white-dark"
+                }
+              >
                 · Updated {convertedUpdateDate}
               </div>
             </div>
@@ -117,36 +127,46 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             )}
           </Link>
         </div>
-        <div className={"flex flex-col justify-center space-y-2 w-full"}>
-          <div id={"title-div"} className={"flex items-center"}>
-            <span
+        <div className={"flex flex-col justify-center w-full"}>
+          <Link to={`/${url}`}>
+            <div id={"title-div"} className={"flex items-center"}>
+              <span
+                className={
+                  "text-xl font-bold text-main-text-black dark:text-white-dark overflow-hidden text-ellipsis whitespace-nowrap"
+                }
+              >
+                {title}
+              </span>
+
+              {/* {showNew && <Label text="new" />}
+              {showUpdated && <Label text="updated" />} */}
+            </div>
+
+            <div
               className={
-                "text-xl font-bold text-main-text-black dark:text-white-dark overflow-hidden text-ellipsis whitespace-nowrap"
+                "text-base md:text-md line-clamp-2 h-12 w-full my-6 text-gray dark:text-white-dark"
               }
             >
-              <Link to={`/${url}`}>{title}</Link>
-            </span>
-
-            {/* {showNew && <Label text="new" />}
-              {showUpdated && <Label text="updated" />} */}
-          </div>
-
-          <div
-            className={
-              "text-base md:text-md line-clamp-2 h-12 w-full text-gray"
-            }
-          >
-            {description}
-          </div>
+              {description}
+            </div>
+          </Link>
           <div className={"flex flex-col space-y-1"}>
             <Category category_list={category_list} />
             <TagList tags={tags} />
             <div className={"flex flex-row space-x-1 items-center"}>
               <CalenderSvg />
-              <div className={"flex text-xs md:text-sm text-gray"}>
+              <div
+                className={
+                  "flex text-xs md:text-sm text-gray dark:text-white-dark"
+                }
+              >
                 {convertedCreateDate}
               </div>
-              <div className={"flex text-xs md:text-sm text-gray"}>
+              <div
+                className={
+                  "flex text-xs md:text-sm text-gray dark:text-white-dark"
+                }
+              >
                 · Updated {convertedUpdateDate}
               </div>
             </div>

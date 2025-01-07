@@ -29,6 +29,7 @@ export const SEO = ({ title, description, pathname, image }: SEO) => {
 
   return (
     <>
+      <html lang="ko" />
       <title>
         {title ? `${seo.title} | ` : ""}
         {defaultTitle}

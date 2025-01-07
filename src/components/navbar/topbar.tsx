@@ -68,11 +68,11 @@ const TopBar: React.FC = () => {
             }
           )}
         >
-          <div id={"logo"}>
+          <div id={"logo"} className={"w-[200px] lg:w-auto"}>
             <Link to={"/"}>
               {/* 기본 로고 */}
               <StaticImage
-                src="../../images/title-logo.svg"
+                src="../../images/title-logo.png"
                 alt="title"
                 loading={"eager"}
                 placeholder={"blurred"}
@@ -80,7 +80,7 @@ const TopBar: React.FC = () => {
               />
               {/* 다크 모드 로고 */}
               <StaticImage
-                src="../../images/title-logo-dark.svg"
+                src="../../images/title-logo-dark.png"
                 alt="title dark mode"
                 loading={"eager"}
                 placeholder={"blurred"}
@@ -89,7 +89,7 @@ const TopBar: React.FC = () => {
             </Link>
           </div>
 
-          <div className="md:hidden" ref={menuRef}>
+          <div className="lg:hidden" ref={menuRef}>
             <button
               ref={buttonRef}
               onClick={(e) => {
@@ -133,7 +133,7 @@ const TopBar: React.FC = () => {
           </div>
 
           {/* Desktop Menu */}
-          <nav className="hidden md:flex space-x-4">
+          <nav className="hidden lg:flex space-x-4">
             <div className={"flex p-2"}>
               <ModeChange />
             </div>

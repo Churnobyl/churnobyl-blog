@@ -36,10 +36,18 @@ const PostTitleSet = ({
           <TagList tags={tags} />
           <div className={"flex flex-row space-x-1 items-center"}>
             <CalenderSvg />
-            <div className={"flex text-xs md:text-sm text-gray"}>
+            <div
+              className={
+                "flex text-xs md:text-sm text-gray dark:text-white-dark"
+              }
+            >
               {convertedCreateDate}
             </div>
-            <div className={"flex text-xs md:text-sm text-gray"}>
+            <div
+              className={
+                "flex text-xs md:text-sm text-gray dark:text-white-dark"
+              }
+            >
               · Updated {convertedUpdateDate}
             </div>
           </div>
