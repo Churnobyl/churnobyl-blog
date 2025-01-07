@@ -28,8 +28,8 @@ module.exports = {
         gray: "#4e5968",
         "gray-dark": "#393939",
         "highlight-yellow": "#FFF100",
-        "highlight-red": "#d65531",
-        "highlight-red-lighter": "#ff5531",
+        "highlight-red": "#9a1d1a",
+        "highlight-red-lighter": "#9a1d1a",
         "main-text-black": "#24292e",
         tag: {
           red: "#FFE2DD",
