@@ -1,6 +1,6 @@
 import { Link, type PageProps } from "gatsby";
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SummarizedBook from "../components/book/summarizedBook";
 import NormalLayout from "../components/layout/normalLayout";
 import { SEO } from "../components/seo/seo";
@@ -31,6 +31,14 @@ const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
     bookCategory,
   } = pageContext;
 
+  const [convertedCreateDate, setConvertedCreateDate] = useState("");
+  const [convertedUpdateDate, setConvertedUpdateDate] = useState("");
+
+  useEffect(() => {
+    setConvertedCreateDate(useFormatDate(createDate));
+    setConvertedUpdateDate(useFormatDate(updateDate));
+  }, [createDate, updateDate]);
+
   return (
     <NormalLayout>
       <div className="flex flex-col items-center justify-center w-full">
@@ -53,8 +61,8 @@ const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
             className={"flex flex-col items-center justify-center space-y-4"}
           >
             <div className="mt-3 text-sm text-gray">
-              <span>Created: {useFormatDate(createDate)}</span> |{" "}
-              <span>Updated: {useFormatDate(updateDate)}</span>
+              <span>Created: {convertedCreateDate}</span> |{" "}
+              <span>Updated: {convertedUpdateDate}</span>
             </div>
             <div className={"text-gray"}>{description}</div>
           </div>

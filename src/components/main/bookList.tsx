@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IBooks } from "../../interfaces/IBook";
 import { Link } from "gatsby";
 
@@ -6,15 +6,34 @@ interface IBookList {
   data: IBooks[];
 }
 
-const isWithinAWeek = (date: string): boolean => {
-  const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
-  const currentDate = new Date();
-  const targetDate = new Date(date);
-  return currentDate.getTime() - targetDate.getTime() <= oneWeekInMilliseconds;
-};
-
 const BookList: React.FC<IBookList> = ({ data }) => {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [updatedCategories, setUpdatedCategories] = useState<{
+    [key: string]: { yellowDot: boolean; blueDot: boolean };
+  }>({});
+
+  useEffect(() => {
+    const categoryStatus: {
+      [key: string]: { yellowDot: boolean; blueDot: boolean };
+    } = {};
+    data.forEach((category) => {
+      const showYellowDot =
+        category.childrenNBook.some((book) =>
+          isWithinAWeek(book.create_date)
+        ) ||
+        category.childrenNBook.some((book) => isWithinAWeek(book.update_date));
+
+      const showBlueDot =
+        !showYellowDot &&
+        category.childrenNBook.some((book) => isWithinAWeek(book.update_date));
+
+      categoryStatus[category.id] = {
+        yellowDot: showYellowDot,
+        blueDot: showBlueDot,
+      };
+    });
+    setUpdatedCategories(categoryStatus);
+  }, [data]);
 
   const isWithinAWeek = (date: string): boolean => {
     const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
@@ -36,19 +55,10 @@ const BookList: React.FC<IBookList> = ({ data }) => {
       </div>
       <div id={"book-list"} className="w-full">
         {data.map((category) => {
-          // 상위 레벨에서 YellowDot과 BlueDot 판단
-          const showYellowDot =
-            category.childrenNBook.some((book) =>
-              isWithinAWeek(book.create_date)
-            ) ||
-            category.childrenNBook.some((book) =>
-              isWithinAWeek(book.update_date)
-            );
-          const showBlueDot =
-            !showYellowDot &&
-            category.childrenNBook.some((book) =>
-              isWithinAWeek(book.update_date)
-            );
+          const { yellowDot, blueDot } = updatedCategories[category.id] || {
+            yellowDot: false,
+            blueDot: false,
+          };
 
           return (
             <div key={category.id} className="mb-4 pb-2 w-full">
@@ -57,10 +67,10 @@ const BookList: React.FC<IBookList> = ({ data }) => {
                 onClick={() => toggleCategory(category.id)}
               >
                 {category.category_name}
-                {showYellowDot && (
+                {yellowDot && (
                   <span className="ml-2 w-2 h-2 bg-highlight-yellow rounded-full"></span>
                 )}
-                {!showYellowDot && showBlueDot && (
+                {!yellowDot && blueDot && (
                   <span className="ml-2 w-2 h-2 bg-sub-lightskyblue rounded-full"></span>
                 )}
               </div>

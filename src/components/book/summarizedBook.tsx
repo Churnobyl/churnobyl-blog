@@ -1,18 +1,9 @@
 import { Link } from "gatsby";
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useFormatDate } from "../../hooks/use-format-date";
 import CalenderSvg from "../../images/calenderSvg";
 import { ISummarizedPost } from "../../interfaces/ISummarizedPost";
-import Category from "../category/category";
-import TagList from "../labels/tagList";
-
-const isWithinAWeek = (value: string): boolean => {
-  const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
-  const currentDate = new Date();
-  const targetDate = new Date(value);
-  return currentDate.getTime() - targetDate.getTime() <= oneWeekInMilliseconds;
-};
 
 const SummarizedBook: React.FC<ISummarizedPost> = ({
   slug,
@@ -28,8 +19,13 @@ const SummarizedBook: React.FC<ISummarizedPost> = ({
   thumbnail,
   book_index,
 }) => {
-  const convertedCreateDate = useFormatDate(create_date);
-  const convertedUpdateDate = useFormatDate(update_date);
+  const [convertedCreateDate, setConvertedCreateDate] = useState("");
+  const [convertedUpdateDate, setConvertedUpdateDate] = useState("");
+
+  useEffect(() => {
+    setConvertedCreateDate(useFormatDate(create_date));
+    setConvertedUpdateDate(useFormatDate(update_date));
+  }, [create_date, update_date]);
   const image = getImage(thumbnail);
 
   return (

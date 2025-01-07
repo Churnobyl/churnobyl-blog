@@ -1,5 +1,5 @@
 import { GatsbyImage } from "gatsby-plugin-image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TagList from "../labels/tagList";
 import Category from "../category/category";
 import { useFormatDate } from "../../hooks/use-format-date";
@@ -16,8 +16,13 @@ const PostTitleSet = ({
   tags,
   book,
 }: IPostContent) => {
-  const convertedCreateDate = useFormatDate(create_date);
-  const convertedUpdateDate = useFormatDate(update_date);
+  const [convertedCreateDate, setConvertedCreateDate] = useState("");
+  const [convertedUpdateDate, setConvertedUpdateDate] = useState("");
+
+  useEffect(() => {
+    setConvertedCreateDate(useFormatDate(create_date));
+    setConvertedUpdateDate(useFormatDate(update_date));
+  }, [create_date, update_date]);
 
   return (
     <div id="content_head" className="flex flex-col space-y-5">
