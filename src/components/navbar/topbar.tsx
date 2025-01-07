@@ -204,10 +204,10 @@ const TopBar: React.FC = () => {
             </li>
             <li>
               <Link
-                to="/site-tree"
+                to="/blog/book"
                 className="text-lg text-black hover:text-main-blue dark:text-white-dark"
               >
-                SiteTree
+                Book
               </Link>
             </li>
             <li>
