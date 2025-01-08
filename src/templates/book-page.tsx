@@ -45,7 +45,9 @@ const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
         {/* 상단 책 정보 */}
         <div className="flex flex-col items-center mt-10 space-y-2">
           <Link to={`/${bookCategory.url}`}>
-            <div className={"fold-bold text-gray text-center"}>
+            <div
+              className={"fold-bold text-gray dark:text-white-dark text-center"}
+            >
               {bookCategory.category_name}
             </div>
           </Link>
@@ -60,11 +62,13 @@ const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
           <div
             className={"flex flex-col items-center justify-center space-y-4"}
           >
-            <div className="mt-3 text-sm text-gray">
+            <div className="mt-3 text-sm text-gray dark:text-white-dark">
               <span>Created: {convertedCreateDate}</span> |{" "}
               <span>Updated: {convertedUpdateDate}</span>
             </div>
-            <div className={"text-gray"}>{description}</div>
+            <div className={"text-gray dark:text-white-dark"}>
+              {description}
+            </div>
           </div>
         </div>
 

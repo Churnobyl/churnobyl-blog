@@ -67,7 +67,11 @@ const SummarizedBook: React.FC<ISummarizedPost> = ({
 
             <div className={"flex flex-row items-center"}>
               <div className={"flex flex-row space-x-1 items-center"}>
-                <div className={"flex text-xs md:text-sm text-gray"}>
+                <div
+                  className={
+                    "flex text-xs md:text-sm text-gray dark:text-white-dark"
+                  }
+                >
                   · Updated {convertedUpdateDate}
                 </div>
               </div>
@@ -77,7 +81,9 @@ const SummarizedBook: React.FC<ISummarizedPost> = ({
             {showUpdated && <Label text="updated" />} */}
           </div>
           <div
-            className={"text-base md:text-md line-clamp-1 h-8 w-full text-gray"}
+            className={
+              "text-base md:text-md line-clamp-1 h-8 w-full text-gray dark:text-white-dark"
+            }
           >
             {description}
           </div>
@@ -122,7 +128,7 @@ const SummarizedBook: React.FC<ISummarizedPost> = ({
 
           <div
             className={
-              "text-base md:text-md line-clamp-2 h-12 w-full text-gray"
+              "text-base md:text-md line-clamp-2 h-12 w-full text-gray dark:text-white-dark"
             }
           >
             {description}
@@ -130,10 +136,18 @@ const SummarizedBook: React.FC<ISummarizedPost> = ({
           <div className={"flex flex-col space-y-1"}>
             <div className={"flex flex-row space-x-1 items-center"}>
               <CalenderSvg />
-              <div className={"flex text-xs md:text-sm text-gray"}>
+              <div
+                className={
+                  "flex text-xs md:text-sm text-gray dark:text-white-dark"
+                }
+              >
                 {convertedCreateDate}
               </div>
-              <div className={"flex text-xs md:text-sm text-gray"}>
+              <div
+                className={
+                  "flex text-xs md:text-sm text-gray dark:text-white-dark"
+                }
+              >
                 · Updated {convertedUpdateDate}
               </div>
             </div>
