@@ -70,7 +70,9 @@ const MdBlockNumberedListItem: React.FC<CustomBaseContentBlock> = ({
               underline: annotations.underline,
               "text-highlight-red": annotations.bold || annotations.code,
               "dark:highlight-red-lighter": annotations.code,
-              "text-main-text-black": !(annotations.bold || annotations.code),
+              "text-main-text-black dark:text-white-dark": !(
+                annotations.bold || annotations.code
+              ),
               "bg-gray-light": annotations.code,
               "rounded-lg": annotations.code,
               "py-1": annotations.code,
