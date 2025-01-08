@@ -10,21 +10,21 @@ interface NormalLayoutProps {
 }
 
 const NormalLayout: React.FC<NormalLayoutProps> = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(
-    document.documentElement.classList.contains("dark")
-  );
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setIsDarkMode(document.documentElement.classList.contains("dark"));
-    });
+    if (typeof document !== "undefined") {
+      const observer = new MutationObserver(() => {
+        setIsDarkMode(document.documentElement.classList.contains("dark"));
+      });
 
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class"],
+      });
 
-    return () => observer.disconnect();
+      return () => observer.disconnect();
+    }
   }, []);
 
   return (
