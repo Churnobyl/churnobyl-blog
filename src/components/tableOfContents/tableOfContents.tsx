@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import useSmoothScroll from "../../hooks/use-smooth-scroll"; // 커스텀 훅 사용
+import React, { useEffect, useRef, useState } from "react";
+import useSmoothScroll from "../../hooks/use-smooth-scroll";
 
 interface TOCItem {
   hash: string;
@@ -15,13 +15,22 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
   tableOfContents,
 }) => {
   const [activeHash, setActiveHash] = useState<string>("");
+  const [containerHeight, setContainerHeight] = useState<number>(0);
   const offset = 80;
   const { scrollToElement } = useSmoothScroll();
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      let currentHash = "";
+    const handleResize = () => {
+      const newHeight = window.innerHeight - offset - 80 * 2;
+      setContainerHeight(newHeight);
+    };
 
+    const handleScroll = () => {
+      const scrollRatio =
+        window.scrollY / (document.body.scrollHeight - window.innerHeight);
+
+      let currentHash = "";
       tableOfContents.forEach((item) => {
         const element = document.getElementById(item.hash);
         if (element) {
@@ -36,19 +45,50 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
       setActiveHash(currentHash);
     };
 
+    window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
 
-    // 초기 스크롤 상태 업데이트
+    handleResize();
     handleScroll();
 
     return () => {
+      window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
     };
   }, [tableOfContents, offset]);
 
+  useEffect(() => {
+    if (activeHash && containerRef.current) {
+      const activeElement = containerRef.current.querySelector(
+        `[href="#${activeHash}"]`
+      ) as HTMLAnchorElement;
+      if (activeElement) {
+        const container = containerRef.current;
+        const elementTop = activeElement.offsetTop;
+        const containerScrollTop = container.scrollTop;
+        const containerHeight = container.clientHeight;
+        const elementHeight = activeElement.clientHeight;
+
+        const elementCenter = elementTop + elementHeight / 2;
+        const containerCenter = containerScrollTop + containerHeight / 2;
+
+        if (Math.abs(elementCenter - containerCenter) > elementHeight / 2) {
+          container.scrollTo({
+            top: elementTop - containerHeight / 2 + elementHeight / 2,
+            behavior: "smooth",
+          });
+        }
+      }
+    }
+  }, [activeHash]);
+
   return (
-    <div>
-      <ul className="space-y-2 mt-4">
+    <div
+      style={{ maxHeight: `${containerHeight}px` }}
+      ref={containerRef}
+      className="space-y-2 mt-4 overflow-hidden hover:overflow-y-auto scroll-smooth"
+    >
+      <ul className="space-y-2 mt-4 pr-8">
         {tableOfContents.map((item, index) => {
           const textSize =
             item.type === "heading_1"
@@ -72,12 +112,12 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
           return (
             <li
               key={index}
-              className={`${isActive} text-md tracking-tight leading-7 border-solid pl-4 ${textSize}`}
+              className={`${isActive} text-md tracking-tight leading-7 border-solid pl-4 ${textSize} w-full`}
             >
-              <div className={marginLeft}>
+              <div className={`${marginLeft} truncate`} title={item.title}>
                 <a
                   href={`#${item.hash}`}
-                  className={``}
+                  className={`break-all`}
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToElement(item.hash);

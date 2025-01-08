@@ -54,6 +54,7 @@
     "gatsby-transformer-remark": "^6.14.0",
     "gatsby-transformer-sharp": "^5.14.0",
     "gatsby-transformer-sqip": "^5.14.0",
+    "lodash": "^4.17.21",
     "node-addon-api": "^8.3.0",
     "notion-types": "^7.1.5",
     "postcss": "^8.4.49",
@@ -75,6 +76,7 @@
   "devDependencies": {
     "@types/babel__core": "^7",
     "@types/etag": "^1",
+    "@types/lodash": "^4",
     "@types/node": "^20.11.19",
     "@types/prismjs": "^1",
     "@types/react": "^18.2.55",

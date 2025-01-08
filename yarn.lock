@@ -4113,6 +4113,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4":
+  version: 4.17.14
+  resolution: "@types/lodash@npm:4.17.14"
+  checksum: 10c0/343c6f722e0b39969036a885ad5aad6578479ead83987128c9b994e6b7f2fb9808244d802d4d332396bb09096f720a6c7060de16a492f5460e06a44560360322
+  languageName: node
+  linkType: hard
+
 "@types/lodash@npm:^4.14.92":
   version: 4.17.13
   resolution: "@types/lodash@npm:4.17.13"
@@ -6409,6 +6416,7 @@ __metadata:
     "@supabase/supabase-js": "npm:^2.47.10"
     "@types/babel__core": "npm:^7"
     "@types/etag": "npm:^1"
+    "@types/lodash": "npm:^4"
     "@types/node": "npm:^20.11.19"
     "@types/prismjs": "npm:^1"
     "@types/react": "npm:^18.2.55"
@@ -6439,6 +6447,7 @@ __metadata:
     gatsby-transformer-remark: "npm:^6.14.0"
     gatsby-transformer-sharp: "npm:^5.14.0"
     gatsby-transformer-sqip: "npm:^5.14.0"
+    lodash: "npm:^4.17.21"
     node-addon-api: "npm:^8.3.0"
     notion-types: "npm:^7.1.5"
     postcss: "npm:^8.4.49"
