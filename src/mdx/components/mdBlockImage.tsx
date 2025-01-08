@@ -37,8 +37,8 @@ const MdBlockImage: React.FC<CustomBaseContentBlock> = ({ specialObject }) => {
   return (
     <div className={"flex my-10 justify-center shrink-0 w-full"}>
       {image ? (
-        <div className={"px-1"}>
-          <GatsbyImage image={image} alt="" />
+        <div className={"px-1 max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-xl"}>
+          <GatsbyImage image={image} alt="" className="w-full h-auto" />
           <p>{specialObject.captions ? specialObject.captions[0] : ``}</p>
         </div>
       ) : (
