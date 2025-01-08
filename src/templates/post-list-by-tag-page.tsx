@@ -118,10 +118,7 @@ export default TagPostListPage;
 export const Head = ({
   pageContext,
 }: PageProps<IBlogListQueryData, TagPostListPageContext>) => {
-  const { tagName, tagUrl, currentPage, numPages } = pageContext;
-  const title =
-    currentPage === 1
-      ? `${tagName} Posts`
-      : `${tagName} Posts - Page ${currentPage} of ${numPages}`;
+  const { tagName, tagUrl, totalPosts, currentPage, numPages } = pageContext;
+  const title = `${tagName} (${totalPosts})`;
   return <SEO title={title} description={title} pathname={"/" + tagUrl} />;
 };

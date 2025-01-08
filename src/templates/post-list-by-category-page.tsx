@@ -90,9 +90,6 @@ export const Head = ({
   pageContext,
 }: PageProps<{}, CategoryPostListPageContext>) => {
   const { categoryName, totalPosts, url, currentPage, numPages } = pageContext;
-  const title =
-    currentPage === 1
-      ? `${categoryName} Posts (${totalPosts})`
-      : `${categoryName} Posts (${totalPosts}) - Page ${currentPage} of ${numPages}`;
+  const title = `${categoryName} (${totalPosts})`;
   return <SEO title={title} description={title} pathname={`/${url}`} />;
 };

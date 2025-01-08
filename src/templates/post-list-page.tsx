@@ -125,8 +125,7 @@ export const Head = ({
   pageContext,
 }: PageProps<IBlogListQueryData, BlogListPageContext>) => {
   const { currentPage, numPages } = pageContext;
-  const title =
-    currentPage === 1 ? "Home" : `Page ${currentPage} of ${numPages}`;
+  const title = currentPage === 1 ? "Home" : `${currentPage}`;
   return (
     <SEO
       title={title}

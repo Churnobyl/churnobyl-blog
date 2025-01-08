@@ -16,6 +16,7 @@ interface BookPageContext {
   posts: IPost[];
   description: string;
   bookCategory: IBookCategory;
+  url: string;
 }
 
 const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
@@ -91,8 +92,13 @@ const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
 export default BookPage;
 
 export const Head = ({ pageContext }: PageProps<{}, BookPageContext>) => {
-  const { bookName } = pageContext;
+  const { bookName, description, url, bookImage } = pageContext;
   return (
-    <SEO title={`Book: ${bookName}`} description={`Posts in ${bookName}`} />
+    <SEO
+      title={bookName}
+      description={description}
+      pathname={`/${url}`}
+      image={bookImage}
+    />
   );
 };

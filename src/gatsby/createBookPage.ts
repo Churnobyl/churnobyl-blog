@@ -102,6 +102,7 @@ export const createBookPage = async (
         bookCategory: book.book_category,
         createDate: book.create_date,
         updateDate: book.update_date,
+        url: book.url,
         posts: sortedPosts,
       },
     });
