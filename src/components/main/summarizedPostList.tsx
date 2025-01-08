@@ -18,8 +18,8 @@ const SummarizedPostList: React.FC<SummarizedPostListProps> = ({ data }) => {
           포스트
         </h1>
       </div>
-      {data.map((post) => (
-        <SummarizedPost key={post.id} {...post} />
+      {data.map((post, index) => (
+        <SummarizedPost key={post.id} {...post} index={index} />
       ))}
     </div>
   );

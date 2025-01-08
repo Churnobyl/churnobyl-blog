@@ -19,6 +19,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
   category_list,
   tags,
   thumbnail,
+  index,
 }) => {
   const [convertedCreateDate, setConvertedCreateDate] = useState("");
   const [convertedUpdateDate, setConvertedUpdateDate] = useState("");
@@ -42,12 +43,14 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
                 alt={title}
                 title={title}
                 className={"rounded-sm"}
+                loading={index && index < 3 ? "eager" : "lazy"}
               />
             ) : (
               <StaticImage
                 src="../../images/no-content.png"
                 alt="no content"
                 className={"rounded-sm"}
+                loading={index && index < 3 ? "eager" : "lazy"}
               />
             )}
           </Link>
@@ -112,12 +115,14 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
                 alt={title}
                 title={title}
                 className={`rounded-md`}
+                loading={index && index < 2 ? "eager" : "lazy"}
               />
             ) : (
               <StaticImage
                 src="../../images/no-content.png"
                 alt="no content"
                 className={"rounded-sm"}
+                loading={index && index < 2 ? "eager" : "lazy"}
               />
             )}
           </Link>
