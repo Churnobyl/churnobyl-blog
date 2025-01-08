@@ -27,8 +27,8 @@ const MdBlockH3: React.FC<CustomBaseContentBlock> = ({
         className={`inline-block
           xl:absolute xl:left-0 xl:top-0 xl:-translate-x-8 xl:translate-y-1.5 fill-main-text-black dark:fill-white-dark
           opacity-0 group-hover:opacity-100
-          transition-opacity duration-300
-    `}
+          transition-opacity duration-300`}
+        id={`hashlink-${hash}`}
       >
         <a href={`#${hash}`} onClick={(e) => handleAnchorClick(e, hash)}>
           <LinkSvg />

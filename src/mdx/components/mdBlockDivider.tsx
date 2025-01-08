@@ -19,7 +19,6 @@ const MdBlockDivider: React.FC<CustomBaseContentBlock> = ({
       >
         <svg
           className={"w-4 h-4 text-main-text-black dark:text-white-dark"}
-          aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
           viewBox="0 0 18 14"
