@@ -1,7 +1,7 @@
 import { Link, type PageProps } from "gatsby";
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import React, { useEffect, useState } from "react";
-import SummarizedBook from "../components/book/summarizedBook";
+import SummarizedBookContents from "../components/book/summarizedBookContents";
 import NormalLayout from "../components/layout/normalLayout";
 import { SEO } from "../components/seo/seo";
 import { useFormatDate } from "../hooks/use-format-date";
@@ -80,7 +80,7 @@ const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
           </div>
           <div className="space-y-5">
             {posts.map((post) => (
-              <SummarizedBook key={post.id} {...post} />
+              <SummarizedBookContents key={post.id} {...post} />
             ))}
           </div>
         </div>

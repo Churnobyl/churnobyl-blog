@@ -2,6 +2,7 @@ import { Page } from "gatsby";
 import path from "path";
 import { ISummarizedPost } from "../interfaces/ISummarizedPost";
 import { IGatsbyImageData } from "gatsby-plugin-image";
+import { IBooks } from "../interfaces/IBook";
 
 export const createPostListByCategory = async (
   graphql: <TData, TVariables = any>(
@@ -35,20 +36,21 @@ export const createPostListByCategory = async (
           update_date: string;
           url: string;
           slug: string;
-          thumbnail: IGatsbyImageData
+          thumbnail: IGatsbyImageData;
           category_list: {
-            category_name: string
+            category_name: string;
             id: string;
             url: string;
-          }[]
+          }[];
           tags: {
-            id:string
-            slug:string
-            tag_name:string
-            url:string
-            color:string
-          }[]
+            id: string;
+            slug: string;
+            tag_name: string;
+            url: string;
+            color: string;
+          }[];
         }[];
+        childrenNBook?: IBooks;
       }[];
     };
   }>(`
@@ -100,6 +102,19 @@ export const createPostListByCategory = async (
               url
             }
           }
+          childrenNBook {
+            id
+            book_name
+            book_image {
+              childImageSharp {
+                gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
+              }
+            }
+            url
+            update_date
+            create_date
+            description
+          }
         }
       }
     }
@@ -129,26 +144,30 @@ export const createPostListByCategory = async (
       tags: post.tags,
       thumbnail: post.thumbnail,
     }));
-  
+
     category.childrenNCategory.forEach((subCategory: any) => {
-      const subCategoryNode = categories.find((cat) => cat.id === subCategory.id);
+      const subCategoryNode = categories.find(
+        (cat) => cat.id === subCategory.id
+      );
       if (subCategoryNode) {
         posts = posts.concat(collectPostsRecursively(subCategoryNode));
       }
     });
-  
+
     return posts;
   };
-  
+
   categories.forEach((category) => {
     const allPosts = collectPostsRecursively(category);
     const totalPosts = allPosts.length;
     const numPages = Math.ceil(totalPosts / postsPerPage);
-  
+
     Array.from({ length: numPages }).forEach((_, i) => {
       createPage({
         path: i === 0 ? `${category.url}` : `${category.url}/${i + 1}`,
-        component: path.resolve(`./src/templates/post-list-by-category-page.tsx`),
+        component: path.resolve(
+          `./src/templates/post-list-by-category-page.tsx`
+        ),
         context: {
           categoryId: category.id,
           categoryName: category.category_name,
@@ -157,6 +176,7 @@ export const createPostListByCategory = async (
           totalPosts,
           numPages,
           currentPage: i + 1,
+          books: category.childrenNBook,
         },
       });
     });

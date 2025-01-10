@@ -40,7 +40,7 @@ const TagPostListPage: React.FC<
           id="content"
           className="flex items-center justify-center w-full min-h-screen"
         >
-          <div className="flex flex-col-reverse xl:flex-col space-x-5 justify-between">
+          <div className="flex flex-col-reverse xl:flex-col xl:space-x-5 justify-between">
             <SummarizedPostList data={posts} />
           </div>
         </div>

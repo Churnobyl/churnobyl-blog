@@ -1,24 +1,27 @@
-import { Link } from "gatsby";
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import React, { useEffect, useState } from "react";
+import { IBook } from "../../interfaces/IBook";
 import { useFormatDate } from "../../hooks/use-format-date";
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
+import { Link } from "gatsby";
 import CalenderSvg from "../../images/calenderSvg";
-import { ISummarizedPost } from "../../interfaces/ISummarizedPost";
 
-const SummarizedBook: React.FC<ISummarizedPost> = ({
-  slug,
-  title,
-  update_date,
-  url,
-  version,
-  description,
-  create_date,
-  id,
-  category_list,
-  tags,
-  thumbnail,
-  book_index,
-}) => {
+interface SummarizedBookProps {
+  data: IBook;
+  index: number;
+}
+
+const SummarizedBook: React.FC<SummarizedBookProps> = ({ data, index }) => {
+  const {
+    book_category,
+    book_image,
+    book_name,
+    create_date,
+    id,
+    update_date,
+    url,
+    description,
+  } = data;
+
   const [convertedCreateDate, setConvertedCreateDate] = useState("");
   const [convertedUpdateDate, setConvertedUpdateDate] = useState("");
 
@@ -26,115 +29,130 @@ const SummarizedBook: React.FC<ISummarizedPost> = ({
     setConvertedCreateDate(useFormatDate(create_date));
     setConvertedUpdateDate(useFormatDate(update_date));
   }, [create_date, update_date]);
-  const image = getImage(thumbnail);
+
+  const image = getImage(book_image);
 
   return (
-    <div>
+    <>
       {/* xl 이상에서는 기존 레이아웃 */}
-      <div className="hidden lg:flex flex-row space-x-10 items-center w-full my-2">
-        <div className={"font-bold text-main-text-black dark:text-white-dark"}>
-          Chapter {book_index}
-        </div>
-        <div className="flex justify-end items-center w-[104px] h-36 min-w-20 max-w-xs">
+      <div className="hidden lg:flex flex-row space-x-20 items-center w-full my-10 post-layout">
+        <div className="flex justify-end items-center w-[208px] h-36 min-w-40 max-w-xs">
           <Link to={`/${url}`}>
             {image ? (
               <GatsbyImage
                 image={image}
-                alt={title}
-                title={title}
+                alt={book_name}
+                title={book_name}
                 className={"rounded-sm"}
+                loading={index && index < 3 ? "eager" : "lazy"}
               />
             ) : (
               <StaticImage
                 src="../../images/no-content.png"
                 alt="no content"
                 className={"rounded-sm"}
+                loading={index && index < 3 ? "eager" : "lazy"}
               />
             )}
           </Link>
         </div>
         <div
-          className={"flex flex-col justify-evenly space-y-0 w-[600px] h-20"}
+          className={"flex flex-col justify-evenly space-y-0 w-[600px] h-36"}
         >
-          <div id={"title-div"} className={"flex items-center space-x-2"}>
+          <Link to={`/${url}`}>
+            <div id={"title-div"} className={"flex items-center"}>
+              <span
+                className={
+                  "text-lg md:text-xl text-main-text-black dark:text-white-dark font-bold overflow-hidden text-ellipsis whitespace-nowrap"
+                }
+              >
+                {book_name}
+              </span>
+            </div>
             <div
               className={
-                "text-lg md:text-xl text-main-text-black dark:text-white-dark font-bold overflow-hidden text-ellipsis whitespace-nowrap hover:text-gray"
+                "text-base md:text-md line-clamp-2 h-12 my-2 w-full text-gray dark:text-white-dark"
               }
             >
-              <Link to={`/${url}`}>{title}</Link>
+              {description}
             </div>
+          </Link>
 
-            <div className={"flex flex-row items-center"}>
-              <div className={"flex flex-row space-x-1 items-center"}>
-                <div
-                  className={
-                    "flex text-xs md:text-sm text-gray dark:text-white-dark"
-                  }
-                >
-                  · Updated {convertedUpdateDate}
-                </div>
+          <div className={"flex flex-row items-center"}>
+            <div
+              className={
+                "flex flex-row space-x-1 items-center text-gray dark:text-white-dark"
+              }
+            >
+              <CalenderSvg />
+              <div
+                className={
+                  "flex text-xs md:text-sm text-gray dark:text-white-dark"
+                }
+              >
+                {convertedCreateDate}
+              </div>
+              <div
+                className={
+                  "flex text-xs md:text-sm text-gray dark:text-white-dark"
+                }
+              >
+                · Updated {convertedUpdateDate}
               </div>
             </div>
-
-            {/* {showNew && <Label text="new" />}
-            {showUpdated && <Label text="updated" />} */}
-          </div>
-          <div
-            className={
-              "text-base md:text-md line-clamp-1 h-8 w-full text-gray dark:text-white-dark"
-            }
-          >
-            {description}
           </div>
         </div>
       </div>
 
       {/* xl 이하에서는 카드 레이아웃 */}
       <div className="flex flex-col lg:hidden space-y-4 justify-center items-center w-full p-4 mb-16">
-        <div className={"font-bold text-main-text-black dark:text-white-dark"}>
-          Chapter {book_index}
-        </div>
-        <div className="flex w-full items-center text-main-text-black dark:text-white-dark">
+        <div className="flex w-full items-center">
           <Link to={`/${url}`}>
             {image ? (
               <GatsbyImage
                 image={image}
-                alt={title}
-                title={title}
-                className={`
-                  rounded-md
-                `}
+                alt={book_name}
+                title={book_name}
+                className={`rounded-md`}
+                loading={index && index < 2 ? "eager" : "lazy"}
               />
             ) : (
               <StaticImage
                 src="../../images/no-content.png"
                 alt="no content"
                 className={"rounded-sm"}
+                loading={index && index < 2 ? "eager" : "lazy"}
               />
             )}
           </Link>
         </div>
-        <div className={"flex flex-col justify-center space-y-2 w-full"}>
-          <div id={"title-div"} className={"flex items-center"}>
-            <span
-              className={
-                "text-xl font-bold text-main-text-black dark:text-white-dark overflow-hidden text-ellipsis whitespace-nowrap"
-              }
-            >
-              <Link to={`/${url}`}>{title}</Link>
-            </span>
-          </div>
+        <div className={"flex flex-col justify-center w-full"}>
+          <Link to={`/${url}`}>
+            <div id={"title-div"} className={"flex items-center"}>
+              <span
+                className={
+                  "text-xl font-bold text-main-text-black dark:text-white-dark overflow-hidden text-ellipsis whitespace-nowrap"
+                }
+              >
+                {book_name}
+              </span>
+            </div>
+          </Link>
 
           <div
             className={
-              "text-base md:text-md line-clamp-2 h-12 w-full text-gray dark:text-white-dark"
+              "text-base md:text-md line-clamp-2 h-12 w-full my-2 text-gray dark:text-white-dark"
             }
           >
             {description}
           </div>
+
           <div className={"flex flex-col space-y-1"}>
-            <div className={"flex flex-row space-x-1 items-center"}>
+            <div
+              className={
+                "flex flex-row space-x-1 items-center text-gray dark:text-white-dark"
+              }
+            >
               <CalenderSvg />
               <div
                 className={
@@ -155,7 +173,7 @@ const SummarizedBook: React.FC<ISummarizedPost> = ({
         </div>
       </div>
       <hr className={"my-5 border-gray-light"} />
-    </div>
+    </>
   );
 };
 

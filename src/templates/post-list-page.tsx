@@ -28,7 +28,7 @@ const PostListPage: React.FC<
         >
           <div
             className={
-              "flex flex-col-reverse xl:flex-col space-x-5 justify-between"
+              "flex flex-col-reverse xl:flex-col xl:space-x-5 justify-between"
             }
           >
             <SummarizedPostList data={posts} />

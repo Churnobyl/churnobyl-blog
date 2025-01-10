@@ -1,49 +1,29 @@
-import React from "react";
-import { Link, type PageProps } from "gatsby";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
+import { Link, type PageProps } from "gatsby";
+import React from "react";
+import SummarizedBookList from "../components/book/summarizedBookList";
 import NormalLayout from "../components/layout/normalLayout";
-import { SEO } from "../components/seo/seo";
-import { CONST_URL } from "../constants";
 import SummarizedPostList from "../components/main/summarizedPostList";
-import { IGatsbyImageData } from "gatsby-plugin-image";
+import { SEO } from "../components/seo/seo";
+import { IBook } from "../interfaces/IBook";
+import { ISummarizedPost } from "../interfaces/ISummarizedPost";
 
 interface CategoryPostListPageContext {
   categoryId: string;
   categoryName: string;
   url: string;
-  posts: {
-    slug: string;
-    title: string;
-    update_date: string;
-    url: string;
-    version: number | null;
-    description: string | null;
-    create_date: string;
-    id: string;
-    category_list: {
-      id: string;
-      url: string;
-      category_name: string;
-    }[];
-    tags: {
-      id: string;
-      slug?: string;
-      tag_name: string;
-      url: string;
-      color: string;
-    }[];
-    thumbnail: IGatsbyImageData;
-  }[];
+  posts: ISummarizedPost[];
   totalPosts: number;
   currentPage: number;
   numPages: number;
+  books: IBook[];
 }
 
 const PostListByCategoryPage: React.FC<
   PageProps<{}, CategoryPostListPageContext>
 > = ({ pageContext }) => {
-  const { categoryName, posts, url, totalPosts, currentPage, numPages } =
+  const { categoryName, posts, url, totalPosts, currentPage, numPages, books } =
     pageContext;
 
   return (
@@ -61,9 +41,12 @@ const PostListByCategoryPage: React.FC<
         </div>
         <div
           id="content"
-          className="mt-10 flex items-center justify-center w-full min-h-screen"
+          className="mt-10 flex items-center justify-center flex-col w-full min-h-screen"
         >
-          <div className="flex flex-col-reverse xl:flex-col space-x-5 justify-between">
+          <div className="flex flex-col-reverse xl:flex-col xl:space-x-5 justify-between xl:w-[908px]">
+            <SummarizedBookList data={books} />
+          </div>
+          <div className="flex flex-col-reverse xl:flex-col xl:space-x-5 justify-between xl:w-[908px]">
             <SummarizedPostList data={posts} />
           </div>
         </div>

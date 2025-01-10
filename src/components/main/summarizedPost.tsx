@@ -32,7 +32,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
   const image = getImage(thumbnail);
 
   return (
-    <div>
+    <>
       {/* xl 이상에서는 기존 레이아웃 */}
       <div className="hidden lg:flex flex-row space-x-20 items-center w-full my-10 post-layout">
         <div className="flex justify-end items-center w-[208px] h-36 min-w-40 max-w-xs">
@@ -62,7 +62,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             <div id={"title-div"} className={"flex items-center"}>
               <span
                 className={
-                  "text-lg md:text-xl text-main-text-black dark:text-white-dark font-bold overflow-hidden text-ellipsis whitespace-nowrap"
+                  "text-lg md:text-xl text-main-text-black dark:text-white-dark font-bold overflow-hidden text-ellipsis whitespace-nowrap hover:text-main-blue dark:hover:text-sub-skyblue"
                 }
               >
                 {title}
@@ -70,7 +70,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             </div>
             <div
               className={
-                "text-base md:text-md line-clamp-2 h-12 my-4 w-full text-gray dark:text-white-dark"
+                "text-base md:text-md line-clamp-2 h-12 my-2 w-full text-gray dark:text-white-dark"
               }
             >
               {description}
@@ -106,7 +106,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
       </div>
 
       {/* xl 이하에서는 카드 레이아웃 */}
-      <div className="flex flex-col lg:hidden space-y-4 justify-center items-center w-full p-4 mb-16">
+      <div className="flex flex-col lg:hidden space-y-4 justify-center items-center w-full p-4 mb-12">
         <div className="flex w-full items-center">
           <Link to={`/${url}`}>
             {image ? (
@@ -142,7 +142,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
 
           <div
             className={
-              "text-base md:text-md line-clamp-2 h-12 w-full my-6 text-gray dark:text-white-dark"
+              "text-base md:text-md line-clamp-2 h-12 w-full my-2 text-gray dark:text-white-dark"
             }
           >
             {description}
@@ -176,7 +176,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
         </div>
       </div>
       <hr className={"my-5 border-gray-light"} />
-    </div>
+    </>
   );
 };
 

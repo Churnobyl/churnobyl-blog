@@ -3,6 +3,7 @@ import { CustomBaseContentBlock } from "../../interfaces/IBlock";
 import MdHandler from "../common/mdHandler";
 import HoverLink from "../../components/hoverlink/hoverLink";
 import classNames from "classnames";
+import { styling } from "./stylingClass";
 
 const toRoman = (num: number): string => {
   const romanNumerals: [string, number][] = [
@@ -46,9 +47,9 @@ const MdBlockNumberedListItem: React.FC<CustomBaseContentBlock> = ({
   const numbering = generateNumbering(level, index);
 
   return (
-    <li className="flex items-start">
+    <li className="flex items-start py-2">
       <div
-        className="flex items-center justify-center w-8 leading-none text-main-text-black dark:text-white-dark"
+        className="flex items-center justify-center w-4 text-main-text-black dark:text-white-dark"
         style={{ lineHeight: "1.5" }}
       >
         {numbering}
@@ -63,24 +64,7 @@ const MdBlockNumberedListItem: React.FC<CustomBaseContentBlock> = ({
           {specialObject.rich_text.map((text: any, idx: number) => {
             const { href, plain_text, annotations } = text;
 
-            const textClass = classNames({
-              "font-semibold": annotations.bold,
-              italic: annotations.italic,
-              "line-through": annotations.strikethrough,
-              underline: annotations.underline,
-              "text-highlight-red": annotations.bold || annotations.code,
-              "dark:highlight-red-lighter": annotations.code,
-              "text-main-text-black dark:text-white-dark": !(
-                annotations.bold || annotations.code
-              ),
-              "bg-gray-light": annotations.code,
-              "rounded-lg": annotations.code,
-              "py-1": annotations.code,
-              "px-2": annotations.code,
-              "text-[15px]": annotations.code,
-              [`text-${annotations.color}`]:
-                annotations.color !== "default" && !annotations.code,
-            });
+            const textClass = classNames(styling(annotations));
 
             return href ? (
               <HoverLink key={index} href={href}>

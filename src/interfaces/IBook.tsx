@@ -20,7 +20,7 @@ export interface IBook {
     id: string;
     url: string;
   };
-  childrenChurnotion: IChildChurnotion[];
+  childrenChurnotion?: IChildChurnotion[];
   description?: string;
 }
 

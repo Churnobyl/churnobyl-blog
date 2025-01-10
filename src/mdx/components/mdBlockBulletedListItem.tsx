@@ -2,6 +2,7 @@ import React from "react";
 import { CustomBaseContentBlock } from "../../interfaces/IBlock";
 import classNames from "classnames";
 import HoverLink from "../../components/hoverlink/hoverLink";
+import { styling } from "./stylingClass";
 
 const MdBlockBulletedListItem: React.FC<CustomBaseContentBlock> = ({
   type,
@@ -13,7 +14,7 @@ const MdBlockBulletedListItem: React.FC<CustomBaseContentBlock> = ({
   return (
     <li className={`flex items-start`}>
       <div
-        className={`flex mr-2 w-4 items-center justify-center leading-7 text-4xl font-thin text-main-text-black dark:text-white-dark`}
+        className={`flex mr-2 w-4 items-center justify-center leading-6 text-4xl font-thin text-main-text-black dark:text-white-dark`}
       >
         {level === 0 ? "•" : level === 1 ? "◦" : "▪"}
       </div>
@@ -42,24 +43,7 @@ const MdBlockBulletedListItem: React.FC<CustomBaseContentBlock> = ({
           {specialObject.rich_text.map((text: any, index: number) => {
             const { annotations, plain_text, href } = text;
 
-            const textClass = classNames({
-              "font-semibold": annotations.bold,
-              italic: annotations.italic,
-              "line-through": annotations.strikethrough,
-              underline: annotations.underline,
-              "text-highlight-red": annotations.bold || annotations.code,
-              "dark:highlight-red-lighter": annotations.code,
-              "text-main-text-black dark:text-white-dark": !(
-                annotations.bold || annotations.code
-              ),
-              "bg-gray-light": annotations.code,
-              "rounded-lg": annotations.code,
-              "py-1": annotations.code,
-              "px-2": annotations.code,
-              "text-[15px]": annotations.code,
-              [`text-${annotations.color}`]:
-                annotations.color !== "default" && !annotations.code,
-            });
+            const textClass = classNames(styling(annotations));
 
             return href ? (
               <HoverLink key={index} href={href}>

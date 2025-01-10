@@ -111,8 +111,16 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
 
   useEffect(() => {
     recordViewAndLikeStatus();
+
+    const handleBeforeUnload = () => {
+      sendPendingLike();
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
     return () => {
       sendPendingLike();
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [url]);
 
@@ -172,7 +180,9 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
       {/** 스크롤 */}
       <ScrollToTop
         smooth
-        className={"flex justify-center items-center z-50 xl:animate-bounce"}
+        className={
+          "flex justify-center items-center z-50 xl:animate-bounce text-main-blue dark:text-sub-skyblue"
+        }
         component={<UpSvg />}
       />
     </NormalLayout>

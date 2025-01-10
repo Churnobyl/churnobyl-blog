@@ -8,7 +8,7 @@ type SummarizedPostListProps = {
 
 const SummarizedPostList: React.FC<SummarizedPostListProps> = ({ data }) => {
   return (
-    <div>
+    <>
       <div className={"py-4"}>
         <h1
           className={
@@ -21,7 +21,7 @@ const SummarizedPostList: React.FC<SummarizedPostListProps> = ({ data }) => {
       {data.map((post, index) => (
         <SummarizedPost key={post.id} {...post} index={index} />
       ))}
-    </div>
+    </>
   );
 };
 
