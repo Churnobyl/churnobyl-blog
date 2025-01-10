@@ -13,7 +13,7 @@ const Category: React.FC<CategoryProps> = ({ category_list }) => {
         <span
           key={category.id}
           className={
-            "text-sm lg:text-base font-bold text-gray-dark dark:text-white-dark"
+            "text-xs lg:text-sm font-bold text-gray-dark dark:text-white-dark"
           }
         >
           <Link

@@ -78,8 +78,8 @@ export const createPostListByCategory = async (
                 gatsbyImageData(
                   placeholder: BLURRED
                   quality: 50
-                  width: 1020
-                  height: 680
+                  width: 130
+                  height: 90
                   layout: CONSTRAINED
                 )
               }

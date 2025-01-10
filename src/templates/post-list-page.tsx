@@ -26,11 +26,7 @@ const PostListPage: React.FC<
           id={"content"}
           className={"flex items-center justify-center w-full min-h-screen"}
         >
-          <div
-            className={
-              "flex flex-col-reverse xl:flex-col xl:space-x-5 justify-between"
-            }
-          >
+          <div className={"flex flex-col justify-between"}>
             <SummarizedPostList data={posts} />
           </div>
         </div>
@@ -92,8 +88,8 @@ export const blogListQuery = graphql`
               gatsbyImageData(
                 placeholder: BLURRED
                 quality: 50
-                width: 1020
-                height: 680
+                width: 130
+                height: 90
                 layout: CONSTRAINED
               )
             }
