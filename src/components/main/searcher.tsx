@@ -1,5 +1,4 @@
 import React from "react";
-import { IoSearchSharp } from "@react-icons/all-files/io5/IoSearchSharp";
 
 const Searcher = () => {
   return (
@@ -7,7 +6,6 @@ const Searcher = () => {
       <form role="search" method="get">
         <div></div>
       </form>
-      <IoSearchSharp />
     </div>
   );
 };

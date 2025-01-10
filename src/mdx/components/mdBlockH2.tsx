@@ -24,9 +24,12 @@ const MdBlockH2: React.FC<CustomBaseContentBlock> = ({
           opacity-0 group-hover:opacity-100
           transition-opacity duration-300
         `}
-        id={`hashlink-${hash}`}
       >
-        <a href={`#${hash}`} onClick={(e) => handleAnchorClick(e, hash)}>
+        <a
+          href={`#${hash}`}
+          id={`hashlink-${hash}`}
+          onClick={(e) => handleAnchorClick(e, hash)}
+        >
           <LinkSvg />
         </a>
       </div>

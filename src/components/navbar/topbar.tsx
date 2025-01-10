@@ -193,7 +193,7 @@ const TopBar: React.FC = () => {
           aria-expanded={isMenuOpen}
           aria-hidden={!isMenuOpen}
         >
-          <ul className="flex flex-col space-y-4 p-4">
+          <ul className="flex flex-col space-y-4 p-4" tabIndex={-1}>
             <li>
               <Link
                 to="/about"
