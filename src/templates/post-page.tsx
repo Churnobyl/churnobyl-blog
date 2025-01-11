@@ -1,18 +1,24 @@
 import { graphql, PageProps, useStaticQuery } from "gatsby";
-import React, { useEffect, useRef, useState } from "react";
-import BookSlider from "../components/bookSlider/bookSlider";
-import CommentUtterances from "../components/comments/commentUtterances";
+import React, { useEffect, useRef, useState, Suspense, lazy } from "react";
 import PostInteractions from "../components/interaction/postInteraction";
 import NormalLayout from "../components/layout/normalLayout";
 import { SEO } from "../components/seo/seo";
-import TableOfContents from "../components/tableOfContents/tableOfContents";
 import { IPost } from "../interfaces/IPost";
 import MdxGenerator from "../mdx/mdxGenerator";
 import PostTitleSet from "../components/post/postTitleSet";
 import PostButtonSet from "../components/post/postButtonSet";
 import ScrollToTop from "react-scroll-to-top";
 import UpSvg from "../images/upSvg";
-import RelatedPost from "../components/post/relatedPost";
+
+const BookSlider = lazy(() => import("../components/bookSlider/bookSlider"));
+const TableOfContents = lazy(
+  () => import("../components/tableOfContents/tableOfContents")
+);
+const RelatedPost = lazy(() => import("../components/post/relatedPost"));
+
+const CommentUtterances = lazy(
+  () => import("../components/comments/commentUtterances")
+);
 
 interface PostPageContext {
   pageId: string;
@@ -158,10 +164,14 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
           </div>
           <hr className="border-t border-gray-light w-full mt-4" />
           <div className="flex flex-col justify-center items-center my-40 xl:w-[800px]">
-            {book && <BookSlider book={book} currentBookIndex={book_index} />}
+            <Suspense fallback={<div>Loading book slider...</div>}>
+              {book && <BookSlider book={book} currentBookIndex={book_index} />}
+            </Suspense>
           </div>
           <div>
-            <CommentUtterances />
+            <Suspense fallback={<div>Loading comments...</div>}>
+              <CommentUtterances />
+            </Suspense>
           </div>
         </div>
         <div className="hidden xl:block sticky top-20 h-[calc(100vh-40px)] overflow-auto w-[300px] ml-10">
@@ -173,7 +183,9 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
               handleLike={handleLike}
             />
           </div>
-          <TableOfContents tableOfContents={tableOfContents} />
+          <Suspense fallback={<div>Loading table of contents...</div>}>
+            <TableOfContents tableOfContents={tableOfContents} />
+          </Suspense>
         </div>
       </div>
       {/** 스크롤 */}
@@ -185,7 +197,9 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
         component={<UpSvg />}
       />
       <div className={"w-full xl:w-[1100px] mt-20"}>
-        <RelatedPost relatedPosts={relatedPosts} />
+        <Suspense fallback={<div>Loading related posts...</div>}>
+          <RelatedPost relatedPosts={relatedPosts} />
+        </Suspense>
       </div>
     </NormalLayout>
   );

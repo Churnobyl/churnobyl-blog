@@ -5,7 +5,6 @@ require("dotenv").config();
 
 const config: GatsbyConfig = {
   adapter: adapter(),
-
   siteMetadata: {
     title: `Churnobyl Tech Blog`,
     description: `상상을 현실로 만들기 위해 노력하는 개발자 테크 블로그입니다.`,
@@ -24,13 +23,7 @@ const config: GatsbyConfig = {
     // "gatsby-plugin-mdx",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
-    {
-      resolve: "gatsby-plugin-image",
-      options: {
-        quality: 80,
-        breakpoints: [130, 640, 768, 1024, 1280],
-      },
-    },
+    "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-robots-txt",
