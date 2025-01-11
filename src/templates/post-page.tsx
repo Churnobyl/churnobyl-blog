@@ -1,5 +1,12 @@
 import { graphql, PageProps, useStaticQuery } from "gatsby";
-import React, { useEffect, useRef, useState, Suspense, lazy } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  Suspense,
+  lazy,
+  useCallback,
+} from "react";
 import PostInteractions from "../components/interaction/postInteraction";
 import NormalLayout from "../components/layout/normalLayout";
 import { SEO } from "../components/seo/seo";
@@ -9,6 +16,8 @@ import PostTitleSet from "../components/post/postTitleSet";
 import PostButtonSet from "../components/post/postButtonSet";
 import ScrollToTop from "react-scroll-to-top";
 import UpSvg from "../images/upSvg";
+import { BaseContentBlock } from "notion-types";
+import { PuffLoader } from "react-spinners";
 
 const BookSlider = lazy(() => import("../components/bookSlider/bookSlider"));
 const TableOfContents = lazy(
@@ -51,6 +60,62 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
   const [liked, setLiked] = useState(false);
 
   const pendingLike = useRef<{ type: string; deviceId: string } | null>(null);
+
+  // Pagination
+  const [currentContent, setCurrentContent] = useState<BaseContentBlock[]>([]);
+  const [hasMore, setHasMore] = useState(true);
+  const itemsPerLoad = 20;
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Load initial content
+    setCurrentContent(content.slice(0, itemsPerLoad));
+  }, [content]);
+
+  const loadMoreContent = useCallback(() => {
+    if (isLoading) return;
+    setIsLoading(true);
+
+    const nextIndex = currentContent.length;
+    if (nextIndex >= content.length) {
+      setHasMore(false);
+      setIsLoading(false);
+      return;
+    }
+
+    const nextContent = content.slice(nextIndex, nextIndex + itemsPerLoad);
+    setCurrentContent((prevContent) => [...prevContent, ...nextContent]);
+    setIsLoading(false);
+  }, [isLoading, currentContent, content]);
+
+  const handleScroll = useCallback(() => {
+    if (!hasMore || isLoading) return;
+
+    const scrollTop = window.scrollY;
+    const clientHeight = window.innerHeight;
+    const scrollHeight = document.body.scrollHeight;
+
+    if (scrollTop + clientHeight >= scrollHeight * 0.1) {
+      loadMoreContent();
+    }
+  }, [loadMoreContent, hasMore, isLoading]);
+
+  const debounce = (func: Function, delay: number) => {
+    let timer: NodeJS.Timeout;
+    return (...args: any[]) => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => func(...args), delay);
+    };
+  };
+
+  useEffect(() => {
+    const debouncedHandleScroll = debounce(handleScroll, 200);
+    window.addEventListener("scroll", debouncedHandleScroll);
+    return () => {
+      window.removeEventListener("scroll", debouncedHandleScroll);
+    };
+  }, [handleScroll]);
 
   const getDeviceId = () => {
     let deviceId = localStorage.getItem("device_id");
@@ -151,8 +216,20 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
             book_index={book_index}
             tableOfContents={tableOfContents}
           />
-          <div className={"w-full"}>
-            <MdxGenerator content={content} />
+          <div className="w-full xl:w-[800px] flex-col space-y-5">
+            {/* Post content */}
+            <MdxGenerator content={currentContent} />
+
+            {/* Loading indicator */}
+            {hasMore && (
+              <div className="flex justify-center items-center py-4">
+                <PuffLoader
+                  size={48}
+                  className={"text-main-blue dark:text-sub-skyblue"}
+                  speedMultiplier={2}
+                />
+              </div>
+            )}
           </div>
           <div>
             <PostButtonSet
