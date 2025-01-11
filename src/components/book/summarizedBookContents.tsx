@@ -6,7 +6,6 @@ import CalenderSvg from "../../images/calenderSvg";
 import { ISummarizedPost } from "../../interfaces/ISummarizedPost";
 
 const SummarizedBookContents: React.FC<ISummarizedPost> = ({
-  slug,
   title,
   update_date,
   url,
@@ -26,7 +25,6 @@ const SummarizedBookContents: React.FC<ISummarizedPost> = ({
     setConvertedCreateDate(useFormatDate(create_date));
     setConvertedUpdateDate(useFormatDate(update_date));
   }, [create_date, update_date]);
-  const image = getImage(thumbnail);
 
   return (
     <div>
@@ -37,9 +35,9 @@ const SummarizedBookContents: React.FC<ISummarizedPost> = ({
         </div>
         <div className="flex justify-end items-center w-[104px] h-36 min-w-20 max-w-xs">
           <Link to={`/${url}`}>
-            {image ? (
+            {thumbnail ? (
               <GatsbyImage
-                image={image}
+                image={thumbnail.childImageSharp.gatsbyImageData}
                 alt={title}
                 title={title}
                 className={"rounded-sm"}
@@ -97,9 +95,9 @@ const SummarizedBookContents: React.FC<ISummarizedPost> = ({
         </div>
         <div className="flex w-full items-center text-main-text-black dark:text-white-dark">
           <Link to={`/${url}`}>
-            {image ? (
+            {thumbnail ? (
               <GatsbyImage
-                image={image}
+                image={thumbnail.childImageSharp.gatsbyImageData}
                 alt={title}
                 title={title}
                 className={`

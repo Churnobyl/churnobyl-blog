@@ -9,7 +9,7 @@ const MdBlockParagraph: React.FC<CustomBaseContentBlock> = ({
   specialObject,
 }) => {
   return (
-    <div className="text-md mt-2 pb-2 tracking-tighter text-main-text-black leading-7 dark:text-white-dark">
+    <div className="inline text-md mt-2 pb-2 tracking-tighter text-main-text-black leading-7 dark:text-white-dark">
       {specialObject.rich_text.map((text: any, index: number) => {
         const { annotations, plain_text, href } = text;
 

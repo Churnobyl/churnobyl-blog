@@ -93,7 +93,7 @@ const BookSlider = ({
               spaceBetween: 30,
             },
             800: {
-              slidesPerView: 5,
+              slidesPerView: 3,
               spaceBetween: 30,
             },
             // 화면 너비가 1024px 이상일 때

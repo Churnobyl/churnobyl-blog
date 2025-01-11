@@ -33,11 +33,19 @@ const MdHandler = ({
   children,
   level = 0,
   index = 0,
+  showVersionDot = false, // 동그라미 표시 여부 파라미터 추가
+  onMouseEnter, // 마우스 이벤트 핸들러 추가
+  onMouseLeave,
+  onClick,
 }: {
   data: BaseContentBlock;
   children?: CustomBaseContentBlock[];
   level?: number;
   index?: number;
+  showVersionDot?: boolean;
+  onMouseEnter?: React.MouseEventHandler<HTMLSpanElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLSpanElement>;
+  onClick?: React.MouseEventHandler<HTMLSpanElement>;
 }) => {
   const ComponentsToRender = blockMapper[data.type];
   const specialObject = (data as Record<string, any>)[data.type];
@@ -55,6 +63,19 @@ const MdHandler = ({
         level={level}
         {...data}
       />
+      {showVersionDot && (
+        <span
+          className={
+            "text-xs text-main-blue dark:text-sub-skyblue inline ml-1 hover:animate-pulse"
+          }
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+          onClick={onClick}
+          style={{ cursor: "pointer", color: "blue" }}
+        >
+          ●
+        </span>
+      )}
     </MdBlock>
   );
 };

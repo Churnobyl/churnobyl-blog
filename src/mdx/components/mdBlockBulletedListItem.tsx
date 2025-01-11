@@ -12,7 +12,7 @@ const MdBlockBulletedListItem: React.FC<CustomBaseContentBlock> = ({
   level = 0,
 }) => {
   return (
-    <li className={`flex items-start`}>
+    <li className={`inline-flex items-start`}>
       <div
         className={`flex mr-2 w-4 items-center justify-center leading-6 text-4xl font-thin text-main-text-black dark:text-white-dark`}
       >

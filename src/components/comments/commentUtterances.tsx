@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const CommentUtterances = () => {
-  const commentsEl = useRef(null);
+  const commentsEl = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<string>("pending");
 
   useEffect(() => {
@@ -9,7 +9,7 @@ const CommentUtterances = () => {
 
     scriptEl.onload = () => setStatus("success");
     scriptEl.onerror = () => setStatus("failed");
-    scriptEl.async = true;
+    scriptEl.defer = true;
     scriptEl.src = "https://utteranc.es/client.js";
     scriptEl.setAttribute("repo", "Churnobyl/blog-comments");
     scriptEl.setAttribute("issue-term", "pathname");

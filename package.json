@@ -33,6 +33,7 @@
     "canvas": "^2.11.2",
     "classnames": "^2.5.1",
     "cookie": "^1.0.2",
+    "diff": "^7.0.0",
     "dotenv": "^16.4.7",
     "etag": "^1.8.1",
     "gatsby": "^5.14.0",
@@ -75,6 +76,7 @@
   },
   "devDependencies": {
     "@types/babel__core": "^7",
+    "@types/diff": "^7",
     "@types/etag": "^1",
     "@types/lodash": "^4",
     "@types/node": "^20.11.19",

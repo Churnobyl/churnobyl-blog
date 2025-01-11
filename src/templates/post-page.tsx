@@ -184,7 +184,7 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
         }
         component={<UpSvg />}
       />
-      <div className={"w-full xl:w-[1100px] mt-10"}>
+      <div className={"w-full xl:w-[1100px] mt-20"}>
         <RelatedPost relatedPosts={relatedPosts} />
       </div>
     </NormalLayout>
