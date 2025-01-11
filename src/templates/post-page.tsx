@@ -1,4 +1,4 @@
-import { graphql, PageProps } from "gatsby";
+import { graphql, PageProps, useStaticQuery } from "gatsby";
 import React, { useEffect, useRef, useState } from "react";
 import BookSlider from "../components/bookSlider/bookSlider";
 import CommentUtterances from "../components/comments/commentUtterances";
@@ -38,6 +38,8 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
     tableOfContents,
     thumbnail,
   } = data.churnotion;
+
+  const relatedPosts = data.relatedPost.posts;
   const [viewCnt, setViewCnt] = useState(0);
   const [likeCnt, setLikeCnt] = useState(0);
   const [liked, setLiked] = useState(false);
@@ -161,9 +163,6 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
           <div>
             <CommentUtterances />
           </div>
-          <div>
-            <RelatedPost />
-          </div>
         </div>
         <div className="hidden xl:block sticky top-20 h-[calc(100vh-40px)] overflow-auto w-[300px] ml-10">
           <div>
@@ -185,6 +184,9 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
         }
         component={<UpSvg />}
       />
+      <div className={"w-full xl:w-[1100px] mt-10"}>
+        <RelatedPost relatedPosts={relatedPosts} />
+      </div>
     </NormalLayout>
   );
 };
@@ -257,6 +259,47 @@ export const postQuery = graphql`
         }
       }
     }
+    relatedPost(parent: { id: { eq: $pageId } }) {
+      id
+      posts {
+        slug
+        title
+        update_date
+        url
+        version
+        description
+        create_date
+        id
+        category_list {
+          id
+          url
+          category_name
+        }
+        tags {
+          id
+          slug
+          tag_name
+          url
+          color
+        }
+        book {
+          book_name
+          id
+          url
+        }
+        thumbnail {
+          childImageSharp {
+            gatsbyImageData(
+              placeholder: BLURRED
+              quality: 50
+              width: 130
+              height: 90
+              layout: CONSTRAINED
+            )
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -270,7 +313,7 @@ export const Head = ({ data }: PageProps<IPost, PostPageContext>) => {
       title={title}
       description={description}
       pathname={url}
-      image={thumbnail?.childImageSharp?.gatsbyImageData}
+      image={thumbnail?.childImageSharp.gatsbyImageData}
     />
   );
 };

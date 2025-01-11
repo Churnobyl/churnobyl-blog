@@ -21,7 +21,7 @@ const PostButtonSet = ({
     siteUrl,
   } = useSiteMetadata();
 
-  const image = content?.thumbnail?.childImageSharp?.gatsbyImageData;
+  const image = content?.thumbnail;
   const imageUrl = image ? getSrc(image) : defaultImage;
 
   const info = {

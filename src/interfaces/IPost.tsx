@@ -1,7 +1,7 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import { BaseContentBlock } from "notion-types";
+import { IBook } from "./IBook";
 import { ISummarizedPost } from "./ISummarizedPost";
-import { IBook, IBooks } from "./IBook";
 
 interface File {
   childImageSharp?: {
@@ -11,6 +11,9 @@ interface File {
 
 export interface IPost extends ISummarizedPost {
   churnotion: IPostContent;
+  relatedPost: {
+    posts: IPostContent[];
+  };
 }
 
 export interface IPostContent {
@@ -41,5 +44,9 @@ export interface IPostContent {
     hash: string;
     title: string;
   }[];
-  thumbnail?: File;
+  thumbnail?: {
+    childImageSharp: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+  };
 }

@@ -29,7 +29,11 @@ export type IBlogListQueryData = {
           id: string;
           url: string;
         };
-        thumbnail: IGatsbyImageData;
+        thumbnail?: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+        };
       };
     }[];
   };

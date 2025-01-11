@@ -1,7 +1,6 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
 
 export interface ISummarizedPost {
-  slug: string;
   title: string;
   update_date: string;
   url: string;
@@ -21,7 +20,11 @@ export interface ISummarizedPost {
     url: string;
     color: string;
   }[];
-  thumbnail: IGatsbyImageData;
+  thumbnail?: {
+    childImageSharp: {
+      gatsbyImageData: IGatsbyImageData;
+    };
+  };
   book_index?: number;
   index?: number;
 }

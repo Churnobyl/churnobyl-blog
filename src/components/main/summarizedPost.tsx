@@ -9,7 +9,6 @@ import TagList from "../labels/tagList";
 import ReadSvg from "../../images/readSvg";
 
 const SummarizedPost: React.FC<ISummarizedPost> = ({
-  slug,
   title,
   update_date,
   url,
@@ -29,8 +28,6 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
     setConvertedCreateDate(useFormatDate(create_date));
     setConvertedUpdateDate(useFormatDate(update_date));
   }, [create_date, update_date]);
-
-  const image = getImage(thumbnail);
 
   return (
     <>
@@ -53,7 +50,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             </div>
             <div
               className={
-                "text-xs md:text-sm line-clamp-3 h-12 xl:h-14 my-1 w-full text-gray dark:text-white-dark"
+                "text-xs xl:text-sm line-clamp-3 h-12 xl:h-14 my-1 w-full text-gray dark:text-white-dark"
               }
             >
               {description}
@@ -88,13 +85,13 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             </div>
           </div>
         </div>
-        <div className="flex justify-end pl-2 w-1/4 h-36 min-w-10 max-w-xs group-hover:scale-105 duration-200">
+        <div className="flex justify-end pl-2 w-[90px] sm:w-[130px] h-36 min-w-4 group-hover:scale-105 duration-200">
           <Link to={`/${url}`}>
             <div className={"relative"}>
-              <div className={"w-full xl:group-hover:brightness-[30%]"}>
-                {image ? (
+              <div className={"w-full group-hover:brightness-[30%]"}>
+                {thumbnail ? (
                   <GatsbyImage
-                    image={image}
+                    image={thumbnail?.childImageSharp?.gatsbyImageData}
                     alt={title}
                     title={title}
                     className={"rounded-md"}
@@ -111,7 +108,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
               </div>
 
               <div
-                className={`invisible xl:group-hover:visible absolute inset-0 flex justify-center items-center z-10 text-white flex-col`}
+                className={`invisible group-hover:visible absolute inset-0 flex justify-center items-center z-10 text-white flex-col`}
               >
                 <ReadSvg />
                 <div className={"text-xs font-bold"}>보러 가기!</div>
