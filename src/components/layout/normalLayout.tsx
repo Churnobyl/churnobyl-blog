@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import Footer from "../navbar/footer";
 import TopBar from "../navbar/topbar";
-import { ThemeProvider } from "@mui/material";
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import { lightTheme, darkTheme } from "../../theme/theme";
 
 interface NormalLayoutProps {

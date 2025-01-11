@@ -24,7 +24,13 @@ const config: GatsbyConfig = {
     // "gatsby-plugin-mdx",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
-    "gatsby-plugin-image",
+    {
+      resolve: "gatsby-plugin-image",
+      options: {
+        quality: 80,
+        breakpoints: [130, 640, 768, 1024, 1280],
+      },
+    },
     "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-robots-txt",
