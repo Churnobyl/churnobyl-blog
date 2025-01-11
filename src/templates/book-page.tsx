@@ -7,6 +7,8 @@ import { SEO } from "../components/seo/seo";
 import { useFormatDate } from "../hooks/use-format-date";
 import { IPost } from "../interfaces/IPost";
 import { IBookCategory } from "../interfaces/IBookCategory";
+import { ITag } from "../interfaces/ISummarizedPost";
+import TagList from "../components/labels/tagList";
 
 interface BookPageContext {
   bookName: string;
@@ -17,6 +19,7 @@ interface BookPageContext {
   description: string;
   bookCategory: IBookCategory;
   url: string;
+  bookTagList: ITag[];
 }
 
 const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
@@ -30,6 +33,7 @@ const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
     posts,
     description,
     bookCategory,
+    bookTagList,
   } = pageContext;
 
   const [convertedCreateDate, setConvertedCreateDate] = useState("");
@@ -70,6 +74,9 @@ const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
             <div className={"text-gray dark:text-white-dark"}>
               {description}
             </div>
+          </div>
+          <div className={"flex items-center justify-center w-64"}>
+            <TagList tags={bookTagList} />
           </div>
         </div>
 

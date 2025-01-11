@@ -107,7 +107,12 @@ export const createPostListByCategory = async (
             book_name
             book_image {
               childImageSharp {
-                gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
+                gatsbyImageData(
+                  placeholder: BLURRED
+                  layout: CONSTRAINED
+                  quality: 50
+                  aspectRatio: 0.74
+                )
               }
             }
             url

@@ -3,9 +3,10 @@ export const styling = (annotations: any) => {
     "font-bold": annotations.bold,
     italic: annotations.italic,
     "line-through": annotations.strikethrough,
-    underline: annotations.underline,
-    "text-highlight-red": annotations.bold || annotations.code,
-    "dark:highlight-red-lighter": annotations.code,
+    "font-semibold shadow-inset-main-blue dark:shadow-inset-sub-blue":
+      annotations.underline,
+    "text-highlight-red dark:text-highlight-red-lighter":
+      annotations.bold || annotations.code,
     "text-main-text-black dark:text-white-dark": !(
       annotations.bold || annotations.code
     ),
@@ -19,5 +20,6 @@ export const styling = (annotations: any) => {
     [`text-${annotations.color}`]:
       annotations.color !== "default" && !annotations.code,
     "break-all xl:break-keep": true,
+    "text-sm xl:text-base": true,
   };
 };

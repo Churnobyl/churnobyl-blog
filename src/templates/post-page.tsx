@@ -221,7 +221,7 @@ export const postQuery = graphql`
             gatsbyImageData(
               sizes: "10"
               height: 100
-              aspectRatio: 0.7
+              aspectRatio: 0.74
               layout: CONSTRAINED
             )
           }

@@ -11,7 +11,7 @@ const Tag: React.FC<ITag> = ({ tag_name, id, url, color }) => {
     <Link to={`/${url}`}>
       <div
         id={id}
-        className={classNames(`mr-3 text-main-blue dark:text-sub-skyblue`)}
+        className={classNames(` text-main-blue dark:text-sub-skyblue`)}
       >
         <span className={classNames(`text-opacity-30 text-sm`)}>#</span>
         <span className={classNames("font-bold text-sm")}>{tag_name}</span>

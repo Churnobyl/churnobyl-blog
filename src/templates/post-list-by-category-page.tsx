@@ -43,7 +43,7 @@ const PostListByCategoryPage: React.FC<
           id="content"
           className="mt-10 flex items-center justify-center flex-col w-full min-h-screen"
         >
-          <div className="flex flex-col justify-between lg:w-[908px]">
+          <div className="flex flex-col justify-between w-full lg:w-[908px]">
             <SummarizedBookList data={books} />
           </div>
           <div className="flex flex-col justify-between lg:w-[908px]">

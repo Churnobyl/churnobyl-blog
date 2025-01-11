@@ -1,4 +1,5 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
+import { ITag } from "./ISummarizedPost";
 
 export interface IBooks {
   book: IBook[];
@@ -35,4 +36,5 @@ export interface IChildChurnotion {
   id: string;
   description: string;
   url: string;
+  tags?: ITag[];
 }

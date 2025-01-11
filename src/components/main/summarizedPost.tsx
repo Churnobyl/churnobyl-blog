@@ -53,7 +53,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             </div>
             <div
               className={
-                "text-sm md:text-sm line-clamp-2 h-10 my-2 w-full text-gray dark:text-white-dark"
+                "text-xs md:text-sm line-clamp-3 h-12 xl:h-14 my-1 w-full text-gray dark:text-white-dark"
               }
             >
               {description}
@@ -88,10 +88,10 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             </div>
           </div>
         </div>
-        <div className="flex justify-end w-1/4 h-36 min-w-10 max-w-xs group-hover:scale-105 duration-200">
+        <div className="flex justify-end pl-2 w-1/4 h-36 min-w-10 max-w-xs group-hover:scale-105 duration-200">
           <Link to={`/${url}`}>
             <div className={"relative"}>
-              <div className={"w-full group-hover:brightness-[30%]"}>
+              <div className={"w-full xl:group-hover:brightness-[30%]"}>
                 {image ? (
                   <GatsbyImage
                     image={image}
@@ -111,7 +111,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
               </div>
 
               <div
-                className={`invisible group-hover:visible absolute inset-0 flex justify-center items-center z-10 text-white flex-col`}
+                className={`invisible xl:group-hover:visible absolute inset-0 flex justify-center items-center z-10 text-white flex-col`}
               >
                 <ReadSvg />
                 <div className={"text-xs font-bold"}>보러 가기!</div>

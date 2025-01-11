@@ -14,19 +14,24 @@ const LikeSvg: React.FC<LikeSvgProps> = ({ width, height, liked }) => {
       viewBox="0 0 800 800"
       width={width}
       height={height}
+      className="like-svg"
     >
       <defs>
-        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="lllove-grad">
-          <stop stopColor="#006bff" stopOpacity="1" offset="0%"></stop>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="like-btn">
           <stop
-            stopColor="hsl(220, 62%, 69%)"
+            stopColor="var(--stop-color-1, #006bff)"
+            stopOpacity="1"
+            offset="0%"
+          />
+          <stop
+            stopColor="var(--stop-color-2, #7fa0e1)"
             stopOpacity="1"
             offset="100%"
-          ></stop>
+          />
         </linearGradient>
       </defs>
       <g
-        fill={liked ? "url(#lllove-grad)" : "transparent"}
+        fill={liked ? "url(#like-btn)" : "transparent"}
         strokeWidth="40"
         stroke={liked ? "transparent" : "currentColor"}
         id="heart"

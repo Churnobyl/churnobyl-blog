@@ -20,7 +20,12 @@ export const createBookPage = async (
           book_name
           book_image {
             childImageSharp {
-              gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
+              gatsbyImageData(
+                placeholder: BLURRED
+                layout: CONSTRAINED
+                quality: 50
+                aspectRatio: 0.74
+              )
             }
           }
           url
@@ -48,8 +53,8 @@ export const createBookPage = async (
                 gatsbyImageData(
                   placeholder: BLURRED
                   quality: 50
-                  width: 1020
-                  height: 680
+                  width: 130
+                  height: 90
                   layout: CONSTRAINED
                 )
               }
@@ -85,10 +90,22 @@ export const createBookPage = async (
   if (!books) return;
 
   books.forEach((book) => {
-    // childrenChurnotion을 book_index 기준으로 정렬
-    const sortedPosts = book.childrenChurnotion.sort(
+    const sortedPosts = book.childrenChurnotion?.sort(
       (a: { book_index: number }, b: { book_index: number }) =>
         a.book_index - b.book_index
+    );
+
+    const bookTagList = Array.from(
+      new Set(
+        book.childrenChurnotion?.flatMap((post) =>
+          post.tags?.map((tag) => tag.id)
+        )
+      )
+    ).map(
+      (id) =>
+        book.childrenChurnotion
+          ?.flatMap((post) => post.tags)
+          .find((tag) => tag?.id === id)!
     );
 
     createPage({
@@ -104,6 +121,7 @@ export const createBookPage = async (
         updateDate: book.update_date,
         url: book.url,
         posts: sortedPosts,
+        bookTagList,
       },
     });
   });

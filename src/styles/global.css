@@ -17,6 +17,16 @@
   header {
     @apply dark:bg-main-text-black bg-white;
   }
+
+  .like-svg {
+    --stop-color-1: #006bff;
+    --stop-color-2: #7fa0e1;
+  }
+
+  .dark .like-svg {
+    --stop-color-1: #ff00ff;
+    --stop-color-2: #ffcc00;
+  }
 }
 
 @layer components {

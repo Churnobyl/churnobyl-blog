@@ -56,6 +56,10 @@ module.exports = {
           gray: "#32302C",
         },
       },
+      boxShadow: {
+        "inset-main-blue": "inset 0 -4px 0 rgba(0, 107, 255, 0.8)",
+        "inset-sub-blue": "inset 0 -4px 0 rgba(8, 194, 255, 0.8)",
+      },
     },
   },
   safelist: [

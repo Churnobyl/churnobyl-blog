@@ -12,7 +12,7 @@ const SummarizedBookList: React.FC<SummarizedBookListProps> = ({ data }) => {
       <div className={"py-4"}>
         <h1
           className={
-            "text-xl font-bold border-b-2 border-gray-light dark:border-white-dark text-main-text-black dark:text-white-dark"
+            "w-full text-xl font-bold border-b-2 border-gray-light dark:border-white-dark text-main-text-black dark:text-white-dark"
           }
         >
           북
@@ -22,7 +22,11 @@ const SummarizedBookList: React.FC<SummarizedBookListProps> = ({ data }) => {
             <SummarizedBook key={book.id} data={book} index={index} />
           ))
         ) : (
-          <div className={"flex justify-center items-center"}>
+          <div
+            className={
+              "flex justify-center items-center text-main-text-black dark:text-white-dark"
+            }
+          >
             <div className={"p-5"}>결과가 없습니다</div>
           </div>
         )}

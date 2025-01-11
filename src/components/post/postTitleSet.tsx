@@ -38,7 +38,9 @@ const PostTitleSet = ({
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
         <div className="flex flex-col space-y-2">
           <Category category_list={category_list} />
-          <TagList tags={tags} />
+          <div className={"flex justify-start"}>
+            <TagList tags={tags} />
+          </div>
           <div
             className={
               "flex flex-row space-x-1 items-center text-gray dark:text-white-dark"
