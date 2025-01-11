@@ -85,9 +85,7 @@ const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<IVersioning[] | null>(null);
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
-  const [isDesktop, setIsDesktop] = useState<boolean>(
-    window.innerWidth >= 1280
-  );
+  const [isDesktop, setIsDesktop] = useState<boolean>(false);
 
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 1280);
