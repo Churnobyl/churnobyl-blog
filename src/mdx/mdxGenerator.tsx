@@ -178,8 +178,12 @@ const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
     setShowModal(false);
   }, []);
 
+  const seenIds = new Set();
+
   for (let i = 0; i < content.length; i++) {
     const block = content[i];
+    // if (seenIds.has(block.id)) continue;
+    // seenIds.add(block.id);
 
     if (isVersionHandler(block)) {
       const richText = (block as Record<string, any>)[block.type]?.rich_text;
@@ -210,11 +214,9 @@ const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
       latestVersions = [];
     }
 
-    const generatedKey = uniqueId("block-");
-
     components.push(
       <MdHandler
-        key={generatedKey}
+        key={`${block.id}-${i}`}
         data={block}
         showVersionDot={!!versioning[block.id]}
         onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) =>

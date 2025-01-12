@@ -124,7 +124,7 @@ const MdBlockCode: React.FC<CustomBaseContentBlock> = ({
         className={`${lang} code-toolbar`}
       >
         <code
-          className={`${lang} text-xs xl:text-sm sm:text-base`}
+          className={`${lang} text-xs md:text-sm`}
           data-prismjs-copy="복사"
           data-prismjs-copy-error="복사 실패"
           data-prismjs-copy-success="성공!"

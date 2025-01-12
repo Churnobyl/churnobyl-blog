@@ -1,12 +1,5 @@
-import { graphql, PageProps, useStaticQuery } from "gatsby";
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  Suspense,
-  lazy,
-  useCallback,
-} from "react";
+import { graphql, PageProps } from "gatsby";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import PostInteractions from "../components/interaction/postInteraction";
 import NormalLayout from "../components/layout/normalLayout";
 import { SEO } from "../components/seo/seo";
@@ -17,14 +10,12 @@ import PostButtonSet from "../components/post/postButtonSet";
 import ScrollToTop from "react-scroll-to-top";
 import UpSvg from "../images/upSvg";
 import { BaseContentBlock } from "notion-types";
-import { PuffLoader } from "react-spinners";
 
 const BookSlider = lazy(() => import("../components/bookSlider/bookSlider"));
 const TableOfContents = lazy(
   () => import("../components/tableOfContents/tableOfContents")
 );
 const RelatedPost = lazy(() => import("../components/post/relatedPost"));
-
 const CommentUtterances = lazy(
   () => import("../components/comments/commentUtterances")
 );
@@ -35,7 +26,6 @@ interface PostPageContext {
 
 const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
   data,
-  pageContext,
 }) => {
   const {
     title,
@@ -59,143 +49,42 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
   const [likeCnt, setLikeCnt] = useState(0);
   const [liked, setLiked] = useState(false);
 
-  const pendingLike = useRef<{ type: string; deviceId: string } | null>(null);
-
-  // Pagination
-  const [currentContent, setCurrentContent] = useState<BaseContentBlock[]>([]);
-  const [hasMore, setHasMore] = useState(true);
-  const itemsPerLoad = 20;
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [isLoading, setIsLoading] = useState(false);
-
   useEffect(() => {
-    // Load initial content
-    setCurrentContent(content.slice(0, itemsPerLoad));
-  }, [content]);
-
-  const loadMoreContent = useCallback(() => {
-    if (isLoading) return;
-    setIsLoading(true);
-
-    const nextIndex = currentContent.length;
-    if (nextIndex >= content.length) {
-      setHasMore(false);
-      setIsLoading(false);
-      return;
-    }
-
-    const nextContent = content.slice(nextIndex, nextIndex + itemsPerLoad);
-    setCurrentContent((prevContent) => [...prevContent, ...nextContent]);
-    setIsLoading(false);
-  }, [isLoading, currentContent, content]);
-
-  const handleScroll = useCallback(() => {
-    if (!hasMore || isLoading) return;
-
-    const scrollTop = window.scrollY;
-    const clientHeight = window.innerHeight;
-    const scrollHeight = document.body.scrollHeight;
-
-    if (scrollTop + clientHeight >= scrollHeight * 0.1) {
-      loadMoreContent();
-    }
-  }, [loadMoreContent, hasMore, isLoading]);
-
-  const debounce = (func: Function, delay: number) => {
-    let timer: NodeJS.Timeout;
-    return (...args: any[]) => {
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(() => func(...args), delay);
-    };
-  };
-
-  useEffect(() => {
-    const debouncedHandleScroll = debounce(handleScroll, 200);
-    window.addEventListener("scroll", debouncedHandleScroll);
-    return () => {
-      window.removeEventListener("scroll", debouncedHandleScroll);
-    };
-  }, [handleScroll]);
-
-  const getDeviceId = () => {
-    let deviceId = localStorage.getItem("device_id");
-    if (!deviceId) {
-      deviceId = crypto.randomUUID();
+    // Fetch view and like status
+    const recordViewAndLikeStatus = async () => {
+      const deviceId = localStorage.getItem("device_id") || crypto.randomUUID();
       localStorage.setItem("device_id", deviceId);
-    }
-    return deviceId;
-  };
 
-  const sendPendingLike = async () => {
-    if (!pendingLike.current) return;
-
-    const requestData = {
-      url,
-      ...pendingLike.current,
+      try {
+        const response = await fetch(`/api/interact`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url, type: "view", deviceId }),
+        });
+        const data = await response.json();
+        setViewCnt(data.viewCnt || 0);
+        setLikeCnt(data.likeCnt || 0);
+        setLiked(data.liked || false);
+      } catch (error) {
+        console.error("Failed to record view or fetch like status:", error);
+      }
     };
 
-    try {
-      const response = await fetch(`/api/interact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestData),
-      });
-      const data = await response.json();
-    } catch (error) {
-    } finally {
-      pendingLike.current = null;
-    }
-  };
-
-  const recordViewAndLikeStatus = async () => {
-    const deviceId = getDeviceId();
-
-    try {
-      const response = await fetch(`/api/interact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url, type: "view", deviceId }),
-      });
-      const data = await response.json();
-
-      setViewCnt(data.viewCnt || 0);
-      setLikeCnt(data.likeCnt || 0);
-
-      const isLiked = data.liked || false;
-      setLiked(isLiked);
-    } catch (error) {
-      console.error("Failed to record view or fetch like status:", error);
-    }
-  };
+    recordViewAndLikeStatus();
+  }, [url]);
 
   const handleLike = () => {
-    const deviceId = getDeviceId();
+    const deviceId = localStorage.getItem("device_id") || crypto.randomUUID();
+    localStorage.setItem("device_id", deviceId);
 
     if (liked) {
       setLiked(false);
       setLikeCnt((prev) => prev - 1);
-      pendingLike.current = { type: "unlike", deviceId };
     } else {
       setLiked(true);
       setLikeCnt((prev) => prev + 1);
-      pendingLike.current = { type: "like", deviceId };
     }
   };
-
-  useEffect(() => {
-    recordViewAndLikeStatus();
-
-    const handleBeforeUnload = () => {
-      sendPendingLike();
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      sendPendingLike();
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [url]);
 
   return (
     <NormalLayout>
@@ -218,17 +107,7 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
           />
           <div className="w-full xl:w-[800px] flex-col">
             {/* Post content */}
-            <MdxGenerator content={currentContent} />
-
-            {/* Loading indicator */}
-            {hasMore && (
-              <div className={"flex justify-center items-center"}>
-                <div
-                  className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-main-blue dark:text-sub-skyblue motion-reduce:animate-[spin_1.5s_linear_infinite]"
-                  role="status"
-                />
-              </div>
-            )}
+            <MdxGenerator content={content} />
           </div>
           <div>
             <PostButtonSet
@@ -264,7 +143,7 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
           </Suspense>
         </div>
       </div>
-      {/** 스크롤 */}
+      {/** Scroll to top */}
       <ScrollToTop
         smooth
         className={

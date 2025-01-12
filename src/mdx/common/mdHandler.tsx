@@ -55,7 +55,7 @@ const MdHandler = ({
   }
 
   return (
-    <MdBlock id={data.id} key={data.id}>
+    <MdBlock id={data.id}>
       <ComponentsToRender
         children={children || []}
         specialObject={specialObject}
