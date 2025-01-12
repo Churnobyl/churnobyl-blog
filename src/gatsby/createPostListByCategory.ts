@@ -2,7 +2,7 @@ import { Page } from "gatsby";
 import path from "path";
 import { ISummarizedPost } from "../interfaces/ISummarizedPost";
 import { IGatsbyImageData } from "gatsby-plugin-image";
-import { IBooks } from "../interfaces/IBook";
+import { IBook, IBooks } from "../interfaces/IBook";
 
 export const createPostListByCategory = async (
   graphql: <TData, TVariables = any>(
@@ -50,7 +50,7 @@ export const createPostListByCategory = async (
             color: string;
           }[];
         }[];
-        childrenNBook?: IBooks;
+        childrenNBook?: IBook[];
       }[];
     };
   }>(`
@@ -111,6 +111,7 @@ export const createPostListByCategory = async (
                   placeholder: BLURRED
                   layout: CONSTRAINED
                   quality: 50
+                  width: 130
                   aspectRatio: 0.74
                 )
               }
@@ -165,6 +166,7 @@ export const createPostListByCategory = async (
   categories.forEach((category) => {
     const allPosts = collectPostsRecursively(category);
     const totalPosts = allPosts.length;
+    const totalBooks = category.childrenNBook?.length;
     const numPages = Math.ceil(totalPosts / postsPerPage);
 
     Array.from({ length: numPages }).forEach((_, i) => {
@@ -182,6 +184,7 @@ export const createPostListByCategory = async (
           numPages,
           currentPage: i + 1,
           books: category.childrenNBook,
+          totalBooks,
         },
       });
     });

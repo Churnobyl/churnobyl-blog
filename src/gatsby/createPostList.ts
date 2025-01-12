@@ -36,6 +36,7 @@ export const createPostList = async (
 
   if (!posts) return;
 
+  const totalPosts = posts.length;
   const postsPerPage = 10;
   const numPages = Math.ceil(posts.length / postsPerPage);
   Array.from({ length: numPages }).forEach((_, i) => {
@@ -47,6 +48,7 @@ export const createPostList = async (
         skip: i * postsPerPage,
         numPages,
         currentPage: i + 1,
+        totalPosts,
       },
     });
   });

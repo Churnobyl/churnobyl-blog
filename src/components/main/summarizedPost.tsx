@@ -42,7 +42,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             <div id={"title-div"} className={"flex items-center"}>
               <span
                 className={
-                  "text-base md:text-xl text-main-text-black dark:text-white-dark font-bold overflow-hidden text-ellipsis whitespace-nowrap group-hover:text-main-blue group-dark:hover:text-sub-skyblue"
+                  "text-base md:text-xl text-main-text-black dark:text-white-dark font-bold overflow-hidden text-ellipsis whitespace-nowrap group-hover:text-main-blue group-hover:dark:text-sub-skyblue"
                 }
               >
                 {title}

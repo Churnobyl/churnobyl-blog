@@ -11,13 +11,14 @@ import { CONST_URL } from "../constants";
 interface BlogListPageContext {
   currentPage: number;
   numPages: number;
+  totalPosts: number;
 }
 
 const PostListPage: React.FC<
   PageProps<IBlogListQueryData, BlogListPageContext>
 > = ({ data, pageContext }) => {
   const posts = data.allChurnotion.edges.map((edge) => edge.node);
-  const { currentPage, numPages } = pageContext;
+  const { currentPage, numPages, totalPosts } = pageContext;
 
   return (
     <NormalLayout>
@@ -27,7 +28,7 @@ const PostListPage: React.FC<
           className={"flex items-center justify-center w-full min-h-screen"}
         >
           <div className={"flex flex-col justify-between"}>
-            <SummarizedPostList data={posts} />
+            <SummarizedPostList data={posts} totalPosts={totalPosts} />
           </div>
         </div>
         <Pagination

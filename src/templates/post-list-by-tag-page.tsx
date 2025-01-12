@@ -30,18 +30,13 @@ const TagPostListPage: React.FC<
           <span className="text-center text-3xl font-bold text-main-text-black dark:text-white-dark">
             #{tagName}
           </span>
-          <span
-            className={"text-main-blue dark:text-sub-skyblue text-xl font-bold"}
-          >
-            {totalPosts}
-          </span>
         </div>
         <div
           id="content"
           className="flex items-center justify-center w-full min-h-screen"
         >
           <div className="flex flex-col justify-between">
-            <SummarizedPostList data={posts} />
+            <SummarizedPostList data={posts} totalPosts={totalPosts} />
           </div>
         </div>
         <Pagination

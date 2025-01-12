@@ -18,13 +18,22 @@ interface CategoryPostListPageContext {
   currentPage: number;
   numPages: number;
   books: IBook[];
+  totalBooks: number;
 }
 
 const PostListByCategoryPage: React.FC<
   PageProps<{}, CategoryPostListPageContext>
 > = ({ pageContext }) => {
-  const { categoryName, posts, url, totalPosts, currentPage, numPages, books } =
-    pageContext;
+  const {
+    categoryName,
+    posts,
+    url,
+    totalPosts,
+    currentPage,
+    numPages,
+    books,
+    totalBooks,
+  } = pageContext;
 
   return (
     <NormalLayout>
@@ -33,21 +42,16 @@ const PostListByCategoryPage: React.FC<
           <span className="text-center text-3xl font-bold text-main-text-black dark:text-white-dark">
             {categoryName}
           </span>
-          <span
-            className={"text-main-blue dark:text-sub-skyblue text-xl font-bold"}
-          >
-            {totalPosts}
-          </span>
         </div>
         <div
           id="content"
           className="mt-10 flex items-center justify-center flex-col w-full min-h-screen"
         >
-          <div className="flex flex-col justify-between w-full lg:w-[908px]">
-            <SummarizedBookList data={books} />
+          <div className="flex flex-col justify-between lg:w-[908px]">
+            <SummarizedBookList data={books} totalBooks={totalBooks} />
           </div>
           <div className="flex flex-col justify-between lg:w-[908px]">
-            <SummarizedPostList data={posts} />
+            <SummarizedPostList data={posts} totalPosts={totalPosts} />
           </div>
         </div>
         <Pagination
