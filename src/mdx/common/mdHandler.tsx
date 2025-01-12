@@ -61,6 +61,7 @@ const MdHandler = ({
         specialObject={specialObject}
         index={index}
         level={level}
+        parentId={data.id}
         {...data}
       />
       {showVersionDot && (

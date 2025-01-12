@@ -111,7 +111,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
 
           return (
             <li
-              key={index}
+              key={"tableOfContent" + item.hash}
               className={`${isActive} text-md tracking-tight leading-7 border-solid pl-4 ${textSize} w-full`}
             >
               <div className={`${marginLeft} truncate`} title={item.title}>

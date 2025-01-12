@@ -6,12 +6,14 @@ import useSmoothScroll from "../../hooks/use-smooth-scroll";
 const MdBlockH1: React.FC<CustomBaseContentBlock> = ({
   hash,
   specialObject,
+  parentId,
 }) => {
   const { handleAnchorClick } = useSmoothScroll();
 
   return (
     <div
       id={hash}
+      key={parentId}
       className="relative group flex flex-row items-center space-x-2 mt-9 pb-2"
     >
       <h1

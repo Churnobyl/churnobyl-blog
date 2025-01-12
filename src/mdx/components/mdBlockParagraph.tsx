@@ -7,6 +7,7 @@ import { styling } from "./stylingClass";
 const MdBlockParagraph: React.FC<CustomBaseContentBlock> = ({
   type,
   specialObject,
+  parentId,
 }) => {
   return (
     <div className="inline text-md mt-2 pb-2 tracking-tighter text-main-text-black leading-7 dark:text-white-dark">
@@ -16,11 +17,11 @@ const MdBlockParagraph: React.FC<CustomBaseContentBlock> = ({
         const textClass = classNames(styling(annotations));
 
         return href ? (
-          <HoverLink key={text} href={href}>
+          <HoverLink key={parentId + "_" + index} href={href}>
             {plain_text}
           </HoverLink>
         ) : (
-          <span key={index} className={`${textClass}`}>
+          <span key={parentId + "_" + index} className={`${textClass}`}>
             {plain_text}
           </span>
         );

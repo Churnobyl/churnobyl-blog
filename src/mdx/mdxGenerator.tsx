@@ -190,7 +190,7 @@ const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
       const [title, description] = data.split("$versionEnd");
 
       const newVersion: IVersioning = {
-        id: uniqueId(),
+        id: block.id || uniqueId("version-"),
         date,
         title,
         description,
@@ -210,9 +210,11 @@ const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
       latestVersions = [];
     }
 
+    const generatedKey = uniqueId("block-");
+
     components.push(
       <MdHandler
-        key={block.id}
+        key={generatedKey}
         data={block}
         showVersionDot={!!versioning[block.id]}
         onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) =>

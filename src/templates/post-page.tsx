@@ -222,11 +222,10 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
 
             {/* Loading indicator */}
             {hasMore && (
-              <div className="flex justify-center items-center py-4">
-                <PuffLoader
-                  size={48}
-                  className={"text-main-blue dark:text-sub-skyblue"}
-                  speedMultiplier={2}
+              <div className={"flex justify-center items-center"}>
+                <div
+                  className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-main-blue dark:text-sub-skyblue motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                  role="status"
                 />
               </div>
             )}

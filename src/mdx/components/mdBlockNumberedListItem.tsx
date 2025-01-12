@@ -78,7 +78,7 @@ const MdBlockNumberedListItem: React.FC<CustomBaseContentBlock> = ({
           <ol className="list-none">
             {children.map((child, idx) => (
               <MdHandler
-                key={child.id}
+                key={child.id + "_" + idx}
                 data={child}
                 children={child.children || []}
                 level={level + 1}

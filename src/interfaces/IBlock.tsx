@@ -7,6 +7,7 @@ export interface CustomBaseContentBlock extends BaseContentBlock {
   has_children?: boolean;
   children?: CustomBaseContentBlock[];
   [type: string]: any;
+  parentId?: string;
 }
 
 export interface CustomImageBlock extends BaseContentBlock {

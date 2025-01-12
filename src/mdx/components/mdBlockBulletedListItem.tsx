@@ -66,7 +66,7 @@ const MdBlockBulletedListItem: React.FC<CustomBaseContentBlock> = ({
 
               return (
                 <MdBlockBulletedListItem
-                  key={index}
+                  key={child.id + "/" + index}
                   {...child}
                   specialObject={special}
                   level={level + 1}
