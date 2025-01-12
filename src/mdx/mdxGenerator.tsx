@@ -2,18 +2,75 @@ import React, { useState, useCallback, useEffect } from "react";
 import MdHandler from "./common/mdHandler";
 import { BaseContentBlock } from "notion-types";
 import { diffWords } from "diff";
+import { uniqueId } from "lodash";
 
 interface IMdxGenerator {
   content: BaseContentBlock[];
 }
 
 interface IVersioning {
+  id: string;
   date: string;
   title: string;
   description: string;
   oldContent: BaseContentBlock;
   currentContent: BaseContentBlock;
 }
+
+interface ModalProps {
+  showModal: boolean;
+  modalContent: IVersioning[] | null;
+  modalPosition: { x: number; y: number };
+  isDesktop: boolean;
+  onClose: () => void;
+  getDiffElements: (
+    oldBlock: BaseContentBlock,
+    newBlock: BaseContentBlock
+  ) => React.ReactNode;
+}
+
+const VersionModal: React.FC<ModalProps> = React.memo(
+  ({
+    showModal,
+    modalContent,
+    modalPosition,
+    isDesktop,
+    onClose,
+    getDiffElements,
+  }) => {
+    if (!modalContent) return null;
+
+    return (
+      <div
+        className={`fixed z-[100] p-4 bg-white shadow-lg rounded-lg max-w-lg w-full ${
+          isDesktop
+            ? "absolute max-h-[400px]"
+            : "h-1/2 bottom-0 left-1/2 transform -translate-x-1/2"
+        } overflow-y-auto transition-opacity duration-200 ${
+          showModal ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+        style={isDesktop ? { top: modalPosition.y, left: modalPosition.x } : {}}
+      >
+        <button
+          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+          onClick={onClose}
+        >
+          ✕
+        </button>
+        {modalContent.reverse().map((version) => (
+          <div key={version.id} className="mt-4">
+            <h3 className="text-sm font-semibold">{version.date}</h3>
+            <h4 className="text-xs font-semibold mt-1">{version.title}</h4>
+            <p className="text-xs text-gray-500 mt-1">{version.description}</p>
+            <div className="mt-2 text-xs">
+              {getDiffElements(version.oldContent, version.currentContent)}
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+);
 
 const isVersionHandler = (block: BaseContentBlock): boolean => {
   const richText = (block as Record<string, any>)[block.type]?.rich_text;
@@ -22,19 +79,6 @@ const isVersionHandler = (block: BaseContentBlock): boolean => {
     richText.length > 0 &&
     richText[0].plain_text.startsWith("$version")
   );
-};
-
-const extractTextWithoutVersion = (block: BaseContentBlock): string => {
-  const richText = (block as Record<string, any>)[block.type]?.rich_text;
-  if (!richText) return "";
-
-  return richText
-    .map((rt: any) => rt.plain_text)
-    .filter(
-      (text: string) =>
-        !text.includes("$version") && !text.includes("$versionEnd")
-    )
-    .join(" ");
 };
 
 const getRichTextWithoutVersion = (block: BaseContentBlock): any[] => {
@@ -86,6 +130,8 @@ const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
   const [modalContent, setModalContent] = useState<IVersioning[] | null>(null);
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
   const [isDesktop, setIsDesktop] = useState<boolean>(true);
+
+  let numbering = 0;
 
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 1280);
@@ -144,6 +190,7 @@ const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
       const [title, description] = data.split("$versionEnd");
 
       const newVersion: IVersioning = {
+        id: uniqueId(),
         date,
         title,
         description,
@@ -164,56 +211,39 @@ const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
     }
 
     components.push(
-      <div key={block.id} className="relative">
-        <MdHandler
-          data={block}
-          showVersionDot={!!versioning[block.id]}
-          onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) =>
-            handleMouseEnter(e, versioning[block.id])
-          }
-          onMouseLeave={handleMouseLeave}
-          onClick={(e: React.MouseEvent<HTMLDivElement>) =>
-            handleClick(e, versioning[block.id])
-          }
-        />
-      </div>
+      <MdHandler
+        key={block.id}
+        data={block}
+        showVersionDot={!!versioning[block.id]}
+        onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) =>
+          handleMouseEnter(e, versioning[block.id])
+        }
+        onMouseLeave={handleMouseLeave}
+        onClick={(e: React.MouseEvent<HTMLDivElement>) =>
+          handleClick(e, versioning[block.id])
+        }
+        index={numbering}
+      />
     );
+
+    if (block.type === "numbered_list_item") {
+      numbering += 1;
+    } else {
+      numbering = 0;
+    }
   }
 
   return (
     <>
       {components}
-      {showModal && modalContent && (
-        <div
-          className={`fixed z-50 p-4 bg-white shadow-lg rounded-lg max-w-xl w-full ${
-            isDesktop
-              ? "absolute max-h-[400px]"
-              : "h-1/2 bottom-0 left-1/2 transform -translate-x-1/2"
-          } overflow-y-auto`}
-          style={
-            isDesktop ? { top: modalPosition.y, left: modalPosition.x } : {}
-          }
-        >
-          <button
-            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-            onClick={handleCloseModal}
-          >
-            ✕
-          </button>
-          {modalContent.reverse().map((version, index) => (
-            <div key={index} className="mt-4">
-              <h3 className="text-sm font-semibold">{version.date}</h3>
-              <h4 className="text-xs font-semibold mt-1">{version.title}</h4>
-              <p className="text-xs text-gray-500 mt-1">
-                {version.description}
-              </p>
-              <div className="mt-2 text-xs">
-                {getDiffElements(version.oldContent, version.currentContent)}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      <VersionModal
+        showModal={showModal}
+        modalContent={modalContent}
+        modalPosition={modalPosition}
+        isDesktop={isDesktop}
+        onClose={handleCloseModal}
+        getDiffElements={getDiffElements}
+      />
     </>
   );
 };

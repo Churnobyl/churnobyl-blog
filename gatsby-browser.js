@@ -16,20 +16,13 @@ export const onInitialClientRender = () => {
   document.head.appendChild(preconnectJsdelivr);
   document.head.appendChild(linkPretendard);
 
-  // Kakao CDN preconnect 추가
-  const preconnectKakao = document.createElement("link");
-  preconnectKakao.rel = "preconnect";
-  preconnectKakao.href = "https://t1.kakaocdn.net";
-
-  document.head.appendChild(preconnectKakao);
-
   // Kakao SDK script 추가
   const kakaoScript = document.createElement("script");
   kakaoScript.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js";
   kakaoScript.integrity =
     "sha384-DKYJZ8NLiK8MN4/C5P2dtSmLQ4KwPaoqAfyA/DfmEc1VDxu4yyC7wy6K1Hs90nka";
   kakaoScript.crossOrigin = "anonymous";
-  kakaoScript.defer = true;
+  kakaoScript.async = true; // async 추가
   kakaoScript.onload = () => {
     if (typeof window !== "undefined" && window.Kakao) {
       window.Kakao.init("484abd80e306b4779f00fc89156bbafc");

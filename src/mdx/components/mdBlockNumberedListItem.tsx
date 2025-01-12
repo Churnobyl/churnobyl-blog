@@ -48,18 +48,14 @@ const MdBlockNumberedListItem: React.FC<CustomBaseContentBlock> = ({
 
   return (
     <li className="inline-flex items-start py-0 xl:py-0.5">
-      <div
-        className="flex items-center justify-center w-4 text-main-text-black dark:text-white-dark"
-        style={{ lineHeight: "1.5" }}
-      >
+      <div className="flex text-sm xl:text-base items-center justify-center w-4 text-main-text-black dark:text-white-dark leading-6">
         {numbering}
       </div>
 
       <div className="flex-1 flex flex-col min-w-0">
         <div
-          className="notranslate break-words whitespace-pre-wrap caret-neutral-600 px-1 text-start"
+          className="notranslate break-words whitespace-pre-wrap text-main-text-black dark:text-white-dark px-1 text-start leading-6"
           spellCheck="true"
-          style={{ lineHeight: "1.5" }}
         >
           {specialObject.rich_text.map((text: any, idx: number) => {
             const { href, plain_text, annotations } = text;

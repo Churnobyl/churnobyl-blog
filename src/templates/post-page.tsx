@@ -216,7 +216,7 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
             book_index={book_index}
             tableOfContents={tableOfContents}
           />
-          <div className="w-full xl:w-[800px] flex-col space-y-5">
+          <div className="w-full xl:w-[800px] flex-col">
             {/* Post content */}
             <MdxGenerator content={currentContent} />
 
