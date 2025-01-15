@@ -291,57 +291,60 @@ const About = () => {
 
   return (
     <NormalLayout>
-      <div className="flex justify-center items-center space-y-10 mt-8 xl:mt-10 w-full mx-auto px-1 flex-col">
-        <div className="w-full md:w-[800px] flex-col space-y-10">
-          <div
-            className={
-              "text-xl font-bold border-b-2 border-gray-light dark:border-white-dark text-main-text-black dark:text-white-dark"
-            }
-          >
-            <span>About</span>
-          </div>
-          <div
-            className={
-              "flex flex-col md:flex-row items-center justify-between text-main-text-black dark:text-white-dark"
-            }
-          >
-            <div className={"min-w-40"}>
-              <GatsbyImage
-                image={portraitImage}
-                className={"rounded-full"}
-                alt="성철민"
-              />
+      <div className="flex justify-center items-center space-y-20 mt-8 xl:mt-10 w-full mx-auto px-1 flex-col">
+        <div className="w-full md:w-[800px] flex-col space-y-20">
+          <div>
+            <div
+              className={
+                "text-xl font-bold border-b-2 border-gray-light dark:border-white-dark text-main-text-black dark:text-white-dark"
+              }
+            >
+              <span>About</span>
             </div>
-            <div className={"flex flex-col space-y-2 ml-4 p-4"}>
-              <div className={"font-bold text-lg md:text-2xl"}>
-                안녕하세요{" "}
-                <span
-                  className={
-                    "bg-gradient-to-bl from-main-blue to-sub-skyblue dark:from-sub-skyblue dark:to-main-blue bg-clip-text text-transparent"
-                  }
-                >
-                  상상을 현실로 만드는 개발자
-                </span>{" "}
-                성철민입니다
+            <div
+              className={
+                "flex flex-col md:flex-row items-center justify-between text-main-text-black dark:text-white-dark mt-10"
+              }
+            >
+              <div className={"min-w-40"}>
+                <GatsbyImage
+                  image={portraitImage}
+                  className={"rounded-full"}
+                  alt="성철민"
+                />
               </div>
-              <div className={"ml-4"}>
-                <ul className={"list-disc"}>
-                  <li>Backend</li>
-                  <li>Java, JavaScript, Python</li>
-                  <li>Spring, React, Gatsby, Django</li>
-                  <li>Docker, Kubernetes</li>
-                </ul>
+              <div className={"flex flex-col space-y-2 ml-4 p-4"}>
+                <div className={"font-bold text-lg md:text-2xl"}>
+                  안녕하세요{" "}
+                  <span
+                    className={
+                      "bg-gradient-to-bl from-main-blue to-sub-skyblue dark:from-sub-skyblue dark:to-main-blue bg-clip-text text-transparent"
+                    }
+                  >
+                    상상을 현실로 만드는 개발자
+                  </span>{" "}
+                  성철민입니다
+                </div>
+                <div className={"ml-4"}>
+                  <ul className={"list-disc"}>
+                    <li>Backend</li>
+                    <li>Java, JavaScript, Python</li>
+                    <li>Spring, React, Gatsby, Django</li>
+                    <li>Docker, Kubernetes</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-          <div
-            className={
-              "text-xl font-bold border-b-2 border-gray-light dark:border-white-dark text-main-text-black dark:text-white-dark"
-            }
-          >
-            <span>Story</span>
-          </div>
+
           <div className={"flex flex-col space-y-12 text-sm xl:text-base"}>
+            <div
+              className={
+                "text-xl font-bold border-b-2 border-gray-light dark:border-white-dark text-main-text-black dark:text-white-dark"
+              }
+            >
+              <span>Story</span>
+            </div>
             <StoryComponent
               imageName="story1"
               text={[
@@ -394,9 +397,6 @@ const About = () => {
           </div> */}
         </div>
         <div className="w-full min-[1170px]:w-[800px] flex-col space-y-10">
-          <div className="text-xl font-bold border-b-2 border-gray-light dark:border-white-dark text-main-text-black dark:text-white-dark">
-            <span>Timeline</span>
-          </div>
           <TimelineTabs activeTab={activeTab} setActiveTab={setActiveTab} />
           <FilteredTimeline timelineData={timelineData} activeTab={activeTab} />
         </div>
