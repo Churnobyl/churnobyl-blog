@@ -14,6 +14,7 @@ import CertificateSvg from "../images/certificateSvg";
 import ProjectSvg from "../images/projectSvg";
 import StarSvg from "../images/starSvg";
 import PrizeSvg from "../images/prizeSvg";
+import { SEO } from "../components/seo/seo";
 
 const About = () => {
   const [activeTab, setActiveTab] = useState<
@@ -406,3 +407,13 @@ const About = () => {
 };
 
 export default About;
+
+export const Head = () => {
+  return (
+    <SEO
+      title={"About"}
+      description={"안녕하세요 상상을 현실로 만드는 개발자입니다."}
+      pathname={"about"}
+    />
+  );
+};
