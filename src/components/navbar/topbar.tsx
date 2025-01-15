@@ -184,7 +184,7 @@ const TopBar: React.FC = () => {
         {/* Mobile Dropdown Menu */}
         <div
           className={classNames(
-            "top-16 left-0 w-full transition-all duration-500 ease-in-out overflow-hidden z-40",
+            "top-16 left-0 w-full transition-[max-height] duration-500 ease-in-out overflow-hidden z-40",
             {
               "max-h-0": !isMenuOpen,
               "max-h-96 shadow-md": isMenuOpen,

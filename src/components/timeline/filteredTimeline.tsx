@@ -41,6 +41,9 @@ const FilteredTimeline: React.FC<FilteredTimelineProps> = ({
       ? timelineData
       : timelineData.filter((item) => item.type === activeTab);
 
+  // 고유 key를 위한 tagKeyMap 객체 생성
+  const tagKeyMap: { [key: string]: string } = {};
+
   return (
     <VerticalTimeline
       className={"w-full"}
@@ -85,9 +88,19 @@ const FilteredTimeline: React.FC<FilteredTimelineProps> = ({
               }
             >
               {item.tags &&
-                item.tags.map((tag) => (
-                  <div className={"inline text-sm"}>#{tag}</div>
-                ))}
+                item.tags.map((tag) => {
+                  // 고유한 key 값 생성 및 tagKeyMap에 저장
+                  if (!tagKeyMap[tag]) {
+                    tagKeyMap[tag] = `tag-${tag
+                      .toLowerCase()
+                      .replace(/\s+/g, "-")}`;
+                  }
+                  return (
+                    <div key={tagKeyMap[tag]} className={"inline text-sm"}>
+                      #{tag}
+                    </div>
+                  );
+                })}
             </div>
             {item.relatedPost && (
               <div className={"mt-4"}>
