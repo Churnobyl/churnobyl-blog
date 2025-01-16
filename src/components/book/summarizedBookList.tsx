@@ -20,11 +20,9 @@ const SummarizedBookList: React.FC<SummarizedBookListProps> = ({
           }
         >
           <span>북</span>{" "}
-          {totalBooks && (
-            <span className={"text-base text-main-blue dark:text-sub-skyblue"}>
-              {totalBooks}
-            </span>
-          )}
+          <span className={"text-base text-main-blue dark:text-sub-skyblue"}>
+            {totalBooks}
+          </span>
         </div>
       </div>
       {data.length !== 0 ? (
