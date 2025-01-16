@@ -16,7 +16,7 @@ const Footer = () => {
           <span>© Churnobyl 성철민</span>
         </div>
         <div>
-          <span>Contact: tjdcjfals3@naver.com</span>
+          <span>Contact: tjdcjfals@gmail.com</span>
         </div>
       </div>
     </div>
