@@ -94,15 +94,15 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             item.type === "heading_1"
               ? "text-lg font-bold"
               : item.type === "heading_2"
-              ? "text-md font-medium"
-              : "text-base font-normal";
+              ? "text-base font-medium"
+              : "text-sm font-normal";
 
           const marginLeft =
             item.type === "heading_1"
               ? "ml-0"
               : item.type === "heading_2"
-              ? "ml-4"
-              : "ml-8";
+              ? "ml-2"
+              : "ml-4";
 
           const isActive =
             activeHash === item.hash
