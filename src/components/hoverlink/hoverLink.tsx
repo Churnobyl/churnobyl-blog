@@ -44,8 +44,12 @@ const HoverModal: React.FC<HoverModalProps> = React.memo(
             className="w-full max-h-[100px] object-cover mb-2 rounded"
           />
         )}
-        <h3 className="text-sm font-semibold">{metadata.title}</h3>
-        <p className="text-xs text-gray-500 mt-1">{metadata.description}</p>
+        <h3 className="text-sm text-main-text-black font-semibold">
+          {metadata.title}
+        </h3>
+        <p className="text-xs text-main-text-black mt-1">
+          {metadata.description}
+        </p>
         <a
           href={metadata.url}
           className="text-xs text-main-blue hover:underline mt-2 block"
