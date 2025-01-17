@@ -7025,7 +7025,7 @@ __metadata:
     gatsby-remark-prismjs: "npm:^7.14.0"
     gatsby-source-contentful: "npm:^8.15.0"
     gatsby-source-filesystem: "npm:^5.14.0"
-    gatsby-source-notion-churnotion: "npm:^1.1.8"
+    gatsby-source-notion-churnotion: "npm:^1.1.9"
     gatsby-transformer-remark: "npm:^6.14.0"
     gatsby-transformer-sharp: "npm:^5.14.0"
     gatsby-transformer-sqip: "npm:^5.14.0"
@@ -10826,9 +10826,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-notion-churnotion@npm:^1.1.8":
-  version: 1.1.8
-  resolution: "gatsby-source-notion-churnotion@npm:1.1.8"
+"gatsby-source-notion-churnotion@npm:^1.1.9":
+  version: 1.1.9
+  resolution: "gatsby-source-notion-churnotion@npm:1.1.9"
   dependencies:
     "@notionhq/client": "npm:^2.2.15"
     "@types/node": "npm:^22.10.2"
@@ -10852,7 +10852,7 @@ __metadata:
     gatsby: ^5.14.0
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 10c0/f5b130d7961d739645ec429be1310ec008bdc9fe12a4aad13f224368d5d30c21c30e0c2e988bcfee2d41fd42ef89aa1e3767620bbb919d0606d4895dd8820865
+  checksum: 10c0/62e6fc7a2b60014d76800bbd82804155be1261380d4e3206d6e0a351c21325bd067cbf10a87e09f1e1e379eb8adcbecee183f16c1a6cebfa793c1d175fdb6e15
   languageName: node
   linkType: hard
 

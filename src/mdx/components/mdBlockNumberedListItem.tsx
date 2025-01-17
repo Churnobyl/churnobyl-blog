@@ -47,7 +47,7 @@ const MdBlockNumberedListItem: React.FC<CustomBaseContentBlock> = ({
   const numbering = generateNumbering(level, index);
 
   return (
-    <li className="inline-flex items-start py-0 xl:py-0.5">
+    <li className="flex items-start py-0 xl:py-0.5">
       <div className="flex text-sm xl:text-base items-center justify-center w-4 text-main-text-black dark:text-white-dark leading-6">
         {numbering}
       </div>
