@@ -117,11 +117,9 @@ const HoverLink: React.FC<{ href: string; children: React.ReactNode }> = ({
       >
         {children}
       </a>
-      <div>
-        {hovered && (
-          <HoverModal url={href} position={position} hovered={hovered} />
-        )}
-      </div>
+      {hovered && (
+        <HoverModal url={href} position={position} hovered={hovered} />
+      )}
     </>
   );
 };

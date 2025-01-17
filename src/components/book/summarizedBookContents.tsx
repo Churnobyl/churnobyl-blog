@@ -80,7 +80,7 @@ const SummarizedBookContents: React.FC<ISummarizedPost> = ({
           </div>
           <div
             className={
-              "text-base md:text-md line-clamp-1 h-8 w-full text-gray dark:text-white-dark"
+              "text-base md:text-sm line-clamp-2 h-10 w-full text-gray dark:text-white-dark"
             }
           >
             {description}
@@ -126,7 +126,7 @@ const SummarizedBookContents: React.FC<ISummarizedPost> = ({
 
           <div
             className={
-              "text-base md:text-md line-clamp-2 h-12 w-full text-gray dark:text-white-dark"
+              "text-base md:text-md line-clamp-6 h-36 w-full text-gray dark:text-white-dark"
             }
           >
             {description}
