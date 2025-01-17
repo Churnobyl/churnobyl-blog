@@ -37,9 +37,15 @@ const MdBlockImage: React.FC<CustomBaseContentBlock> = ({ specialObject }) => {
   return (
     <div className={"flex my-6 justify-center shrink-0 w-full"}>
       {image ? (
-        <div className={"px-1 max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-xl"}>
+        <div
+          className={
+            "flex flex-col justify-center items-center px-1 max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-xl"
+          }
+        >
           <GatsbyImage image={image} alt="" className="w-full h-auto" />
-          <p>{specialObject.captions ? specialObject.captions[0] : ``}</p>
+          <p className={"text-sm text-gray-light"}>
+            {specialObject.captions ? specialObject.captions[0].plain_text : ``}
+          </p>
         </div>
       ) : (
         <p>Image not found for ID: {specialObject.fileId}</p>
