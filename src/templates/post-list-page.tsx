@@ -88,7 +88,7 @@ export const blogListQuery = graphql`
             childImageSharp {
               gatsbyImageData(
                 placeholder: BLURRED
-                quality: 50
+                quality: 100
                 width: 130
                 height: 90
                 layout: CONSTRAINED

@@ -23,7 +23,7 @@ export const createBookPage = async (
               gatsbyImageData(
                 placeholder: BLURRED
                 layout: CONSTRAINED
-                quality: 50
+                quality: 100
                 aspectRatio: 0.74
               )
             }
