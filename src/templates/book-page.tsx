@@ -86,7 +86,7 @@ const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
             목차
           </div>
           <div className="space-y-5">
-            {posts.map((post) => (
+            {posts?.map((post) => (
               <SummarizedBookContents key={post.id} {...post} />
             ))}
           </div>

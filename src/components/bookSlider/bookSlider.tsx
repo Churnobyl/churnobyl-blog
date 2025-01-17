@@ -28,15 +28,17 @@ const BookSlider = ({
 }) => {
   const swiperRef = useRef<any>(null);
 
-  // childrenChurnotion을 book_index 기준으로 정렬
   const sortedChildrenChurnotion = useMemo(() => {
+    if (!book.childrenChurnotion || book.childrenChurnotion.length === 0) {
+      return []; // childrenChurnotion이 없으면 빈 배열 반환
+    }
     return [...book.childrenChurnotion].sort(
       (a, b) => a.book_index - b.book_index
     );
   }, [book.childrenChurnotion]);
 
   useEffect(() => {
-    if (swiperRef.current) {
+    if (swiperRef.current && sortedChildrenChurnotion.length > 0) {
       const currentSlideIndex = sortedChildrenChurnotion.findIndex(
         (churnotion) => churnotion.book_index === currentBookIndex
       );
@@ -112,15 +114,19 @@ const BookSlider = ({
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           centeredSlides={true}
         >
-          {sortedChildrenChurnotion.map((churnotion) => (
-            <SwiperSlide key={churnotion.id} className={"mb-10"}>
-              <PostCard
-                key={churnotion.id}
-                churnotion={churnotion}
-                isCurrent={churnotion.book_index === currentBookIndex}
-              />
-            </SwiperSlide>
-          ))}
+          {sortedChildrenChurnotion.length > 0 ? (
+            sortedChildrenChurnotion.map((churnotion) => (
+              <SwiperSlide key={churnotion.id} className={"mb-10"}>
+                <PostCard
+                  key={churnotion.id}
+                  churnotion={churnotion}
+                  isCurrent={churnotion.book_index === currentBookIndex}
+                />
+              </SwiperSlide>
+            ))
+          ) : (
+            <p>관련 글이 없습니다.</p>
+          )}
         </Swiper>
       </div>
       <hr className="" />
