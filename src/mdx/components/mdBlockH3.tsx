@@ -18,7 +18,7 @@ const MdBlockH3: React.FC<CustomBaseContentBlock> = ({
     >
       <h3
         className={
-          "inline-block text-sm xl:text-base font-bold tracking-tight break-all text-main-text-black dark:text-white-dark"
+          "inline-block text-base xl:text-xl font-bold tracking-tight break-all text-main-text-black dark:text-white-dark"
         }
       >
         {specialObject.rich_text[0].plain_text}
