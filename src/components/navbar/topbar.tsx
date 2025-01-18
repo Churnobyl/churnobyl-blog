@@ -172,7 +172,7 @@ const TopBar: React.FC = () => {
               </li>
               <li>
                 <Link
-                  to="/story"
+                  to="/blog/post/개발기/developing-a-personal-blog-with-gatsby/"
                   className="text-lg font-bold text-black hover:text-main-blue dark:text-white-dark dark:hover:text-sub-skyblue"
                 >
                   개발기
