@@ -65,7 +65,7 @@ const PostCard = ({
           </div>
           <div
             className={classNames(
-              "hidden xl:block text-xs text-gray mt-2 line-clamp-3",
+              "text-xs text-main-text-black mt-2 line-clamp-3",
               {
                 "text-gray-light": isCurrent,
               }

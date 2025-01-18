@@ -43,7 +43,7 @@ const MdBlockImage: React.FC<CustomBaseContentBlock> = ({ specialObject }) => {
           }
         >
           <GatsbyImage image={image} alt="" className="w-full h-auto" />
-          <p className={"mt-2 text-xs md:text-sm text-black dark:text-white"}>
+          <p className={"mt-2 text-xs text-black dark:text-white"}>
             {specialObject.caption.length > 0
               ? specialObject.caption[0].plain_text
               : ``}

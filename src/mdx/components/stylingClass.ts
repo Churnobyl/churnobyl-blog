@@ -11,11 +11,10 @@ export const styling = (annotations: any) => {
       annotations.bold || annotations.code
     ),
     "bg-gray-light": annotations.code,
-    "rounded-md": annotations.code,
-    "py-0": annotations.code,
-    "px-1": annotations.code,
+    "rounded-md xl:rounded-lg": annotations.code,
+    "py-0 xl:py-0.5": annotations.code,
+    "px-1 xl:px-1.5": annotations.code,
     "mx-1": annotations.code,
-    "font-mono": annotations.code,
     "text-[13px] xl:text-[15px]": annotations.code,
     [`text-text-${annotations.color}`]:
       annotations.color !== "default" && !annotations.code,

@@ -190,7 +190,7 @@ export const postQuery = graphql`
         book_image {
           childrenImageSharp {
             gatsbyImageData(
-              sizes: "10"
+              quality: 100
               height: 100
               aspectRatio: 0.74
               layout: CONSTRAINED
