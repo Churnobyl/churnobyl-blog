@@ -129,7 +129,7 @@ const SummarizedBookContents: React.FC<ISummarizedPost> = ({
               "text-base md:text-md line-clamp-6 h-36 w-full text-gray dark:text-white-dark"
             }
           >
-            {description}
+            <Link to={`/${url}`}>{description}</Link>
           </div>
           <div className={"flex flex-col space-y-1"}>
             <div className={"flex flex-row space-x-1 items-center"}>

@@ -62,7 +62,7 @@ const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
           <GatsbyImage
             image={getImage(bookImage)!}
             alt={bookName}
-            className="mt-5 rounded-md"
+            className="mt-5 rounded-md w-3/5 md:w-56"
           />
           <div
             className={"flex flex-col items-center justify-center space-y-4"}
