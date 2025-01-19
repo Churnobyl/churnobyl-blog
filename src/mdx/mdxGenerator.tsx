@@ -83,11 +83,10 @@ const isVersionHandler = (block: BaseContentBlock): boolean => {
 
 const getRichTextWithoutVersion = (block: BaseContentBlock): any[] => {
   const richText = (block as Record<string, any>)[block.type]?.rich_text || [];
-  return richText.filter(
-    (rt: any) =>
-      !rt.plain_text.includes("$version") &&
-      !rt.plain_text.includes("$versionEnd")
-  );
+  return richText.map((rt: any) => ({
+    ...rt,
+    plain_text: rt.plain_text.replace(/\$version, .*?\$versionEnd\s*/, ""),
+  }));
 };
 
 const getDiffElements = (
@@ -186,21 +185,25 @@ const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
     // seenIds.add(block.id);
 
     if (isVersionHandler(block)) {
+      console.log(block);
       const richText = (block as Record<string, any>)[block.type]?.rich_text;
       const versionText = richText[0].plain_text;
+
       const [, date, data] = versionText
         .split(",")
         .map((s: string) => s.trim());
       const [title, description] = data.split("$versionEnd");
+
+      if (latestVersions.length > 0) {
+        latestVersions[latestVersions.length - 1].currentContent = block;
+      }
 
       const newVersion: IVersioning = {
         id: block.id || uniqueId("version-"),
         date,
         title,
         description,
-        oldContent: latestVersions.length
-          ? latestVersions[latestVersions.length - 1].currentContent
-          : block,
+        oldContent: block,
         currentContent: block,
       };
 

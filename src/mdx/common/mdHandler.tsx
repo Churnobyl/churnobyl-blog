@@ -62,21 +62,12 @@ const MdHandler = ({
         index={index}
         level={level}
         parentId={data.id}
+        showVersionDot={showVersionDot}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onClick={onClick}
         {...data}
       />
-      {showVersionDot && (
-        <span
-          className={
-            "text-xs text-main-blue dark:text-sub-skyblue inline ml-1 hover:animate-pulse"
-          }
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-          onClick={onClick}
-          style={{ cursor: "pointer", color: "blue" }}
-        >
-          ●
-        </span>
-      )}
     </MdBlock>
   );
 };
