@@ -1,14 +1,13 @@
 import { Link, type PageProps } from "gatsby";
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import SummarizedBookContents from "../components/book/summarizedBookContents";
+import TagList from "../components/labels/tagList";
 import NormalLayout from "../components/layout/normalLayout";
 import { SEO } from "../components/seo/seo";
-import { useFormatDate } from "../hooks/use-format-date";
-import { IPost } from "../interfaces/IPost";
 import { IBookCategory } from "../interfaces/IBookCategory";
+import { IPost } from "../interfaces/IPost";
 import { ITag } from "../interfaces/ISummarizedPost";
-import TagList from "../components/labels/tagList";
 
 interface BookPageContext {
   bookName: string;
@@ -36,14 +35,6 @@ const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
     bookTagList,
   } = pageContext;
 
-  const [convertedCreateDate, setConvertedCreateDate] = useState("");
-  const [convertedUpdateDate, setConvertedUpdateDate] = useState("");
-
-  useEffect(() => {
-    setConvertedCreateDate(useFormatDate(createDate));
-    setConvertedUpdateDate(useFormatDate(updateDate));
-  }, [createDate, updateDate]);
-
   return (
     <NormalLayout>
       <div className="flex flex-col items-center justify-center w-full">
@@ -68,8 +59,8 @@ const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
             className={"flex flex-col items-center justify-center space-y-4"}
           >
             <div className="mt-3 text-sm text-gray dark:text-white-dark">
-              <span>Created: {convertedCreateDate}</span> |{" "}
-              <span>Updated: {convertedUpdateDate}</span>
+              <span>Created: {createDate}</span> |{" "}
+              <span>Updated: {updateDate}</span>
             </div>
             <div className={"text-gray dark:text-white-dark"}>
               {description}

@@ -1,7 +1,6 @@
 import { Link } from "gatsby";
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
-import React, { useEffect, useState } from "react";
-import { useFormatDate } from "../../hooks/use-format-date";
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
+import React from "react";
 import CalenderSvg from "../../images/calenderSvg";
 import { ISummarizedPost } from "../../interfaces/ISummarizedPost";
 
@@ -18,14 +17,6 @@ const SummarizedBookContents: React.FC<ISummarizedPost> = ({
   thumbnail,
   book_index,
 }) => {
-  const [convertedCreateDate, setConvertedCreateDate] = useState("");
-  const [convertedUpdateDate, setConvertedUpdateDate] = useState("");
-
-  useEffect(() => {
-    setConvertedCreateDate(useFormatDate(create_date));
-    setConvertedUpdateDate(useFormatDate(update_date));
-  }, [create_date, update_date]);
-
   return (
     <div>
       {/* xl 이상에서는 기존 레이아웃 */}
@@ -70,7 +61,7 @@ const SummarizedBookContents: React.FC<ISummarizedPost> = ({
                     "flex text-xs md:text-sm text-gray dark:text-white-dark"
                   }
                 >
-                  · Updated {convertedUpdateDate}
+                  · Updated {update_date}
                 </div>
               </div>
             </div>
@@ -139,14 +130,14 @@ const SummarizedBookContents: React.FC<ISummarizedPost> = ({
                   "flex text-xs md:text-sm text-gray dark:text-white-dark"
                 }
               >
-                {convertedCreateDate}
+                {create_date}
               </div>
               <div
                 className={
                   "flex text-xs md:text-sm text-gray dark:text-white-dark"
                 }
               >
-                · Updated {convertedUpdateDate}
+                · Updated {update_date}
               </div>
             </div>
           </div>

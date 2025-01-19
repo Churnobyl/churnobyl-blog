@@ -1,11 +1,10 @@
-import { GatsbyImage } from "gatsby-plugin-image";
-import React, { useEffect, useState } from "react";
-import TagList from "../labels/tagList";
-import Category from "../category/category";
-import { useFormatDate } from "../../hooks/use-format-date";
-import { IPostContent } from "../../interfaces/IPost";
-import CalenderSvg from "../../images/calenderSvg";
 import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import React from "react";
+import CalenderSvg from "../../images/calenderSvg";
+import { IPostContent } from "../../interfaces/IPost";
+import Category from "../category/category";
+import TagList from "../labels/tagList";
 
 const PostTitleSet = ({
   title,
@@ -16,14 +15,6 @@ const PostTitleSet = ({
   tags,
   book,
 }: IPostContent) => {
-  const [convertedCreateDate, setConvertedCreateDate] = useState("");
-  const [convertedUpdateDate, setConvertedUpdateDate] = useState("");
-
-  useEffect(() => {
-    setConvertedCreateDate(useFormatDate(create_date));
-    setConvertedUpdateDate(useFormatDate(update_date));
-  }, [create_date, update_date]);
-
   return (
     <div id="content_head" className="flex flex-col space-y-5">
       <div className="flex flex-col space-y-2 xl:flex-row xl:items-center xl:space-x-2">
@@ -31,7 +22,7 @@ const PostTitleSet = ({
           {title}
         </div>
         <div className="text-main-blue dark:text-sub-skyblue text-sm">
-          v{version} 개정 {convertedUpdateDate}
+          v{version} 개정 {update_date}
         </div>
       </div>
 
@@ -52,14 +43,14 @@ const PostTitleSet = ({
                 "flex text-xs md:text-sm text-gray dark:text-white-dark"
               }
             >
-              {convertedCreateDate}
+              {create_date}
             </div>
             <div
               className={
                 "flex text-xs md:text-sm text-gray dark:text-white-dark"
               }
             >
-              · Updated {convertedUpdateDate}
+              · Updated {update_date}
             </div>
           </div>
         </div>

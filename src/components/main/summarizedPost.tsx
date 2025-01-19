@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
 import { Link } from "gatsby";
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
-import { useFormatDate } from "../../hooks/use-format-date";
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
+import React from "react";
 import CalenderSvg from "../../images/calenderSvg";
+import ReadSvg from "../../images/readSvg";
 import { ISummarizedPost } from "../../interfaces/ISummarizedPost";
 import Category from "../category/category";
 import TagList from "../labels/tagList";
-import ReadSvg from "../../images/readSvg";
 
 const SummarizedPost: React.FC<ISummarizedPost> = ({
   title,
@@ -21,14 +20,6 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
   thumbnail,
   index,
 }) => {
-  const [convertedCreateDate, setConvertedCreateDate] = useState("");
-  const [convertedUpdateDate, setConvertedUpdateDate] = useState("");
-
-  useEffect(() => {
-    setConvertedCreateDate(useFormatDate(create_date));
-    setConvertedUpdateDate(useFormatDate(update_date));
-  }, [create_date, update_date]);
-
   return (
     <>
       {/* xl 이상에서는 기존 레이아웃 */}
@@ -73,14 +64,14 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
                   "flex text-xs md:text-sm text-gray dark:text-white-dark"
                 }
               >
-                {convertedCreateDate}
+                {create_date}
               </div>
               <div
                 className={
                   "flex text-xs md:text-sm text-gray dark:text-white-dark"
                 }
               >
-                · Updated {convertedUpdateDate}
+                · Updated {update_date}
               </div>
             </div>
           </div>

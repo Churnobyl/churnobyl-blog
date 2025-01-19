@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import Footer from "../navbar/footer";
 import TopBar from "../navbar/topbar";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
@@ -12,7 +12,7 @@ interface NormalLayoutProps {
 const NormalLayout: React.FC<NormalLayoutProps> = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const observer = new MutationObserver(() => {
       setIsDarkMode(document.documentElement.classList.contains("dark"));
     });

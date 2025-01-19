@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { IBook } from "../../interfaces/IBook";
-import { useFormatDate } from "../../hooks/use-format-date";
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
+import React from "react";
 import CalenderSvg from "../../images/calenderSvg";
+import { IBook } from "../../interfaces/IBook";
 
 interface SummarizedBookProps {
   data: IBook;
@@ -21,14 +20,6 @@ const SummarizedBook: React.FC<SummarizedBookProps> = ({ data, index }) => {
     url,
     description,
   } = data;
-
-  const [convertedCreateDate, setConvertedCreateDate] = useState("");
-  const [convertedUpdateDate, setConvertedUpdateDate] = useState("");
-
-  useEffect(() => {
-    setConvertedCreateDate(useFormatDate(create_date));
-    setConvertedUpdateDate(useFormatDate(update_date));
-  }, [create_date, update_date]);
 
   const image = getImage(book_image);
 
@@ -72,14 +63,14 @@ const SummarizedBook: React.FC<SummarizedBookProps> = ({ data, index }) => {
                   "flex text-xs md:text-sm text-gray dark:text-white-dark"
                 }
               >
-                {convertedCreateDate}
+                {create_date}
               </div>
               <div
                 className={
                   "flex text-xs md:text-sm text-gray dark:text-white-dark"
                 }
               >
-                · Updated {convertedUpdateDate}
+                · Updated {update_date}
               </div>
             </div>
           </div>
