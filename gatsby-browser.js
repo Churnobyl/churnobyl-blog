@@ -36,29 +36,4 @@ export const onInitialClientRender = () => {
     }
   };
   document.body.appendChild(kakaoScript);
-
-  // Load Algolia CSS
-  const linkAlgolia = document.createElement("link");
-  linkAlgolia.rel = "stylesheet";
-  linkAlgolia.href =
-    "https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.css";
-  document.head.appendChild(linkAlgolia);
-
-  // Load Algolia Script
-  const algoliaScript = document.createElement("script");
-  algoliaScript.src =
-    "https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.js";
-  algoliaScript.async = true;
-  algoliaScript.onload = () => {
-    if (typeof algoliasearchNetlify === "function") {
-      algoliasearchNetlify({
-        appId: "8UJFG7KP7L",
-        apiKey: "6d5f9fd93f6c20ccbec8e9e3e4d3d36b",
-        siteId: "ef684d8c-ed03-44fc-a7dc-f4211a8c35c1",
-        branch: "main",
-        selector: "div#search",
-      });
-    }
-  };
-  document.body.appendChild(algoliaScript);
 };
