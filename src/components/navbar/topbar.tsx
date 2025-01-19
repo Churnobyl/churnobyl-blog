@@ -137,6 +137,7 @@ const TopBar: React.FC = () => {
             <div className={"flex p-2"}>
               <ModeChange />
             </div>
+            <div id="search"></div>
             <ul className="flex flex-row items-center space-x-6">
               <li>
                 <Link

@@ -10,18 +10,20 @@ export const onInitialClientRender = () => {
     document.documentElement.classList.add("light");
   }
 
+  // Preconnect jsDelivr
   const preconnectJsdelivr = document.createElement("link");
   preconnectJsdelivr.rel = "preconnect";
   preconnectJsdelivr.href = "https://cdn.jsdelivr.net";
+  document.head.appendChild(preconnectJsdelivr);
 
+  // Load Pretendard Font
   const linkPretendard = document.createElement("link");
   linkPretendard.rel = "stylesheet";
   linkPretendard.href =
     "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css";
-
-  document.head.appendChild(preconnectJsdelivr);
   document.head.appendChild(linkPretendard);
 
+  // Load Kakao Script
   const kakaoScript = document.createElement("script");
   kakaoScript.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js";
   kakaoScript.integrity =
@@ -33,6 +35,30 @@ export const onInitialClientRender = () => {
       window.Kakao.init("484abd80e306b4779f00fc89156bbafc");
     }
   };
-
   document.body.appendChild(kakaoScript);
+
+  // Load Algolia CSS
+  const linkAlgolia = document.createElement("link");
+  linkAlgolia.rel = "stylesheet";
+  linkAlgolia.href =
+    "https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.css";
+  document.head.appendChild(linkAlgolia);
+
+  // Load Algolia Script
+  const algoliaScript = document.createElement("script");
+  algoliaScript.src =
+    "https://cdn.jsdelivr.net/npm/@algolia/algoliasearch-netlify-frontend@1/dist/algoliasearchNetlify.js";
+  algoliaScript.async = true;
+  algoliaScript.onload = () => {
+    if (typeof algoliasearchNetlify === "function") {
+      algoliasearchNetlify({
+        appId: "8UJFG7KP7L",
+        apiKey: "6d5f9fd93f6c20ccbec8e9e3e4d3d36b",
+        siteId: "ef684d8c-ed03-44fc-a7dc-f4211a8c35c1",
+        branch: "main",
+        selector: "div#search",
+      });
+    }
+  };
+  document.body.appendChild(algoliaScript);
 };
