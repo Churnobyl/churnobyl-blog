@@ -88,7 +88,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
       ref={containerRef}
       className="space-y-2 mt-4 overflow-hidden hover:overflow-y-auto scroll-smooth"
     >
-      <ul className="space-y-2 mt-4 pr-8">
+      <ul className="mt-4 pr-8">
         {tableOfContents.map((item, index) => {
           const textSize =
             item.type === "heading_1"
@@ -99,20 +99,20 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
 
           const marginLeft =
             item.type === "heading_1"
-              ? "ml-0"
+              ? "ml-0 border-b-2"
               : item.type === "heading_2"
               ? "ml-2"
               : "ml-4";
 
           const isActive =
             activeHash === item.hash
-              ? "border-l-main-blue dark:border-l-sub-skyblue text-main-blue dark:text-sub-skyblue border-l-4"
+              ? "border-l-main-blue dark:border-l-sub-skyblue text-main-blue dark:text-sub-skyblue border-l-8"
               : "border-l-2 border-l-gray-light text-gray-dark dark:text-white-dark";
 
           return (
             <li
               key={"tableOfContent" + item.hash}
-              className={`${isActive} text-md tracking-tight leading-7 border-solid pl-4 ${textSize} w-full`}
+              className={`${isActive} text-md tracking-tight leading-7 border-solid pl-4 py-1 ${textSize} w-full`}
             >
               <div className={`${marginLeft} truncate`} title={item.title}>
                 <a
