@@ -1,9 +1,9 @@
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import classNames from "classnames";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
+import { darkTheme, lightTheme } from "../../theme/theme";
 import Footer from "../navbar/footer";
 import TopBar from "../navbar/topbar";
-import ThemeProvider from "@mui/material/styles/ThemeProvider";
-import { lightTheme, darkTheme } from "../../theme/theme";
 
 interface NormalLayoutProps {
   children: React.ReactNode;
@@ -12,22 +12,28 @@ interface NormalLayoutProps {
 const NormalLayout: React.FC<NormalLayoutProps> = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
-  useLayoutEffect(() => {
-    const observer = new MutationObserver(() => {
-      setIsDarkMode(document.documentElement.classList.contains("dark"));
-    });
+  const theme = isDarkMode ? darkTheme : lightTheme;
 
+  useLayoutEffect(() => {
+    const updateDarkMode = () => {
+      setIsDarkMode(document.documentElement.classList.contains("dark"));
+    };
+
+    const observer = new MutationObserver(updateDarkMode);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["class"],
     });
+
+    // Initial check
+    updateDarkMode();
 
     return () => observer.disconnect();
   }, []);
 
   return (
     <>
-      <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+      <ThemeProvider theme={theme}>
         <TopBar />
         <main
           className={classNames(
