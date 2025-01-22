@@ -30,7 +30,7 @@ const MdBlockImage: React.FC<CustomBaseContentBlock> = ({ specialObject }) => {
     (edge: any) => edge.node.id === specialObject.fileId
   );
 
-  const image = fileNode
+  const image = fileNode.node?.children?.[0]?.gatsbyImageData
     ? getImage(fileNode.node.children[0].gatsbyImageData)
     : null;
 
@@ -50,7 +50,17 @@ const MdBlockImage: React.FC<CustomBaseContentBlock> = ({ specialObject }) => {
           </p>
         </div>
       ) : (
-        <p>Image not found for ID: {specialObject.fileId}</p>
+        <img
+          src={fileNode.node.publicURL}
+          alt={
+            specialObject.caption.length > 0
+              ? specialObject.caption[0].plain_text
+              : ``
+          }
+          style={{
+            animationIterationCount: "infinite",
+          }}
+        />
       )}
     </div>
   );

@@ -4663,6 +4663,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/fs-extra@npm:^11.0.4":
+  version: 11.0.4
+  resolution: "@types/fs-extra@npm:11.0.4"
+  dependencies:
+    "@types/jsonfile": "npm:*"
+    "@types/node": "npm:*"
+  checksum: 10c0/9e34f9b24ea464f3c0b18c3f8a82aefc36dc524cc720fc2b886e5465abc66486ff4e439ea3fb2c0acebf91f6d3f74e514f9983b1f02d4243706bdbb7511796ad
+  languageName: node
+  linkType: hard
+
 "@types/get-port@npm:^3.2.0":
   version: 3.2.0
   resolution: "@types/get-port@npm:3.2.0"
@@ -4735,6 +4745,15 @@ __metadata:
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
   checksum: 10c0/6bf5337bc447b706bb5b4431d37686aa2ea6d07cfd6f79cc31de80170d6ff9b1c7384a9c0ccbc45b3f512bae9e9f75c2e12109806a15331dc94e8a8db6dbb4ac
+  languageName: node
+  linkType: hard
+
+"@types/jsonfile@npm:*":
+  version: 6.1.4
+  resolution: "@types/jsonfile@npm:6.1.4"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10c0/b12d068b021e4078f6ac4441353965769be87acf15326173e2aea9f3bf8ead41bd0ad29421df5bbeb0123ec3fc02eb0a734481d52903704a1454a1845896b9eb
   languageName: node
   linkType: hard
 
@@ -7090,7 +7109,7 @@ __metadata:
     gatsby-remark-prismjs: "npm:^7.14.0"
     gatsby-source-contentful: "npm:^8.15.0"
     gatsby-source-filesystem: "npm:^5.14.0"
-    gatsby-source-notion-churnotion: "npm:^1.1.19"
+    gatsby-source-notion-churnotion: "npm:^1.1.21"
     gatsby-transformer-remark: "npm:^6.14.0"
     gatsby-transformer-sharp: "npm:^5.14.0"
     gatsby-transformer-sqip: "npm:^5.14.0"
@@ -10309,7 +10328,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^11.0.0, fs-extra@npm:^11.2.0":
+"fs-extra@npm:^11.0.0, fs-extra@npm:^11.2.0, fs-extra@npm:^11.3.0":
   version: 11.3.0
   resolution: "fs-extra@npm:11.3.0"
   dependencies:
@@ -10924,14 +10943,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-source-notion-churnotion@npm:^1.1.19":
-  version: 1.1.19
-  resolution: "gatsby-source-notion-churnotion@npm:1.1.19"
+"gatsby-source-notion-churnotion@npm:^1.1.21":
+  version: 1.1.21
+  resolution: "gatsby-source-notion-churnotion@npm:1.1.21"
   dependencies:
     "@notionhq/client": "npm:^2.2.15"
+    "@types/fs-extra": "npm:^11.0.4"
     "@types/node": "npm:^22.10.2"
     axios: "npm:^1.7.9"
     compute-cosine-similarity: "npm:^1.1.0"
+    fs-extra: "npm:^11.3.0"
     gatsby-plugin-sharp: "npm:^5.14.0"
     gatsby-source-filesystem: "npm:^5.14.0"
     gatsby-transformer-json: "npm:^5.14.0"
@@ -10942,7 +10963,6 @@ __metadata:
     metascraper-title: "npm:^5.45.25"
     metascraper-url: "npm:^5.45.25"
     natural: "npm:^8.0.1"
-    node-fetch: "npm:^3.3.2"
     notion-to-md: "npm:^3.1.1"
     notion-types: "npm:^7.1.5"
     typescript: "npm:^5.7.2"
@@ -10950,7 +10970,7 @@ __metadata:
     gatsby: ^5.14.0
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 10c0/b00edacaefec0eb7677b33c0fa5df3257bd2a3e2474206c8b2abd8b0b5774dedd09e49b4c1cb3ca4849018dca27cd28f0ee884104ad3d6fd0a710e9833ce56dd
+  checksum: 10c0/8bb19e3ab5d84ead42d2a2a561939dad1a3bd6b7fb46fea8c1f3946242c0aa5fdfb53a8c138d3112cb6a7ec3e1f3db015d0c8aba8786fcb584e5e449f95e04a0
   languageName: node
   linkType: hard
 
