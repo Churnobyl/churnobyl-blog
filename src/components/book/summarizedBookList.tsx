@@ -13,10 +13,10 @@ const SummarizedBookList: React.FC<SummarizedBookListProps> = ({
 }) => {
   return (
     <>
-      <div className={"py-4"}>
+      <div className={"py-4 w-full"}>
         <div
           className={
-            "text-xl font-bold border-b-2 border-gray-light dark:border-white-dark text-main-text-black dark:text-white-dark"
+            "text-xl font-bold border-b-2 border-gray-light dark:border-white-dark text-main-text-black dark:text-white-dark w-full"
           }
         >
           <span>북</span>{" "}

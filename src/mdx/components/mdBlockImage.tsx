@@ -50,17 +50,28 @@ const MdBlockImage: React.FC<CustomBaseContentBlock> = ({ specialObject }) => {
           </p>
         </div>
       ) : (
-        <img
-          src={fileNode.node.publicURL}
-          alt={
-            specialObject.caption.length > 0
-              ? specialObject.caption[0].plain_text
-              : ``
+        <div
+          className={
+            "flex flex-col justify-center items-center px-1 max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-xl"
           }
-          style={{
-            animationIterationCount: "infinite",
-          }}
-        />
+        >
+          <img
+            src={fileNode.node.publicURL}
+            alt={
+              specialObject.caption.length > 0
+                ? specialObject.caption[0].plain_text
+                : ``
+            }
+            style={{
+              animationIterationCount: "infinite",
+            }}
+          />
+          <p className={"mt-2 text-xs text-black dark:text-white"}>
+            {specialObject.caption.length > 0
+              ? specialObject.caption[0].plain_text
+              : ``}
+          </p>
+        </div>
       )}
     </div>
   );

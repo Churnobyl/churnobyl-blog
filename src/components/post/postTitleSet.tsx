@@ -17,7 +17,7 @@ const PostTitleSet = ({
 }: IPostContent) => {
   return (
     <div id="content_head" className="flex flex-col space-y-5">
-      <div className="flex flex-col space-y-2 xl:flex-row xl:items-center xl:space-x-2">
+      <div className="flex flex-col space-y-2 xl:flex-row xl:items-end xl:space-x-2">
         <div className="text-xl text-main-text-black dark:text-white-dark font-bold xl:text-3xl">
           {title}
         </div>

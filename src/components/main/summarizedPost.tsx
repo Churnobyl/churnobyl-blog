@@ -6,6 +6,7 @@ import ReadSvg from "../../images/readSvg";
 import { ISummarizedPost } from "../../interfaces/ISummarizedPost";
 import Category from "../category/category";
 import TagList from "../labels/tagList";
+import SearchSvg from "../svg/searchSvg";
 
 const SummarizedPost: React.FC<ISummarizedPost> = ({
   title,
@@ -23,21 +24,21 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
   return (
     <>
       {/* xl 이상에서는 기존 레이아웃 */}
-      <div className="group flex justify-between items-center w-full mt-2 py-5 md-5 post-layout">
+      <div className="group flex flex-col-reverse xs:flex-row justify-between items-center w-full mt-2 py-5 md-5">
         <div
           className={
-            "flex flex-col justify-evenly space-y-0 w-full xl:w-[600px] h-36"
+            "flex flex-col justify-evenly space-y-0 w-auto xl:w-[600px] h-36"
           }
         >
           <Link to={`/${url}`}>
-            <div id={"title-div"} className={"flex items-center"}>
-              <span
+            <div id={"title-div"} className={"flex items-center w-full"}>
+              <div
                 className={
-                  "text-base md:text-xl text-main-text-black dark:text-white-dark font-bold overflow-hidden text-ellipsis whitespace-nowrap group-hover:text-main-blue group-hover:dark:text-sub-skyblue"
+                  "text-base md:text-xl w-full text-main-text-black dark:text-white-dark font-bold whitespace-break-spaces group-hover:text-main-blue group-hover:dark:text-sub-skyblue"
                 }
               >
                 {title}
-              </span>
+              </div>
             </div>
             <div
               className={
@@ -50,7 +51,9 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
           <Category category_list={category_list} />
 
           <div
-            className={"flex flex-col sm:flex-row items-start sm:items-center"}
+            className={
+              "flex w-full flex-col sm:flex-row items-start sm:items-center"
+            }
           >
             <TagList tags={tags} />
             <div
@@ -76,7 +79,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             </div>
           </div>
         </div>
-        <div className="flex justify-end pl-2 w-[90px] sm:w-[130px] h-36 min-w-4 group-hover:scale-105 duration-200">
+        <div className="flex w-full xs:justify-end pb-2 xs:pl-2 xs:w-[90px] sm:w-[130px] xs:h-36 xs:min-w-24 group-hover:scale-105 duration-200">
           <Link to={`/${url}`}>
             <div className={"relative"}>
               <div className={"w-full group-hover:brightness-[30%]"}>
@@ -101,8 +104,8 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
               <div
                 className={`invisible group-hover:visible absolute inset-0 flex justify-center items-center z-10 text-white flex-col`}
               >
-                <ReadSvg />
-                <div className={"text-xs font-bold"}>보러 가기!</div>
+                <SearchSvg />
+                <div className={"text-xs font-bold"}>Detail</div>
               </div>
             </div>
           </Link>

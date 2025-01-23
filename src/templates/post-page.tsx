@@ -1,15 +1,14 @@
 import { graphql, PageProps } from "gatsby";
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
+import ScrollToTop from "react-scroll-to-top";
 import PostInteractions from "../components/interaction/postInteraction";
 import NormalLayout from "../components/layout/normalLayout";
+import PostButtonSet from "../components/post/postButtonSet";
+import PostTitleSet from "../components/post/postTitleSet";
 import { SEO } from "../components/seo/seo";
+import UpSvg from "../images/upSvg";
 import { IPost } from "../interfaces/IPost";
 import MdxGenerator from "../mdx/mdxGenerator";
-import PostTitleSet from "../components/post/postTitleSet";
-import PostButtonSet from "../components/post/postButtonSet";
-import ScrollToTop from "react-scroll-to-top";
-import UpSvg from "../images/upSvg";
-import { BaseContentBlock } from "notion-types";
 
 const BookSlider = lazy(() => import("../components/bookSlider/bookSlider"));
 const TableOfContents = lazy(
