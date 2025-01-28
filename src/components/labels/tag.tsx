@@ -12,11 +12,13 @@ const Tag: React.FC<ITag> = ({ tag_name, id, url, color }) => {
       <div
         id={id}
         className={classNames(
-          ` text-main-blue dark:text-sub-skyblue text-xs md:text-sm`
+          ` text-main-blue dark:text-sub-skyblue text-xs md:text-sm flex flex-row`
         )}
       >
-        <span className={classNames(`text-opacity-30`)}>#</span>
-        <span className={classNames("font-bold")}>{tag_name}</span>
+        <div className={classNames(`text-opacity-30`)}>#</div>
+        <div className={classNames("font-bold whitespace-nowrap")}>
+          {tag_name}
+        </div>
       </div>
     </Link>
   );

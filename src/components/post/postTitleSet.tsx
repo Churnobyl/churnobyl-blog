@@ -19,10 +19,10 @@ const PostTitleSet = ({
     <div id="content_head" className="flex flex-col space-y-5">
       <div className="flex flex-col space-y-2 xl:flex-row xl:items-end xl:space-x-2">
         <div className="text-xl text-main-text-black dark:text-white-dark font-bold xl:text-3xl">
-          {title}
-        </div>
-        <div className="text-main-blue dark:text-sub-skyblue text-sm">
-          v{version} 개정 {update_date}
+          {title}{" "}
+          <div className="inline-flex text-main-blue dark:text-sub-skyblue text-sm">
+            v{version} 개정 {update_date}
+          </div>
         </div>
       </div>
 
@@ -30,7 +30,7 @@ const PostTitleSet = ({
         <div className="flex flex-col space-y-2">
           <Category category_list={category_list} />
           <div className={"flex justify-start"}>
-            <TagList tags={tags} />
+            <TagList tags={tags} isHorizontal={false} />
           </div>
           <div
             className={

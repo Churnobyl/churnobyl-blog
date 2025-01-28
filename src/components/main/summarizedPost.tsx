@@ -55,7 +55,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
               "flex w-full flex-col sm:flex-row items-start sm:items-center"
             }
           >
-            <TagList tags={tags} />
+            <TagList tags={tags} isHorizontal={true} />
             <div
               className={
                 "flex flex-row space-x-1 items-center text-gray dark:text-white-dark"

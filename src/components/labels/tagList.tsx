@@ -1,14 +1,22 @@
 import React from "react";
 import { ISummarizedPost, ITag } from "../../interfaces/ISummarizedPost";
 import Tag from "./tag";
+import classNames from "classnames";
 
 interface TagListProps {
   tags: ITag[];
+  isHorizontal: boolean;
 }
 
-const TagList: React.FC<TagListProps> = ({ tags }) => {
+const TagList: React.FC<TagListProps> = ({ tags, isHorizontal }) => {
   return (
-    <div className="flex flex-wrap gap-2 mr-2 items-center">
+    <div
+      className={classNames("flex gap-2 mr-2 items-center", {
+        "overflow-x-auto scrollbar-hide max-w-72 flex-wrap xs:flex-nowrap":
+          isHorizontal,
+        "overflow-hidden flex-wrap max-h-32": !isHorizontal,
+      })}
+    >
       {tags.map((tag) => (
         <Tag {...tag} key={tag.id} />
       ))}
