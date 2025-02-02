@@ -7,6 +7,7 @@ import { ISummarizedPost } from "../../interfaces/ISummarizedPost";
 import Category from "../category/category";
 import TagList from "../labels/tagList";
 import SearchSvg from "../svg/searchSvg";
+import classNames from "classnames";
 
 const SummarizedPost: React.FC<ISummarizedPost> = ({
   title,
@@ -20,11 +21,12 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
   tags,
   thumbnail,
   index,
+  isShort = false,
 }) => {
   return (
     <>
       {/* xl 이상에서는 기존 레이아웃 */}
-      <div className="group flex flex-col-reverse xs:flex-row justify-between items-center w-full mt-2 py-5 md-5">
+      <div className="group flex flex-col-reverse xs:flex-row justify-between items-center w-full mb-10 py-10 xs:mt-2 xs:py-5 xs:md-5">
         <div
           className={
             "flex flex-col justify-evenly space-y-0 w-auto xl:w-[600px] h-36"
@@ -51,9 +53,11 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
           <Category category_list={category_list} />
 
           <div
-            className={
-              "flex w-full flex-col sm:flex-row items-start sm:items-center"
-            }
+            className={classNames(
+              "flex flex-col w-full",
+              { "sm:flex-row items-start sm:items-center": !isShort },
+              { "sm:flex-col sm:items-start": isShort }
+            )}
           >
             <TagList tags={tags} isHorizontal={true} />
             <div

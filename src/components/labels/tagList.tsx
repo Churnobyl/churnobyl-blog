@@ -6,9 +6,14 @@ import classNames from "classnames";
 interface TagListProps {
   tags: ITag[];
   isHorizontal: boolean;
+  isShowAll?: boolean;
 }
 
-const TagList: React.FC<TagListProps> = ({ tags, isHorizontal }) => {
+const TagList: React.FC<TagListProps> = ({
+  tags,
+  isHorizontal,
+  isShowAll = false,
+}) => {
   return (
     <div
       className={classNames("flex gap-2 mr-2 items-center", {
@@ -17,7 +22,7 @@ const TagList: React.FC<TagListProps> = ({ tags, isHorizontal }) => {
         "overflow-hidden flex-wrap max-h-32": !isHorizontal,
       })}
     >
-      {tags.map((tag) => (
+      {tags.slice(0, isShowAll ? tags.length : 3).map((tag) => (
         <Tag {...tag} key={tag.id} />
       ))}
     </div>

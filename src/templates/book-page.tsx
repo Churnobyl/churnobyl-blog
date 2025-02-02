@@ -67,7 +67,7 @@ const BookPage: React.FC<PageProps<{}, BookPageContext>> = ({
             </div>
           </div>
           <div className={"flex items-center justify-center"}>
-            <TagList tags={bookTagList} isHorizontal={false} />
+            <TagList tags={bookTagList} isHorizontal={false} isShowAll={true} />
           </div>
         </div>
 

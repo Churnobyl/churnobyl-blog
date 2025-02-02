@@ -15,7 +15,12 @@ const RelatedPost: React.FC<RelatedPostProps> = ({ relatedPosts }) => {
       </h2>
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 xl:gap-10">
         {relatedPosts.map((post, index) => (
-          <SummarizedPost key={post.id} {...post} index={index} />
+          <SummarizedPost
+            key={post.id}
+            {...post}
+            index={index}
+            isShort={true}
+          />
         ))}
       </div>
     </div>

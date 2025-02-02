@@ -27,6 +27,7 @@ export interface ISummarizedPost {
   };
   book_index?: number;
   index?: number;
+  isShort?: boolean;
 }
 
 export interface ICategory {
