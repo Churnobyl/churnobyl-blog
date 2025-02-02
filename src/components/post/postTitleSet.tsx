@@ -30,7 +30,7 @@ const PostTitleSet = ({
         <div className="flex flex-col space-y-2">
           <Category category_list={category_list} />
           <div className={"flex justify-start"}>
-            <TagList tags={tags} isHorizontal={false} />
+            <TagList tags={tags} isHorizontal={false} isShowAll={true} />
           </div>
           <div
             className={
