@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -6,7 +6,6 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import StarSvg from "../../images/starSvg";
 import { colorMapper } from "./colorMapper";
-import { Link } from "gatsby";
 
 export interface TimelineItem {
   id: string;
@@ -36,16 +35,28 @@ const FilteredTimeline: React.FC<FilteredTimelineProps> = ({
   timelineData,
   activeTab,
 }) => {
+  const [isMobile, setIsMobile] = useState<boolean>();
+
   const filteredData =
     activeTab === "all"
       ? timelineData
       : timelineData.filter((item) => item.type === activeTab);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 480);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // 고유 key를 위한 tagKeyMap 객체 생성
   const tagKeyMap: { [key: string]: string } = {};
 
   return (
     <VerticalTimeline
+      animate={!isMobile}
       className={"w-full"}
       layout={"1-column-left"}
       lineColor={"#F1F1F1"}
