@@ -185,7 +185,6 @@ const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
     // seenIds.add(block.id);
 
     if (isVersionHandler(block)) {
-      console.log(block);
       const richText = (block as Record<string, any>)[block.type]?.rich_text;
       const versionText = richText[0].plain_text;
 

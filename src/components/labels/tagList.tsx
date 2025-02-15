@@ -16,7 +16,7 @@ const TagList: React.FC<TagListProps> = ({
 }) => {
   return (
     <div
-      className={classNames("flex gap-2 mr-2 items-center", {
+      className={classNames("flex gap-2 mr-2 items-center antialiased", {
         "overflow-x-auto scrollbar-hide max-w-72 flex-wrap xs:flex-nowrap":
           isHorizontal,
         "overflow-hidden flex-wrap max-h-32": !isHorizontal,

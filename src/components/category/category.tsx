@@ -1,6 +1,6 @@
-import React from "react";
-import { ICategory, ISummarizedPost } from "../../interfaces/ISummarizedPost";
 import { Link } from "gatsby";
+import React from "react";
+import { ICategory } from "../../interfaces/ISummarizedPost";
 
 interface CategoryProps {
   category_list: ICategory[];
@@ -13,7 +13,7 @@ const Category: React.FC<CategoryProps> = ({ category_list }) => {
         <span
           key={category.id}
           className={
-            "text-sm lg:text-base font-bold text-gray-dark dark:text-white-dark break-all"
+            "text-sm lg:text-base font-bold text-gray-dark dark:text-white-dark break-all antialiased"
           }
         >
           <Link

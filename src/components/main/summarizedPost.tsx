@@ -36,7 +36,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             <div id={"title-div"} className={"flex items-center w-full"}>
               <div
                 className={
-                  "text-base md:text-xl w-full text-main-text-black dark:text-white-dark font-bold whitespace-break-spaces group-hover:text-main-blue group-hover:dark:text-sub-skyblue"
+                  "text-base md:text-xl w-full text-main-text-black dark:text-white-dark font-bold whitespace-break-spaces group-hover:text-main-blue group-hover:dark:text-sub-skyblue antialiased"
                 }
               >
                 {title}
@@ -44,7 +44,7 @@ const SummarizedPost: React.FC<ISummarizedPost> = ({
             </div>
             <div
               className={
-                "text-xs xl:text-sm line-clamp-3 h-12 xl:h-14 my-1 w-full text-gray dark:text-white-dark"
+                "text-xs xl:text-sm line-clamp-3 h-12 xl:h-14 my-1 w-full text-gray dark:text-white-dark antialiased"
               }
             >
               {description}

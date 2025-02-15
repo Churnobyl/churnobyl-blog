@@ -19,6 +19,6 @@ export const styling = (annotations: any) => {
     [`text-text-${annotations.color}`]:
       annotations.color !== "default" && !annotations.code,
     "break-all xl:break-keep": true,
-    "text-sm xl:text-base": true,
+    "text-sm xl:text-base antialiased": true,
   };
 };
