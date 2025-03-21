@@ -15,7 +15,7 @@ export const styling = (annotations: any) => {
     "py-0 xl:py-0.5": annotations.code,
     "px-1 xl:px-1.5": annotations.code,
     "mx-1": annotations.code,
-    "text-[13px] xl:text-[15px]": annotations.code,
+    "text-[13px] xl:text-[13.8px]": annotations.code,
     [`text-text-${annotations.color}`]:
       annotations.color !== "default" && !annotations.code,
     "break-all xl:break-keep": true,
