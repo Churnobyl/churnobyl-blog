@@ -15,8 +15,8 @@ const TableOfContents = lazy(
   () => import("../components/tableOfContents/tableOfContents")
 );
 const RelatedPost = lazy(() => import("../components/post/relatedPost"));
-const CommentUtterances = lazy(
-  () => import("../components/comments/commentUtterances")
+const CommentGiscus = lazy(
+  () => import("../components/comments/commentGiscus")
 );
 
 interface PostPageContext {
@@ -136,7 +136,7 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
                 </div>
               }
             >
-              <CommentUtterances />
+              <CommentGiscus />
             </Suspense>
           </div>
         </div>

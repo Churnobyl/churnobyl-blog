@@ -21,7 +21,7 @@ const CommentGiscus = () => {
     scriptEl.setAttribute("data-reactions-enabled", "1");
     scriptEl.setAttribute("data-emit-metadata", "0");
     scriptEl.setAttribute("data-input-position", "bottom");
-    scriptEl.setAttribute("data-theme", "light");
+    scriptEl.setAttribute("data-theme", "light_high_contrast");
     scriptEl.setAttribute("data-lang", "ko");
     scriptEl.setAttribute("crossorigin", "anonymous");
 
