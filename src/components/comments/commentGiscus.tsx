@@ -18,7 +18,7 @@ const CommentGiscus = () => {
     scriptEl.setAttribute("data-category-id", "DIC_kwDONizm9c4Coi1m");
     scriptEl.setAttribute("data-mapping", "pathname");
     scriptEl.setAttribute("data-strict", "0");
-    scriptEl.setAttribute("data-reactions-enabled", "1");
+    scriptEl.setAttribute("data-reactions-enabled", "0");
     scriptEl.setAttribute("data-emit-metadata", "0");
     scriptEl.setAttribute("data-input-position", "bottom");
     scriptEl.setAttribute("data-theme", "light_high_contrast");
