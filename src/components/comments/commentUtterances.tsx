@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const CommentUtterances = () => {
+const CommentGiscus = () => {
   const commentsEl = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<string>("pending");
 
@@ -9,11 +9,20 @@ const CommentUtterances = () => {
 
     scriptEl.onload = () => setStatus("success");
     scriptEl.onerror = () => setStatus("failed");
-    scriptEl.defer = true;
-    scriptEl.src = "https://utteranc.es/client.js";
-    scriptEl.setAttribute("repo", "Churnobyl/blog-comments");
-    scriptEl.setAttribute("issue-term", "pathname");
-    scriptEl.setAttribute("theme", "boxy-light");
+    scriptEl.async = true;
+    scriptEl.src = "https://giscus.app/client.js";
+
+    scriptEl.setAttribute("data-repo", "Churnobyl/blog-comments");
+    scriptEl.setAttribute("data-repo-id", "R_kgDONizm9Q");
+    scriptEl.setAttribute("data-category", "Comments");
+    scriptEl.setAttribute("data-category-id", "DIC_kwDONizm9c4Coi1m");
+    scriptEl.setAttribute("data-mapping", "pathname");
+    scriptEl.setAttribute("data-strict", "0");
+    scriptEl.setAttribute("data-reactions-enabled", "1");
+    scriptEl.setAttribute("data-emit-metadata", "0");
+    scriptEl.setAttribute("data-input-position", "bottom");
+    scriptEl.setAttribute("data-theme", "light");
+    scriptEl.setAttribute("data-lang", "ko");
     scriptEl.setAttribute("crossorigin", "anonymous");
 
     if (commentsEl.current) {
@@ -29,11 +38,19 @@ const CommentUtterances = () => {
 
   return (
     <div className="comments-wrapper">
-      {status === "failed" && <div>Error. Please try again.</div>}
-      {status === "pending" && <div>Loading script...</div>}
+      {status === "failed" && (
+        <div className={"text-main-text-black dark:text-white-dark"}>
+          Error. Please try again.
+        </div>
+      )}
+      {status === "pending" && (
+        <div className={"text-main-text-black dark:text-white-dark"}>
+          Loading script...
+        </div>
+      )}
       <div ref={commentsEl} />
     </div>
   );
 };
 
-export default CommentUtterances;
+export default CommentGiscus;

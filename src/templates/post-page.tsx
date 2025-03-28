@@ -118,12 +118,24 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
           </div>
           <hr className="border-t border-gray-light w-full mt-4" />
           <div className="flex flex-col justify-center items-center my-40 xl:w-[800px]">
-            <Suspense fallback={<div>Loading book slider...</div>}>
+            <Suspense
+              fallback={
+                <div className={"text-main-text-black dark:text-white-dark"}>
+                  Loading book slider...
+                </div>
+              }
+            >
               {book && <BookSlider book={book} currentBookIndex={book_index} />}
             </Suspense>
           </div>
           <div>
-            <Suspense fallback={<div>Loading comments...</div>}>
+            <Suspense
+              fallback={
+                <div className={"text-main-text-black dark:text-white-dark"}>
+                  Loading comments...
+                </div>
+              }
+            >
               <CommentUtterances />
             </Suspense>
           </div>
@@ -137,7 +149,13 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
               handleLike={handleLike}
             />
           </div>
-          <Suspense fallback={<div>Loading table of contents...</div>}>
+          <Suspense
+            fallback={
+              <div className={"text-main-text-black dark:text-white-dark"}>
+                Loading table of contents...
+              </div>
+            }
+          >
             <TableOfContents tableOfContents={tableOfContents} />
           </Suspense>
         </div>
@@ -151,7 +169,13 @@ const PostTemplate: React.FC<PageProps<IPost, PostPageContext>> = ({
         component={<UpSvg />}
       />
       <div className={"w-full xl:w-[1100px] mt-20"}>
-        <Suspense fallback={<div>Loading related posts...</div>}>
+        <Suspense
+          fallback={
+            <div className={"text-main-text-black dark:text-white-dark"}>
+              Loading related posts...
+            </div>
+          }
+        >
           <RelatedPost relatedPosts={relatedPosts} />
         </Suspense>
       </div>
