@@ -5,8 +5,79 @@ import * as React from "react";
 import NormalLayout from "../components/layout/normalLayout";
 import SummarizedPostList from "../components/main/summarizedPostList";
 import { SEO } from "../components/seo/seo";
-import { IBlogListQueryData } from "../interfaces/IChurnotion";
 import { CONST_URL } from "../constants";
+
+// Extended interface to match our updated GraphQL query
+interface ExtendedBlogListQueryData {
+  allChurnotion: {
+    edges: {
+      node: {
+        slug: string;
+        title: string;
+        update_date: string;
+        url: string;
+        version: number | null;
+        description: string | null;
+        create_date: string;
+        id: string;
+        category_list: {
+          id: string;
+          url: string;
+          category_name: string;
+        }[];
+        tags: {
+          id: string;
+          slug: string;
+          tag_name: string;
+          url: string;
+          color: string;
+        }[];
+        book: {
+          book_name: string;
+          id: string;
+          url: string;
+        };
+        thumbnail?: {
+          childImageSharp: {
+            gatsbyImageData: any; // Using 'any' for brevity
+          };
+        };
+      };
+    }[];
+  };
+  allNCategory: {
+    nodes: {
+      id: string;
+      category_name: string;
+      url?: string;
+      parent: {
+        id: string;
+      } | null;
+      childrenNCategory: {
+        id: string;
+        category_name: string;
+        url?: string;
+        parent: {
+          id: string;
+        } | null;
+        childrenChurnotion: {
+          id: string;
+        }[];
+        childNCategory: {
+          id: string;
+          category_name: string;
+          childrenChurnotion: {
+            id: string;
+          }[];
+        }[];
+      }[];
+      // 각 카테고리에 직접 연결된 문서
+      childrenChurnotion?: {
+        id: string;
+      }[];
+    }[];
+  };
+}
 
 interface BlogListPageContext {
   currentPage: number;
@@ -15,10 +86,62 @@ interface BlogListPageContext {
 }
 
 const PostListPage: React.FC<
-  PageProps<IBlogListQueryData, BlogListPageContext>
+  PageProps<ExtendedBlogListQueryData, BlogListPageContext>
 > = ({ data, pageContext }) => {
   const posts = data.allChurnotion.edges.map((edge) => edge.node);
   const { currentPage, numPages, totalPosts } = pageContext;
+
+  // 최상위 카테고리만 필터링 (parent가 null인 카테고리)
+  const topLevelCategories = data.allNCategory.nodes.filter(
+    (cat) => cat.parent === null
+  );
+
+  // 카테고리와 모든 하위 카테고리의 글 개수를 계산하는 함수
+  const calculateTotalPostCount = (categoryNode: any): number => {
+    // 1. 직접 연결된 문서 수
+    const directPostCount = categoryNode.childrenChurnotion?.length || 0;
+
+    // 2. 직계 하위 카테고리의 문서 수
+    const childrenPostCount = (categoryNode.childrenNCategory || []).reduce(
+      (sum: number, childCat: any) => {
+        return sum + (childCat.childrenChurnotion?.length || 0);
+      },
+      0
+    );
+
+    // 3. 하위 카테고리의 하위 카테고리 문서 수 (재귀적으로 계산)
+    const grandChildrenPostCount = (
+      categoryNode.childrenNCategory || []
+    ).reduce((sum: number, childCat: any) => {
+      return (
+        sum +
+        (childCat.childrenNCategory || []).reduce(
+          (subSum: number, grandChild: any) => {
+            return subSum + (grandChild.childrenChurnotion?.length || 0);
+          },
+          0
+        )
+      );
+    }, 0);
+
+    // 총합 반환
+    return directPostCount + childrenPostCount + grandChildrenPostCount;
+  };
+
+  // 카테고리 데이터 변환
+  const categories = topLevelCategories.map((node) => {
+    const postCount = calculateTotalPostCount(node);
+    const hasSubCategories = (node.childrenNCategory?.length || 0) > 0;
+
+    return {
+      id: node.id,
+      category_name: node.category_name,
+      url: node.url || `/blog/category/${node.category_name.toLowerCase()}`,
+      parent: node.parent,
+      postCount,
+      hasSubCategories,
+    };
+  });
 
   return (
     <NormalLayout>
@@ -28,7 +151,11 @@ const PostListPage: React.FC<
           className={"flex items-center justify-center min-h-screen"}
         >
           <div className={"flex flex-col w-full xl:w-[720px] justify-between"}>
-            <SummarizedPostList data={posts} totalPosts={totalPosts} />
+            <SummarizedPostList
+              data={posts}
+              totalPosts={totalPosts}
+              categories={categories}
+            />
           </div>
         </div>
         <Pagination
@@ -98,18 +225,34 @@ export const blogListQuery = graphql`
         }
       }
     }
-    allNCategory(
-      filter: { childrenNBook: { elemMatch: { book_name: { ne: "null" } } } }
-    ) {
+    allNCategory {
       nodes {
         id
         category_name
-        childrenNBook {
-          book_name
-          url
-          create_date
-          update_date
+        url
+        parent {
           id
+        }
+        childrenChurnotion {
+          id
+        }
+        childrenNCategory {
+          id
+          category_name
+          url
+          parent {
+            id
+          }
+          childrenChurnotion {
+            id
+          }
+          childNCategory {
+            id
+            category_name
+            childrenChurnotion {
+              id
+            }
+          }
         }
       }
     }
@@ -120,7 +263,7 @@ export default PostListPage;
 
 export const Head = ({
   pageContext,
-}: PageProps<IBlogListQueryData, BlogListPageContext>) => {
+}: PageProps<ExtendedBlogListQueryData, BlogListPageContext>) => {
   const { currentPage, numPages } = pageContext;
   const title = currentPage === 1 ? "Home" : `${currentPage}`;
   return (
