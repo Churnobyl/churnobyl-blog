@@ -3,6 +3,11 @@ import MdHandler from "./common/mdHandler";
 import { BaseContentBlock } from "notion-types";
 import { diffWords } from "diff";
 import { uniqueId } from "lodash";
+import {
+  CustomBaseContentBlock,
+  CustomTableBlock,
+  CustomTableRowBlock,
+} from "../interfaces/IBlock";
 
 interface IMdxGenerator {
   content: BaseContentBlock[];
@@ -124,6 +129,27 @@ const getDiffElements = (
   return <div>{styledBlocks}</div>;
 };
 
+// 블록에 자식 요소가 있는지 확인하는 함수
+const hasChildren = (
+  block: BaseContentBlock | CustomBaseContentBlock
+): boolean => {
+  return !!(block as CustomBaseContentBlock).has_children;
+};
+
+// 테이블 블록인지 확인
+const isTableBlock = (
+  block: BaseContentBlock | CustomBaseContentBlock
+): block is CustomTableBlock => {
+  return block.type === "table";
+};
+
+// 테이블 행 블록인지 확인
+const isTableRowBlock = (
+  block: BaseContentBlock | CustomBaseContentBlock
+): block is CustomTableRowBlock => {
+  return block.type === "table_row";
+};
+
 const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<IVersioning[] | null>(null);
@@ -139,9 +165,7 @@ const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
   }, []);
 
   const versioning: Record<string, IVersioning[]> = {};
-  const components: React.ReactNode[] = [];
-
-  let latestVersions: IVersioning[] = [];
+  const seenIds = new Set();
 
   const handleMouseEnter = useCallback(
     (e: React.MouseEvent<HTMLDivElement>, versions: IVersioning[]) => {
@@ -177,71 +201,156 @@ const MdxGenerator: React.FC<IMdxGenerator> = ({ content }) => {
     setShowModal(false);
   }, []);
 
-  const seenIds = new Set();
+  // 재귀적으로 블록과 자식 블록을 처리하는 함수
+  const processBlocks = (
+    blocks: (BaseContentBlock | CustomBaseContentBlock)[],
+    level = 0
+  ): React.ReactNode[] => {
+    let latestVersions: IVersioning[] = [];
+    const components: React.ReactNode[] = [];
+    let blockNumbering = 0;
 
-  for (let i = 0; i < content.length; i++) {
-    const block = content[i];
-    // if (seenIds.has(block.id)) continue;
-    // seenIds.add(block.id);
+    for (let i = 0; i < blocks.length; i++) {
+      const block = blocks[i];
+      if (seenIds.has(block.id)) continue;
+      seenIds.add(block.id);
 
-    if (isVersionHandler(block)) {
-      const richText = (block as Record<string, any>)[block.type]?.rich_text;
-      const versionText = richText[0].plain_text;
+      // 버전 관리 블록 처리
+      if (isVersionHandler(block)) {
+        const richText = (block as Record<string, any>)[block.type]?.rich_text;
+        const versionText = richText[0].plain_text;
 
-      const [, date, data] = versionText
-        .split(",")
-        .map((s: string) => s.trim());
-      const [title, description] = data.split("$versionEnd");
+        const [, date, data] = versionText
+          .split(",")
+          .map((s: string) => s.trim());
+        const [title, description] = data.split("$versionEnd");
+
+        if (latestVersions.length > 0) {
+          latestVersions[latestVersions.length - 1].currentContent = block;
+        }
+
+        const newVersion: IVersioning = {
+          id: block.id || uniqueId("version-"),
+          date,
+          title,
+          description,
+          oldContent: block,
+          currentContent: block,
+        };
+
+        latestVersions.push(newVersion);
+        continue;
+      }
 
       if (latestVersions.length > 0) {
         latestVersions[latestVersions.length - 1].currentContent = block;
+        versioning[block.id] = latestVersions;
+        latestVersions = [];
       }
 
-      const newVersion: IVersioning = {
-        id: block.id || uniqueId("version-"),
-        date,
-        title,
-        description,
-        oldContent: block,
-        currentContent: block,
-      };
+      // 테이블 블록 처리: table_row 타입의 자식이 있는 테이블 블록 전용 처리
+      if (isTableBlock(block)) {
+        // 테이블의 자식 블록 처리 (table_row)
+        let tableRows: React.ReactNode[] = [];
 
-      latestVersions.push(newVersion);
-      continue;
-    }
-
-    if (latestVersions.length > 0) {
-      latestVersions[latestVersions.length - 1].currentContent = block;
-      versioning[block.id] = latestVersions;
-      latestVersions = [];
-    }
-
-    components.push(
-      <MdHandler
-        key={`${block.id}-${i}`}
-        data={block}
-        showVersionDot={!!versioning[block.id]}
-        onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) =>
-          handleMouseEnter(e, versioning[block.id])
+        // children 배열이 존재하는 경우
+        if (block.children && Array.isArray(block.children)) {
+          // children에서 테이블 행 찾기
+          tableRows = processBlocks(
+            block.children as (BaseContentBlock | CustomBaseContentBlock)[],
+            level + 1
+          );
         }
-        onMouseLeave={handleMouseLeave}
-        onClick={(e: React.MouseEvent<HTMLDivElement>) =>
-          handleClick(e, versioning[block.id])
-        }
-        index={numbering}
-      />
-    );
 
-    if (block.type === "numbered_list_item") {
-      numbering += 1;
-    } else {
-      numbering = 0;
+        // 테이블 블록 컴포넌트 추가
+        components.push(
+          <MdHandler
+            key={`${block.id}-${i}`}
+            data={block as BaseContentBlock}
+            children={tableRows.length > 0 ? (tableRows as any) : undefined}
+            showVersionDot={!!versioning[block.id]}
+            onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) =>
+              handleMouseEnter(e, versioning[block.id])
+            }
+            onMouseLeave={handleMouseLeave}
+            onClick={(e: React.MouseEvent<HTMLDivElement>) =>
+              handleClick(e, versioning[block.id])
+            }
+            index={blockNumbering}
+            level={level}
+          />
+        );
+      }
+      // 테이블 행은 부모 테이블 블록에서 처리함
+      else if (isTableRowBlock(block)) {
+        components.push(
+          <MdHandler
+            key={`${block.id}-${i}`}
+            data={block as BaseContentBlock}
+            children={undefined}
+            showVersionDot={!!versioning[block.id]}
+            onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) =>
+              handleMouseEnter(e, versioning[block.id])
+            }
+            onMouseLeave={handleMouseLeave}
+            onClick={(e: React.MouseEvent<HTMLDivElement>) =>
+              handleClick(e, versioning[block.id])
+            }
+            index={blockNumbering}
+            level={level}
+          />
+        );
+      }
+      // 일반 블록 처리
+      else {
+        // 자식 블록 처리
+        let childBlocks: React.ReactNode[] = [];
+        if (hasChildren(block) && (block as CustomBaseContentBlock).children) {
+          childBlocks = processBlocks(
+            (block as CustomBaseContentBlock).children as (
+              | BaseContentBlock
+              | CustomBaseContentBlock
+            )[],
+            level + 1
+          );
+        }
+
+        // 일반 블록 컴포넌트 추가
+        components.push(
+          <MdHandler
+            key={`${block.id}-${i}`}
+            data={block as BaseContentBlock}
+            children={childBlocks.length > 0 ? (childBlocks as any) : undefined}
+            showVersionDot={!!versioning[block.id]}
+            onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) =>
+              handleMouseEnter(e, versioning[block.id])
+            }
+            onMouseLeave={handleMouseLeave}
+            onClick={(e: React.MouseEvent<HTMLDivElement>) =>
+              handleClick(e, versioning[block.id])
+            }
+            index={blockNumbering}
+            level={level}
+          />
+        );
+      }
+
+      if (block.type === "numbered_list_item") {
+        blockNumbering += 1;
+      } else {
+        blockNumbering = 0;
+      }
     }
-  }
+
+    return components;
+  };
+
+  // 모든 블록 처리
+  const renderedComponents = processBlocks(content);
 
   return (
     <>
-      {components}
+      {renderedComponents}
       <VersionModal
         showModal={showModal}
         modalContent={modalContent}

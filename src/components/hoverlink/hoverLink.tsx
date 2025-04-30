@@ -32,7 +32,7 @@ const HoverModal: React.FC<HoverModalProps> = React.memo(
     return (
       <div
         className={classNames(
-          `fixed bg-white shadow-md p-3 rounded-lg z-[1000] max-w-[200px] break-words break-keep`,
+          `fixed bg-white dark:bg-gray-800 shadow-md p-3 rounded-lg z-[1000] max-w-[200px] break-words break-keep`,
           { block: hovered }
         )}
         style={{ top: position.y + 10, left: position.x + 10 }}
@@ -52,7 +52,7 @@ const HoverModal: React.FC<HoverModalProps> = React.memo(
         </p>
         <a
           href={metadata.url}
-          className="text-xs text-main-blue hover:underline mt-2 block"
+          className="text-xs text-main-blue dark:text-sub-skyblue hover:underline mt-2 block"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -87,7 +87,19 @@ const HoverLink: React.FC<{ href: string; children: React.ReactNode }> = ({
   const metadata =
     data.allNMetadata.nodes.find((node: any) => node.id === href) || null;
 
-  if (!metadata) return null;
+  // If no metadata is found, render a regular link
+  if (!metadata) {
+    return (
+      <a
+        href={href}
+        className="text-sm xl:text-base text-main-blue dark:text-sub-skyblue font-bold hover:underline hover:text-sub-skyblue hover:dark:text-gray"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {children}
+      </a>
+    );
+  }
 
   const handleMouseEnter = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {

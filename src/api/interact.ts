@@ -11,6 +11,7 @@ export default async function handler(
   req: GatsbyFunctionRequest<DBRequest>,
   res: GatsbyFunctionResponse
 ) {
+  // 기본 검증
   if (req.method !== "POST") {
     return res.status(405).json({ error: "허용되지 않는 메서드예요" });
   }

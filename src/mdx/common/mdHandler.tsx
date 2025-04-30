@@ -13,6 +13,13 @@ import MdBlockCode from "../components/mdBlockCode";
 import MdBlockBulletedListItem from "../components/mdBlockBulletedListItem";
 import MdBlockNumberedListItem from "../components/mdBlockNumberedListItem";
 import MdBlockCallout from "../components/mdBlockCallout";
+import MdBlockTable from "../components/mdBlockTable";
+import MdBlockTableRow from "../components/mdBlockTableRow";
+import MdBlockBookmark from "../components/mdBlockBookmark";
+import MdBlockEquation from "../components/mdBlockEquation";
+import MdBlockEmbed from "../components/mdBlockEmbed";
+import MdBlockToDo from "../components/mdBlockToDo";
+import MdBlockToggle from "../components/mdBlockToggle";
 
 const blockMapper: Record<string, React.FC<CustomBaseContentBlock>> = {
   heading_1: MdBlockH1,
@@ -26,6 +33,13 @@ const blockMapper: Record<string, React.FC<CustomBaseContentBlock>> = {
   bulleted_list_item: MdBlockBulletedListItem,
   numbered_list_item: MdBlockNumberedListItem,
   callout: MdBlockCallout,
+  table: MdBlockTable,
+  table_row: MdBlockTableRow,
+  bookmark: MdBlockBookmark,
+  equation: MdBlockEquation,
+  embed: MdBlockEmbed,
+  to_do: MdBlockToDo,
+  toggle: MdBlockToggle,
 };
 
 const MdHandler = ({

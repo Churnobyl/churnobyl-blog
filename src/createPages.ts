@@ -11,9 +11,16 @@ export const createPages: GatsbyNode[`createPages`] = async ({
 }) => {
   const { createPage } = actions;
 
-  await createPostList(graphql, createPage);
-  await createPosts(graphql, createPage);
-  await createPostListByTag(graphql, createPage);
-  await createPostListByCategory(graphql, createPage);
-  await createBookPage(graphql, createPage);
+  // 데이터가 완전히 로드될 때까지 잠시 기다림
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  try {
+    await createPostList(graphql, createPage);
+    await createPosts(graphql, createPage);
+    await createPostListByTag(graphql, createPage);
+    await createPostListByCategory(graphql, createPage);
+    await createBookPage(graphql, createPage);
+  } catch (error) {
+    console.error("Error during page creation:", error);
+  }
 };

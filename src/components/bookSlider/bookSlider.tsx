@@ -28,26 +28,32 @@ const BookSlider = ({
 }) => {
   const swiperRef = useRef<any>(null);
 
-  const sortedChildrenChurnotion = useMemo(() => {
-    if (!book.childrenChurnotion || book.childrenChurnotion.length === 0) {
-      return []; // childrenChurnotion이 없으면 빈 배열 반환
+  // childrenChurnotion이 없을 경우 빈 배열을 사용
+  const bookChildren = book.childrenChurnotion || [];
+
+  const sortedBookChildren = useMemo(() => {
+    if (bookChildren.length === 0) {
+      return []; // 자식 항목이 없으면 빈 배열 반환
     }
-    return [...book.childrenChurnotion].sort(
-      (a, b) => a.book_index - b.book_index
-    );
-  }, [book.childrenChurnotion]);
+    return [...bookChildren].sort((a, b) => a.book_index - b.book_index);
+  }, [bookChildren]);
 
   useEffect(() => {
-    if (swiperRef.current && sortedChildrenChurnotion.length > 0) {
-      const currentSlideIndex = sortedChildrenChurnotion.findIndex(
-        (churnotion) => churnotion.book_index === currentBookIndex
+    if (swiperRef.current && sortedBookChildren.length > 0) {
+      const currentSlideIndex = sortedBookChildren.findIndex(
+        (item) => item.book_index === currentBookIndex
       );
 
       if (currentSlideIndex !== -1) {
         swiperRef.current.slideTo(currentSlideIndex, 500);
       }
     }
-  }, [currentBookIndex, sortedChildrenChurnotion]);
+  }, [currentBookIndex, sortedBookChildren]);
+
+  // 컨텐츠가 없으면 렌더링하지 않음
+  if (sortedBookChildren.length === 0) {
+    return null;
+  }
 
   return (
     <div
@@ -114,8 +120,8 @@ const BookSlider = ({
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           centeredSlides={true}
         >
-          {sortedChildrenChurnotion.length > 0 ? (
-            sortedChildrenChurnotion.map((churnotion) => (
+          {sortedBookChildren.length > 0 ? (
+            sortedBookChildren.map((churnotion) => (
               <SwiperSlide key={churnotion.id} className={"mb-10"}>
                 <PostCard
                   key={churnotion.id}
@@ -125,7 +131,11 @@ const BookSlider = ({
               </SwiperSlide>
             ))
           ) : (
-            <p>관련 글이 없습니다.</p>
+            <SwiperSlide>
+              <p className="text-center text-gray-500 dark:text-gray-400 py-12">
+                관련 글이 없습니다.
+              </p>
+            </SwiperSlide>
           )}
         </Swiper>
       </div>

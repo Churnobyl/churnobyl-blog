@@ -62,12 +62,14 @@ const MdBlockNumberedListItem: React.FC<CustomBaseContentBlock> = ({
 
             const textClass = classNames(styling(annotations));
 
+            const uniqueKey = `text_${level}_${index}_${idx}`;
+
             return href ? (
-              <HoverLink key={index} href={href}>
+              <HoverLink key={uniqueKey} href={href}>
                 {plain_text}
               </HoverLink>
             ) : (
-              <span key={index} className={`${textClass}`}>
+              <span key={uniqueKey} className={`${textClass}`}>
                 {plain_text}
               </span>
             );
@@ -78,7 +80,7 @@ const MdBlockNumberedListItem: React.FC<CustomBaseContentBlock> = ({
           <ol className="list-none">
             {children.map((child, idx) => (
               <MdHandler
-                key={child.id + "_" + idx}
+                key={`${child.id || "child"}_${idx}`}
                 data={child}
                 children={child.children || []}
                 level={level + 1}
