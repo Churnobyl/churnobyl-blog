@@ -144,7 +144,7 @@ const PostListByCategoryPage: React.FC<
           renderItem={(item) => (
             <PaginationItem
               component={Link}
-              to={item.page === 1 ? url : `${url}/${item.page}`}
+              to={item.page === 1 ? `/${url}` : `/${url}/${item.page}`}
               {...item}
             />
           )}
