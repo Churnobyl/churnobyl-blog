@@ -48,7 +48,7 @@ const CategoryButtons: React.FC<CategoryButtonsProps> = ({
       {filteredCategories.map((category: CategoryData) => (
         <Link
           key={category.id}
-          to={`/${category.url}`}
+          to={category.url.startsWith("/") ? category.url : `/${category.url}`}
           className="group flex items-center rounded-full px-4 py-1.5 md:py-2 transition-all duration-300 
                     bg-gray-100 hover:bg-white hover:ring-2 hover:ring-gray-200 hover:shadow-md text-gray-800 
                     dark:bg-gray-700 dark:text-white-dark 
