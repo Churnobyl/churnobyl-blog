@@ -396,7 +396,14 @@ export const postQuery = graphql`
         }
       }
       book_index
-      tableOfContents
+      tableOfContents {
+        hash
+        title
+        type
+        level
+        parentHash
+        contextTitle
+      }
       thumbnail {
         childImageSharp {
           gatsbyImageData(
